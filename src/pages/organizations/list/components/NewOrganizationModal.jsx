@@ -1,49 +1,33 @@
-import {Button, Group, Modal, Select, Stack, TextInput} from "@mantine/core";
-import {useForm} from "@mantine/form";
-import useOrganizationList from "./useOrganizationList";
+import { Select, TextInput } from '@mantine/core'
+import useOrganizationList from '../useOrganizationList'
+import { FormModal } from 'components'
 
-const NewOrganizationModal = ({opened, closeModal})=>{
+const NewOrganizationModal = () => {
 
-  const form = useForm({
-    initialValues: {
-      name: '',
-      org_type: ''
-    }
-  })
-  const {createNewOrganization} = useOrganizationList();
+  const { form, opened, createNewOrganization, closeNewOrganizationModal } = useOrganizationList()
 
-  return <Modal
+  return <FormModal
     opened={opened}
-    onClose={closeModal}
+    onClose={closeNewOrganizationModal}
     title="New Organization"
-    centered
+    onSubmit={form.onSubmit(createNewOrganization)}
   >
-    <form onSubmit={form.onSubmit(createNewOrganization)}>
-      <Stack spacing="md">
-        <TextInput
-          label="Company Legal Name"
-          withAsterisk
-          {...form.getInputProps('name')}
-        />
-        <Select
-          label="Organization Type"
-          withAsterisk
-          {...form.getInputProps('org_type')}
-          data={[
-            { value: '', label: 'Select' },
-            { value: 'ORG_BORROWER', label: 'Borrower' },
-            { value: 'ORG_BROKER', label: 'Brokerage' },
-            { value: 'ORG_LENDER', label: 'Lender' }
-          ]}
-          defaultValue="ORG_BORROWER"
-        />
-      </Stack>
-
-    <Group position="apart" sx={{marginTop: 30}}>
-      <Button variant="transparent" onClick={closeModal}>Cancel</Button>
-      <Button type="submit" variant="primary">Create</Button>
-    </Group>
-    </form>
-  </Modal>
+    <TextInput
+      label="Company Legal Name"
+      withAsterisk
+      {...form.getInputProps('name')}
+    />
+    <Select
+      label="Organization Type"
+      withAsterisk
+      {...form.getInputProps('org_type')}
+      data={[
+        { value: '', label: 'Select' },
+        { value: 'ORG_BORROWER', label: 'Borrower' },
+        { value: 'ORG_BROKER', label: 'Brokerage' },
+        { value: 'ORG_LENDER', label: 'Lender' }
+      ]}
+    />
+  </FormModal>
 }
-export default NewOrganizationModal;
+export default NewOrganizationModal

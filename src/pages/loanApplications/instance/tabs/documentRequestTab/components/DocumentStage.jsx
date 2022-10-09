@@ -1,20 +1,37 @@
-import {Accordion, Group, Stack, Text, Button} from "@mantine/core";
-import DocumentRequestRow from "./DocumentRequestRow";
-import {useGetLoanAppDocRequestOnStageQuery} from "redux/reducer/loanApplication/docRequestApiSlice";
-import {useParams} from "react-router-dom";
-import {Draggable, Droppable} from "react-beautiful-dnd";
-import standardString from "../../../../utilities/StandardString";
+import { Accordion, Group, Text } from '@mantine/core'
+import DocumentRequestRow from './documentRequestRow/DocumentRequestRow'
+import { useGetLoanAppDocRequestOnStageQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { StandardString } from 'utilities'
+import { setLoadingLoanApplication } from 'redux/reducer/loanApplication/loanApplicationSlice'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
-const DocumentStage = ({stage}) => {
-  const {id} = useParams();
-  const {data: documentRequests, isSuccess} = useGetLoanAppDocRequestOnStageQuery({loanAppId: id, stageId: stage.id})
+const DocumentStage = ({ stage }) => {
+  const { id } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { data: documentRequests, isSuccess, isLoading } = useGetLoanAppDocRequestOnStageQuery({ loanAppId: id, stageId: stage.id }, {skip: stage=== null})
 
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (!isLoading) {
+      dispatch(setLoadingLoanApplication(
+        {
+          step: 'Loading Document Requests',
+          percent: {
+            doRequest: 1
+          }
+        }
+      ))
+    }
+  }, [isLoading])
 
   return isSuccess &&
     <Droppable direction="vertical" droppableId={`stage-${stage.id}`}>
       {(provided) => (
         <div ref={provided.innerRef} {...provided.droppableProps}>
-          <Accordion.Item key={stage.id} value={standardString(stage.name)}>
+          <Accordion.Item key={stage.id} value={StandardString(stage.name)}>
             <Accordion.Control>
               <Group>
                 <Text weight={500} color="dimmed">{stage.name}</Text>
@@ -26,8 +43,8 @@ const DocumentStage = ({stage}) => {
                 </Text>
               </Group>
             </Accordion.Control>
-            <Accordion.Panel sx={{paddingLeft: -10}}>
-              <Accordion variant='separated' chevronPosition='left' multiple>
+            <Accordion.Panel sx={{ paddingLeft: -10 }}>
+              <Accordion variant="separated" chevronPosition="left" onChange={value => setSearchParams({ documentRequestId: value })}>
 
                 {documentRequests.map((docReq, index) => (
                   <Draggable key={`doc-request-${docReq.id}`}
@@ -50,7 +67,6 @@ const DocumentStage = ({stage}) => {
                 {provided.placeholder}
 
               </Accordion>
-              <Button variant="subtle" mt="lg" compact size="xs">New document request</Button>
             </Accordion.Panel>
           </Accordion.Item>
         </div>
@@ -58,4 +74,4 @@ const DocumentStage = ({stage}) => {
       }
     </Droppable>
 }
-export default DocumentStage;
+export default DocumentStage

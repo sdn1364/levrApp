@@ -14,7 +14,7 @@ const DocumentRequestSelected = ()=>{
       zIndex: '100',
       padding: 10,
       transform: 'translate(-50%, 0)',
-      backgroundColor: theme.colors['brand'][5],
+      backgroundColor: theme.colors['purple'][5],
       borderBottomLeftRadius: 10,
       borderBottomRightRadius: 10
     })}>

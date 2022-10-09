@@ -1,5 +1,5 @@
 import {Stack} from "@mantine/core";
-import LoanApplicationRow from "../../../loanApplications/list/components/LoanApplicationRow";
+import LoanApplicationRow from "../../../../loanApplications/list/components/LoanApplicationRow";
 import {useGetOneOrganizationQuery} from "redux/reducer/organizations/organizationsApiSlice";
 import {useParams} from "react-router-dom";
 

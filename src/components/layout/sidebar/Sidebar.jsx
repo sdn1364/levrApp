@@ -1,87 +1,30 @@
-import {createStyles, Navbar, Tooltip, UnstyledButton} from "@mantine/core";
-import {
-  TablerIcon,
-  IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
-  IconSettings,
-  IconLogout,
-  IconSwitchHorizontal,
-} from '@tabler/icons';
+import { Navbar, Stack, Center } from '@mantine/core'
+import NavbarLink from './components/NavbarLink'
+import { useLocation } from 'react-router-dom'
+import useSidebar from './useSidebar'
 
-const useStyles = createStyles((theme) => ({
-  link: {
-    width: 50,
-    height: 50,
-    borderRadius: theme.radius.md,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
 
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
-    },
-  },
-
-  active: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-    },
-  },
-}));
-
-function NavbarLink({ icon: Icon, label, active, onClick }) {
-  const { classes, cx } = useStyles();
-  return (
-    <Tooltip label={label} position="right" transitionDuration={0}>
-      <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
-        <Icon stroke={1.5} />
-      </UnstyledButton>
-    </Tooltip>
-  );
-}
-
-const mockdata = [
-  { icon: IconHome2, label: 'Home' },
-  { icon: IconGauge, label: 'Dashboard' },
-  { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
-  { icon: IconCalendarStats, label: 'Releases' },
-  { icon: IconUser, label: 'Account' },
-  { icon: IconFingerprint, label: 'Security' },
-  { icon: IconSettings, label: 'Settings' },
-];
-const Sidebar = ()=>{
-  const [active, setActive] = useState(2);
-
-  const links = mockdata.map((link, index) => (
-    <NavbarLink
-      {...link}
-      key={link.label}
-      active={index === active}
-      onClick={() => setActive(index)}
-    />
-  ));
+const Sidebar = () => {
+  const location = useLocation()
+  const { navLinks, isActive } = useSidebar()
 
   return (
-    <Navbar height={750} width={{ base: 80 }} p="md">
-      <BrandLogo/>
-      <Navbar.Section grow mt={50}>
-        <Stack justify="center" spacing={0}>
-          {links}
-        </Stack>
+    <Navbar width={{ base: 60, height: '100%' }} p="sm">
+
+      <Navbar.Section component={Stack} spacing="md">
+        {
+          navLinks.map((link, index) => {
+            return <NavbarLink
+              {...link}
+              key={link.label}
+              active={isActive(link.to, location.pathname)}
+              to={link.to}
+            />
+          })
+        }
       </Navbar.Section>
-      <Navbar.Section>
-        <Stack justify="center" spacing={0}>
-          <NavbarLink icon={IconSwitchHorizontal} label="Change account" />
-          <NavbarLink icon={IconLogout} label="Logout" />
-        </Stack>
-      </Navbar.Section>
+
     </Navbar>
   )
 }
-export default Sidebar;
+export default Sidebar

@@ -1,6 +1,6 @@
 import {Tabs, Paper, Grid} from "@mantine/core";
-import OrganizationsInformationTab from "../components/OrganizationsInformationTab";
-import ManageAccessTab from "../components/ManageAccessTab";
+import OrganizationsInformationTab from "./components/OrganizationsInformationTab";
+import ManageAccessTab from "./components/ManageAccessTab";
 
 const SettingsTab = () => {
 

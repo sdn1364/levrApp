@@ -1,24 +1,39 @@
-import {Tooltip, Paper, Title, Text, Group, ActionIcon} from "@mantine/core";
+import {Tooltip, Paper, Title, Text, Group, ActionIcon, Center} from "@mantine/core";
 import {Link} from "react-router-dom";
-import {IconBell} from "@tabler/icons";
+import {IconBell, IconCurrencyDollarCanadian} from "@tabler/icons";
+import CurrencyFormat from "react-currency-format";
 
-const LoanApplicationRow = ({la, redacted})=>{
-  return <Tooltip label="Click for detail">
-    <Paper
-      component={Link}
-      to={`/loan-applications/${la.id}`}
-      shadow="xs" p="md"
-    >
-      <Group position="apart">
-        <Title order={5}>{la.loan_description}</Title>
-        <Group>
-          <Text size="sm" color="dimmed"><span>Requested Amount: </span><span>${la.requested_amount}</span></Text>
-          {
-            redacted ? null: <ActionIcon variant="subtle"><IconBell size={16} /></ActionIcon>
-          }
-        </Group>
+import useLoanApplicationList from "../useLoanApplicationList";
+
+const LoanApplicationRow = ({la, redacted}) => {
+
+  const {openLoanApplicationReminderModal} = useLoanApplicationList();
+
+  return <Paper shadow="xs" pr="md">
+    <Group position="apart">
+      <Tooltip label="Click for detail">
+        <Paper component={Link} to={`/loan-applications/${la.id}`} sx={{flex: 1, height: '100%'}} p="md">
+          <Group position="apart">
+            <Title order={5} weight={500}>{la.loan_description}</Title>
+            <Group spacing="xs" sx={{width: 250}}>
+              <Text size="xs" color="dimmed" inline>Requested Amount:</Text>
+              <Text inline>
+                <Center inline>
+                  <IconCurrencyDollarCanadian size={16}/>
+                  <CurrencyFormat value={la.requested_amount} displayType={'text'} thousandSeparator={true}/>
+                </Center>
+              </Text>
+            </Group>
+          </Group>
+        </Paper>
+      </Tooltip>
+      <Group position="right">
+        {
+          !redacted && <ActionIcon variant="subtle" color="primary" onClick={openLoanApplicationReminderModal}><IconBell stroke={1} size={16}/></ActionIcon>
+        }
       </Group>
-    </Paper>
-  </Tooltip>
+    </Group>
+  </Paper>
+
 }
 export default LoanApplicationRow

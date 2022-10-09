@@ -1,25 +1,86 @@
-import {apiSlice} from '../../api/apiSlice';
+import { apiSlice } from "../../api/apiSlice";
 
 const docRequestApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder =>({
+  endpoints: (builder) => ({
     getLoanAppDocRequestOnStage: builder.query({
-      query: ({loanAppId, stageId})=>`/document_request/?loan_application=${loanAppId}`,
-/*      transformResponse: (response, meta, arg)=> {
-        console.log(arg)
-        //return response.filter(docReq=> docReq.stage === arg.stageId).sort((a,b)=> a.order - b.order)
-      }*/
+      query: ({ loanAppId, stageId }) => `document_requests/?loan_application=${loanAppId}`,
+      transformResponse: (response, meta, arg) => {
+        return response.filter((docReq) => docReq.stage === arg.stageId).sort((a, b) => a.order - b.order);
+      },
+      providesTags: ["DocumentRequest"]
     }),
-    createNewDocumentUpload: builder.mutation({}),
-    deleteDocumentRequest: builder.mutation({}),
-    getDocumentRequest: builder.query({}),
-    saveDocRequestOrder: builder.mutation({}),
+    getLoanAppDocRequestLength: builder.query({
+      query: ({ loanAppId }) => `document_requests/?loan_application=${loanAppId}`,
+      transformResponse: (response, meta, arg) => {
+        return response.length;
+      },
+      providesTags: ["DocumentRequest"]
+    }),
+    updateDocRequestStatus: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `document_requests/${id}/update_status/`,
+        method: "PUT",
+        body: { status }
+      }),
+      invalidatesTags: ["DocumentRequest"]
+    }),
+    getOneDocRequest: builder.query({
+      query: (id) => `document_requests/${id}`,
+      providesTags: ["DocumentRequest"]
+    }),
+    getAllRequestGuideTemplate: builder.query({
+      query: (id) => `document_request_guide_templates/?document_request_guide=${id}`
+    }),
+    getDocRequestGuide: builder.query({
+      query: () => `document_request_guides/`,
+      providesTags: ["docRequestGuides"]
+    }),
+    getAllDocReqGuidePacks: builder.query({
+      query: () => `document_request_guide_packs/`
+    }),
+    getAllDocReqRequiredFiles: builder.query({
+      query: (id) => `document_request_required_files/?document_request=${id}`
+    }),
+    getDocReqRequiredFilesCount: builder.query({
+      query: (id) => `document_request_required_files/?document_request=${id}`,
+      transformResponse: (response, meta, arg) => {
+        return response.length;
+      }
+    }),
+    getDocReqFiles: builder.query({
+      query: (id) => `document_request_files/?document_request=${id}`
+    }),
+    getDocReqGuideRailzParams: builder.query({
+      query: (id) => `document_request_guides/${id}/`,
+      transformResponse: (response, meta, arg) => {
+        return response.railz_query_parameters;
+      }
+    }),
+    createNewApiDocumentUpload: builder.mutation({
+      query: ({ reqDocId, query_parameters }) => ({
+        url: `document_requests/${reqDocId}/create_new_api_connection_upload/`,
+        method: "POST",
+        body: { query_parameters }
+      })
+    })
   })
-})
+});
 
 export const {
-  useGetLoanAppDocRequestRequest,
+  useGetLoanAppDocRequestOnStageQuery,
   useCreateNewDocumentUploadMutation,
   userDeleteDocumentRequestMutation,
   useGetDocumentRequestQuery,
-  useSaveDocRequestOrderMutation
-} = docRequestApiSlice
+  useSaveDocRequestOrderMutation,
+  useUpdateDocRequestStatusMutation,
+  useGetLoanAppDocRequestLengthQuery,
+  useGetOneDocRequestQuery,
+  useGetAllRequestGuideTemplateQuery,
+  useGetDocRequestGuideQuery,
+  useGetAllDocReqGuidePacksQuery,
+  useGetAllDocReqRequiredFilesQuery,
+  useGetDocReqRequiredFilesCountQuery,
+  useGetDocReqFilesQuery,
+  useGetDocReqGuideRailzParamsQuery,
+  useCreateNewApiDocumentUploadMutation
+} = docRequestApiSlice;

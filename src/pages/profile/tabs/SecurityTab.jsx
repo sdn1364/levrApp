@@ -18,7 +18,7 @@ const SecurityTab = ()=>{
       onClose={() => setOpened(false)}
       title="Reset Password"
     >
-      <form action="">
+      <form action="pages/profile/tabs/SecurityTab">
         <Stack spacing="md">
           <PasswordInput
             label="Enter old password"

@@ -1,9 +1,9 @@
-import {Login} from 'pages'
+import {Forgot} from 'pages'
 
 export default{
-  title: 'Levr App/Auth/Login',
-  component: Login,
+  title: 'Levr App/Auth/Forgot',
+  component: Forgot,
 
 }
 
-export const LoginPage = <Login/>
+export const ForgotPage = <Forgot/>

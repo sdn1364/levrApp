@@ -1,3 +1,20 @@
-export {default as Sidebar}  from './layout/sidebar/View';
-export {default as Header} from './layout/header/View';
-export {default as Auth} from './Auth';
+export { default as Layout } from './Layout'
+export { default as BrandLogo } from './BrandLogo'
+export { default as RequireAuth } from './auth/RequireAuth'
+export { default as PrivateLayout } from './layout/PrivateLayout'
+export { default as Heading } from './layout/heading/Heading'
+export { default as UserAvatar } from './layout/header/components/UserAvatar'
+export { default as ManageAccess } from './ManageAccess/ManageAccess'
+export { default as Content } from './layout/Content'
+export { default as TimeAgo } from './TimeAgo'
+export { default as PageTitle } from './layout/heading/components/PageTitle'
+export { default as FormModal } from './modals/FormModal'
+export { default as ActionGroup } from './ActionGroup'
+export { default as EditableTextInput } from './editableTextInput/EditableTextInput'
+export { default as ActionGrid } from './actionGrid/ActionGrid'
+export { default as LoadingLoanApplication } from './LoadingLoanApplication'
+
+// ============================================================================= Icons from here
+export { default as IconShop } from './icons/IconShop'
+export { default as IconSliderVertical } from './icons/IconSliderVertical'
+export { default as IconHome } from './icons/IconHome'

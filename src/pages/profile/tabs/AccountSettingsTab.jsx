@@ -1,6 +1,6 @@
 import {Stack} from "@mantine/core";
-import EmailSettings from "./components/EmailSettings";
-import PersonalInformation from "./components/PersonalInformation";
+import EmailSettings from "../components/EmailSettings";
+import PersonalInformation from "../components/PersonalInformation";
 
 const AccountSettingsTab = ()=>{
 

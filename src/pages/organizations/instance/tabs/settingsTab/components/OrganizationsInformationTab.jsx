@@ -11,8 +11,6 @@ const OrganizationsInformation = () => {
   const {id} = useParams()
   const {data: organization, isSuccess} = useGetOneOrganizationQuery(id);
 
-  useLogger('organization instance', [organization])
-
   const nameForm = useForm({
     initialValues: {
       name: organization?.name

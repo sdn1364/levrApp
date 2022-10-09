@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/soheyldelshad.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LoadingLoanApplication.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/actionGrid/ActionGrid.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/actionGrid/useActionGrid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/actionGrid/useStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/editableTextInput/EditableTextInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/editableTextInput/useEditableTextInput.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/IconHome.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/IconShop.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/IconSliderVertical.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/IconTemplate.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modals/FormModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/auth/forgot/Forgot.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/ApiUploadModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/useDocReqGuideDrawer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/DocumentRequestRow.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/components/People.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/components/RequiredFilesCount.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/components/UploadDocsCounter.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/useDocumentRequestRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFiles/RequiredFiles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFiles/useRequiredFiles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/uploadedFiles/UploadedFiles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/messagesTab/MessagesTab.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/useLoanApplicationInstance.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/organizations/list/components/useOrganizationRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utilities/HumanFileSize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BrandLogo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BrandLogo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteInvitationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteInvitationModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteUserRoleModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteUserRoleModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/EmailEditableInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/EmailEditableInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesAndInvitesTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesAndInvitesTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/useUseInviteModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/useUseInviteModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/useManageAccess.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/useManageAccess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TimeAgo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TimeAgo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/RequireAuth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/Content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Content.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/PrivateLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/PrivateLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/header/HeaderBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/header/HeaderBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/header/components/UserAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/header/components/UserAvatar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/header/useStyles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/header/useStyles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/heading/Heading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/heading/Heading.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/useSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/useSidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/usePermission.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePermission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/forgot/View.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActionGroup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/forgot/useForgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/forgot/useForgot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/login/useLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login/useLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/LoanDetailsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/LoanDetailsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/ConfirmDeleteDocReqModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/ConfirmDeleteDocReqModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/DocumentRequestRow.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/DocumentRequestSelected.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/DocumentRequestSelected.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/DocumentStage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/DocumentStage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/EmptyDocRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/EmptyDocRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/FileUploadModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/FileUploadModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/NewDocRequestModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/NewDocRequestModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/SendEmailModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/SendEmailModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/Stages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/Stages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/DocReqGuideTemplates.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/DocReqGuideTemplates.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/DocRequestGuideDrawer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/docReqGuideDrawer/DocRequestGuideDrawer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/useNewDocReq.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/useNewDocReq.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/useDocRequestTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/useDocRequestTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/SettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/SettingsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/LoanDetailsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/LoanDetailsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/ManageAccessTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/LoanApplicationList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/LoanApplicationList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationReminderModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationReminderModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/NewLoanApplicationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/NewLoanApplicationModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/useLoanApplicationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/useLoanApplicationList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/LoanApplicationsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/LoanApplicationsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/SettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/SettingsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/ManageAccessTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/OrganizationsInformationTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/OrganizationsInformationTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/useManageAccessTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/useManageAccessTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/useOrganizationInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/useOrganizationInstance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/list/OrganizationsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/list/OrganizationsList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/list/components/NewOrganizationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/list/components/NewOrganizationModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/list/components/OrganizationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/list/components/OrganizationRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/list/useOrganizationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/list/useOrganizationList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileSettings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/AvatarUpload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/AvatarUpload.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/EmailSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/EmailSettings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/PersonalInformation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/PersonalInformation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/AccountSettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/AccountSettingsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/AppSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/AppSettings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/SecurityTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/SecurityTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/useProfileSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/useProfileSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/api/apiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/api/apiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/ManageAccessSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/ManageAccessSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/SidebarSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/SidebarSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/ThemeSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/ThemeSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/auth/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/auth/authSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stories/Forgot.stories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stories/Forgot.stories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/CapitalizeFirstLetter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/CapitalizeFirstLetter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/RenderIfElse.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/RenderIfElse.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/StandardString.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/StandardString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Fj5Hnbhi0ZoreNWhGFyQOpfbFQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/actionGrid" />
+      <recent name="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow" />
+      <recent name="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFiles" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="" />
+      <created>1664992570526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664992570526</updated>
+      <workItem from="1664992572335" duration="57000" />
+      <workItem from="1664992637445" duration="854000" />
+      <workItem from="1664993503530" duration="15910000" />
+      <workItem from="1665036625874" duration="791000" />
+      <workItem from="1665040773038" duration="17670000" />
+      <workItem from="1665154170147" duration="6000" />
+      <workItem from="1665154187215" duration="512000" />
+      <workItem from="1665154859917" duration="8539000" />
+      <workItem from="1665194197784" duration="3639000" />
+      <workItem from="1665207885693" duration="18559000" />
+      <workItem from="1665298475416" duration="1335000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

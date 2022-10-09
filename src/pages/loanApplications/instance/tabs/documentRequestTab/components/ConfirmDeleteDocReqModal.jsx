@@ -1,32 +1,31 @@
-import {Button, Group, Modal, Text} from "@mantine/core";
+import {Button, Group, Modal, Text, Stack} from "@mantine/core";
 import {useSelector} from "react-redux";
 import {selectDeleteDocReqModal} from "redux/reducer/loanApplication/docRequestSlice";
 import useDocRequestTab from "../useDocRequestTab";
-import {useGetOneDocRequest} from "../../../../../../redux/reducer/loanApplication/docRequestApiSlice";
 
 
-const ConfirmDocReqDeleteModal = ()=>{
+const ConfirmDeleteDocReqModal = ()=>{
 
   const {handleCloseDocReqDeleteConfirmModal} = useDocRequestTab();
 
-  const docRequestId = useSelector(selectDeleteDocReqModal)
-
-const {data: docRequest, isSuccess} = useGetOneDocRequest(docRequestId);
+  const docRequest = useSelector(selectDeleteDocReqModal)
 
   return <Modal centered
-                opened={docRequestId !== null}
+                opened={docRequest !== null}
                 onClose={handleCloseDocReqDeleteConfirmModal}
                 title="Are you sure you want to delete this Document Request?"
   >
+    <Stack spacing="xl">
     {
-      isSuccess && <Text>
-        You are about to delete{" "}'{docRequest.name}'
+      <Text>
+        You are about to delete{" "}'{docRequest && docRequest.name}'
       </Text>
     }
     <Group position="apart">
       <Button onClick={handleCloseDocReqDeleteConfirmModal} variant='subtle'>Cancel</Button>
       <Button color="red">Delete</Button>
     </Group>
+    </Stack>
   </Modal>
 }
-export default ConfirmDocReqDeleteModal
+export default ConfirmDeleteDocReqModal
