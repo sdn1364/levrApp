@@ -1,47 +1,54 @@
-import { Group, Modal, Stepper, Button, Stack, TextInput } from '@mantine/core'
-import { useSelector } from 'react-redux'
-import { selectNewLoanApplicationModal } from 'redux/reducer/loanApplication/loanApplicationSlice'
-import useLoanApplicationList from '../../useLoanApplicationList'
-import { useState } from 'react'
+import { Group, Modal, Stepper, Button, Stack, TextInput, Text, Select } from '@mantine/core'
 import { IconCurrencyDollarCanadian } from '@tabler/icons'
+import useNewLoanApplicationModal from './useNewLoanApplicationModal'
+import { InviteUsers } from 'components'
+import { ROLE_LOANAPP_BORROWER, ROLE_LOANAPP_BROKER, ROLE_LOANAPP_LENDER, ROLE_LOANAPP_VIEWER } from 'roles'
 
 const NewLoanApplicationModal = () => {
 
-  const [active, setActive] = useState(1)
-  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current))
-  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current))
-
-  const opened = useSelector(selectNewLoanApplicationModal)
-
-  const { closeNewLoanApplicationModal } = useLoanApplicationList()
+  const { active, setActive, nextStep, prevStep, opened, closeNewLoanApplicationModal, allOrganizations } = useNewLoanApplicationModal()
 
 
   return <Modal opened={opened}
-                size="lg"
+                size="md"
                 title="New Loan application"
                 centered
                 onClose={closeNewLoanApplicationModal}
   >
 
-    <Stepper active={active} onStepClick={setActive} breakpoint="sm">
-      <Stepper.Step label="First step" description="Loan Details">
+    <Stepper active={active} onStepClick={setActive} breakpoint="sm" size="sm">
+      <Stepper.Step label="Loan Details" description="First Step">
         <Stack spacing="lg">
-          <TextInput label="Your Organization for this Loan Application" />
+          <Select
+            placeholder="Select Your Organization"
+            searchable
+            nothingFound="No options"
+            data={allOrganizations()} label="Your Organization for this Loan Application" />
           <TextInput label="Loan Description (Borrower name and Loan purpose)" />
           <TextInput icon={<IconCurrencyDollarCanadian size={14} />} label="Requested Loan Amount (CAD)" />
         </Stack>
       </Stepper.Step>
-      <Stepper.Step label="Second step" description="Invite Users">
-        Step 2 content: Verify email
+      <Stepper.Step label="Invite Users" description="Second Step" allowStepSelect={active > 1}>
+        <InviteUsers availableRoles={[ROLE_LOANAPP_BORROWER, ROLE_LOANAPP_BROKER, ROLE_LOANAPP_LENDER, ROLE_LOANAPP_VIEWER]}
+        />
       </Stepper.Step>
       <Stepper.Completed>
-        Completed, click back button to get to previous step
+        <Stack>
+          <Text align="center" size="lg">
+            Are these settings correct?
+          </Text>
+        </Stack>
       </Stepper.Completed>
     </Stepper>
 
     <Group position="apart" mt="lg">
-      <Button variant="subtle" onClick={closeNewLoanApplicationModal}>cancel</Button>
-      <Button onClick={nextStep}>Next step</Button>
+      {
+        active > 0 ? <Button onClick={prevStep} variant="subtle">Previous step</Button> : <Button variant="subtle" onClick={closeNewLoanApplicationModal}>cancel</Button>
+
+      }
+      {
+        active === 2 ? <Button>Save</Button> : <Button onClick={nextStep}>Next step</Button>
+      }
     </Group>
   </Modal>
 }

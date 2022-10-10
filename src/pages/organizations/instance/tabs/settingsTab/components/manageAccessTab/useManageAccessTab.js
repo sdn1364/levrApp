@@ -123,6 +123,42 @@ const useManageAccessTab = () => {
       })
   }
 
+  const handleSetUserRole = async (values) => {
+    await setUserRole({
+      organizationId: organizationId,
+      params: values
+    }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'User\'s role has changed',
+          color: 'green'
+        })
+      }).catch(err => {
+        showNotification({
+          title: 'Something went wrong',
+          color: 'red'
+        })
+      })
+  }
+
+  const handleSetInvitationRole = async (values) => {
+    await editInvitation({
+      organizationId: organizationId,
+      params: values
+    }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'Invitation role changed',
+          color: 'green'
+        })
+      }).catch(err => {
+        showNotification({
+          title: 'Something went wrong',
+          color: 'red'
+        })
+      })
+  }
+
   return {
     isSuccess, isLoading, rolesAndInvites,
     handleResendInvitation,
@@ -130,7 +166,9 @@ const useManageAccessTab = () => {
     handleDeleteInvitation,
     handleDeleteUserRole,
     handleSendInvitation,
-    handleEditInvitation
+    handleEditInvitation,
+    handleSetUserRole,
+    handleSetInvitationRole
   }
 }
 export default useManageAccessTab

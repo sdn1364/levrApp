@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
 import {
   setOpenNewLoanApplicationModal,
-  setCloseNewLoanApplicationModal,
   setOpenLoanApplicationReminderModal,
   setCloseLoanApplicationReminderModal
 } from 'redux/reducer/loanApplication/loanApplicationSlice'
@@ -16,9 +15,7 @@ const useLoanApplicationList = () => {
   const openNewLoanApplicationModal = () => {
     dispatch(setOpenNewLoanApplicationModal())
   }
-  const closeNewLoanApplicationModal = () => {
-    dispatch(setCloseNewLoanApplicationModal())
-  }
+
   const openLoanApplicationReminderModal = () => {
     dispatch(setOpenLoanApplicationReminderModal())
   }
@@ -29,7 +26,6 @@ const useLoanApplicationList = () => {
   return {
     loanApplications, isSuccess, isLoading,
     openNewLoanApplicationModal,
-    closeNewLoanApplicationModal,
     openLoanApplicationReminderModal,
     closeLoanApplicationReminderModal
   }

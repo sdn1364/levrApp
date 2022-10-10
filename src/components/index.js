@@ -14,6 +14,7 @@ export { default as ActionGroup } from './ActionGroup'
 export { default as EditableTextInput } from './editableTextInput/EditableTextInput'
 export { default as ActionGrid } from './actionGrid/ActionGrid'
 export { default as LoadingLoanApplication } from './LoadingLoanApplication'
+export { default as InviteUsers } from './inviteUsers/InviteUsers'
 
 // ============================================================================= Icons from here
 export { default as IconShop } from './icons/IconShop'

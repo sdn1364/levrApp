@@ -19,7 +19,8 @@ const ManageAccess = ({
                         deleteInvitation,
                         deleteUserRole,
                         sendInvitation,
-                        setUserRole
+                        setUserRole,
+                        setInvitationRole
                       }) => {
 
   const renderRoles = () => {
@@ -37,7 +38,7 @@ const ManageAccess = ({
       </tr>
       {
         rolesAndInvites.invitations.map((invite) => (
-          <InvitationRow key={invite.id} invite={invite} availableRole={availableRoles} editInvitation={editInvitation} resendInvitation={resendInvitation} setUserRole={setUserRole} />
+          <InvitationRow key={invite.id} invite={invite} availableRole={availableRoles} editInvitation={editInvitation} resendInvitation={resendInvitation} setInvitationRole={setInvitationRole} />
         ))
       }
       <tr>

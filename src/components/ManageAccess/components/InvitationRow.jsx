@@ -6,7 +6,7 @@ import { READABLE_ROLE_MAPPING } from 'roles'
 import { EditableTextInput, TimeAgo } from 'components'
 import useManageAccess from '../useManageAccess'
 
-const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation, setUserRole }) => {
+const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation, setInvitationRole }) => {
 
   const { handleClickDeleteInvitation } = useManageAccess()
 
@@ -21,7 +21,8 @@ const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation
     <td>
       {
         availableRole.includes(invite.object_permissions[0])
-          ? <RoleSelect value={invite.object_permissions} availableRole={availableRole} onSave={setUserRole} />
+          ? <RoleSelect value={invite.object_permissions} availableRole={availableRole}
+                        onSave={(value) => setInvitationRole({ to_email: invite.to_email, invitation_id: invite.id, roles: [value] })} />
           : <Text>{READABLE_ROLE_MAPPING[invite.object_permissions[0]]}</Text>
       }
     </td>

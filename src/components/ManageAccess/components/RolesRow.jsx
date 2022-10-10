@@ -30,7 +30,7 @@ const RolesRow = ({ user, availableRole, setUserRole }) => {
       <Center>
         {
           availableRole.includes(user.roles[0])
-            ? <RoleSelect value={user.roles} availableRole={availableRole} onSave={setUserRole} />
+            ? <RoleSelect value={user.roles} availableRole={availableRole} onSave={(value) => setUserRole({ user_id: user.user_id, roles: [value] })} />
             : <Text>{READABLE_ROLE_MAPPING[user.roles[0]]}</Text>
         }
       </Center>

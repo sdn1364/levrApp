@@ -17,7 +17,6 @@ const LoanApplicationList = () => {
     return <LoadingOverlay visible />
   }
 
-
   return isSuccess && <>
     <Heading>
       <PageTitle>All Loan Applications</PageTitle>
