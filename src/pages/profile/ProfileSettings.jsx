@@ -1,9 +1,8 @@
-import { Tabs, Title, Text, Stack, Container } from '@mantine/core'
+import { Tabs, Title, Text, Stack } from '@mantine/core'
 import { Content, Heading } from 'components'
 import { useGetUserQuery } from 'redux/reducer/auth/authApiSlice'
 import AccountSettingsTab from './tabs/AccountSettingsTab'
 import SecurityTab from './tabs/SecurityTab'
-import AppSettings from './tabs/AppSettings'
 
 const ProfileSettings = () => {
 

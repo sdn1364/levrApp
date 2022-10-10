@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react'
 import RailzConnect from '@railzai/railz-connect'
-import { useMantineTheme } from '@mantine/core'
 
 const Integrations = ({ organizationName }) => {
-
-  const theme = useMantineTheme()
 
   const ref = useRef()
   const widget = new RailzConnect()
@@ -22,7 +19,7 @@ const Integrations = ({ organizationName }) => {
 
     }
     //return () => widget.unmount()
-  }, [])
+  }, [organizationName])
 
   return (
     <div id="railz-connect" ref={ref}></div>

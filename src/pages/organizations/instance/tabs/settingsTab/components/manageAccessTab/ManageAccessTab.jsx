@@ -4,7 +4,7 @@ import { LoadingOverlay } from '@mantine/core'
 
 const ManageAccessTab = () => {
 
-  const { isSuccess, isLoading, rolesAndInvites, getAvailableRolesForOrganization, handleDeleteInvitation, handleDeleteUserRole, handleSendInvitation, handleEditInvitation } = useManageAccessTab()
+  const { isSuccess, isLoading, rolesAndInvites, getAvailableRolesForOrganization, handleDeleteInvitation, handleDeleteUserRole, handleSendInvitation, handleEditInvitation, handleResendInvitation } = useManageAccessTab()
 
   if (isLoading) {
     return <LoadingOverlay visible />
@@ -14,10 +14,13 @@ const ManageAccessTab = () => {
     title="Manage Organization Roles"
     rolesAndInvites={rolesAndInvites}
     availableRoles={getAvailableRolesForOrganization()}
-    handleDeleteInvitation={handleDeleteInvitation}
-    handleDeleteUserRole={handleDeleteUserRole}
+    deleteInvitation={handleDeleteInvitation}
+    deleteUserRole={handleDeleteUserRole}
     sendInvitation={handleSendInvitation}
-    handleEditInvitation={handleEditInvitation}
+    editInvitation={handleEditInvitation}
+    resendInvitation={handleResendInvitation}
+    setUserRole={(value) => console.log('set user role hit', value)}
+
   />
 }
 export default ManageAccessTab

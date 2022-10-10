@@ -13,16 +13,18 @@ import UserInviteModal from './components/UserInviteModal'
 const ManageAccess = ({
                         rolesAndInvites,
                         availableRoles,
+                        resendInvitation,
                         title,
-                        handleEditInvitation,
-                        handleDeleteInvitation,
-                        handleDeleteUserRole,
-                        sendInvitation
+                        editInvitation,
+                        deleteInvitation,
+                        deleteUserRole,
+                        sendInvitation,
+                        setUserRole
                       }) => {
 
   const renderRoles = () => {
     return rolesAndInvites.user_roles.map((user) => (
-      <RolesRow availableRole={availableRoles} key={user.user_id} user={user} />
+      <RolesRow availableRole={availableRoles} key={user.user_id} user={user} setUserRole={setUserRole} />
     ))
   }
 
@@ -35,7 +37,7 @@ const ManageAccess = ({
       </tr>
       {
         rolesAndInvites.invitations.map((invite) => (
-          <InvitationRow key={invite.id} invite={invite} availableRole={availableRoles} handleEditInvitation={handleEditInvitation} />
+          <InvitationRow key={invite.id} invite={invite} availableRole={availableRoles} editInvitation={editInvitation} resendInvitation={resendInvitation} setUserRole={setUserRole} />
         ))
       }
       <tr>
@@ -51,8 +53,8 @@ const ManageAccess = ({
 
   return (
     <>
-      <ConfirmDeleteUserRoleModal rolesAndInvites={rolesAndInvites} deleteUserRole={handleDeleteUserRole} />
-      <ConfirmDeleteInvitationModal rolesAndInvites={rolesAndInvites} deleteInvitation={handleDeleteInvitation} />
+      <ConfirmDeleteUserRoleModal rolesAndInvites={rolesAndInvites} deleteUserRole={deleteUserRole} />
+      <ConfirmDeleteInvitationModal rolesAndInvites={rolesAndInvites} deleteInvitation={deleteInvitation} />
       <UserInviteModal availableRoles={availableRoles} sendInvitation={sendInvitation} />
       <Stack spacing="lg">
         <Group position="apart">
@@ -68,7 +70,6 @@ const ManageAccess = ({
             {/* if roles were available render this*/}
             {renderRoles()}
           </RolesAndInvitesTable>
-
         </Paper>
       </Stack>
 

@@ -68,7 +68,31 @@ export const organizationsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['OrganizationInvitations']
     }),
-    resendUserInvitation: builder
+    resendUserInvitation: builder.mutation({
+      query: ({ organizationId, invitationId }) => ({
+        url: `organizations/${organizationId}/resend_invitation/`,
+        method: 'POST',
+        body: { id: invitationId }
+      }),
+      invalidatesTags: ['OrganizationInvitations']
+    }),
+    editOrganizationInvitation: builder.mutation({
+      query: ({ organizationId, params }) => ({
+        url: `organizations/${organizationId}/edit_invitation/`,
+        method: 'PUT',
+        body: params
+      })
+    }),
+    setOrganizationUserRole: builder.mutation({
+      query: ({ organizationId, params }) => ({
+        url: `organizations/${organizationId}/set_user_roles/`,
+        method: 'PUT',
+        body: params
+
+      }),
+      invalidatesTags: ['OrganizationInvitations']
+    })
+
   })
 })
 
@@ -76,11 +100,13 @@ export const {
   useGetAllOrganizationsQuery,
   useGetOneOrganizationQuery,
   useGetOrganizationUserAndInvitesQuery,
-
   useCreateOrganizationMutation,
   useUpdateOrganizationNameMutation,
   useUpdateOrganizationTypeMutation,
   useSendOrganizationInvitationsMutation,
   useDeleteOrganizationMutation,
-  useDeleteOrganizationUserInvitationMutation
+  useDeleteOrganizationUserInvitationMutation,
+  useResendUserInvitationMutation,
+  useEditOrganizationInvitationMutation,
+  useSetOrganizationUserRoleMutation
 } = organizationsApiSlice
