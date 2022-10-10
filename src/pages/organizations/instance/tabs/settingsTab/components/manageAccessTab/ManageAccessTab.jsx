@@ -1,17 +1,14 @@
 import { ManageAccess } from 'components'
-import { useGetOrganizationUserAndInvitesQuery } from 'redux/reducer/organizations/organizationsApiSlice'
-import { useParams } from 'react-router-dom'
-import { usePermission } from 'hooks'
 import useManageAccessTab from './useManageAccessTab'
+import { LoadingOverlay } from '@mantine/core'
 
 const ManageAccessTab = () => {
 
-  const { id } = useParams()
-  const { data: rolesAndInvites, isSuccess } = useGetOrganizationUserAndInvitesQuery(id)
+  const { isSuccess, isLoading, rolesAndInvites, getAvailableRolesForOrganization, handleDeleteInvitation, handleDeleteUserRole, handleSendInvitation, handleEditInvitation } = useManageAccessTab()
 
-  const { getAvailableRolesForOrganization } = usePermission({ loanAppId: id })
-
-  const { handleDeleteInvitation, handleDeleteUserRole, handleSendInvitation, handleEditInvitation } = useManageAccessTab(id)
+  if (isLoading) {
+    return <LoadingOverlay visible />
+  }
 
   return isSuccess && <ManageAccess
     title="Manage Organization Roles"

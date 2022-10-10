@@ -1,38 +1,37 @@
-import {Button, Group, Modal, Stack, Title, Text} from "@mantine/core";
-import useManageAccess from "../useManageAccess";
-import {useSelector} from "react-redux";
-import {selectDeleteUserRoleModalOpenId} from 'redux/reducer/ManageAccessSlice';
+import { Stack, Text } from '@mantine/core'
+import useManageAccess from '../useManageAccess'
+import { useSelector } from 'react-redux'
+import { selectDeleteUserRoleModalOpenId } from 'redux/reducer/ManageAccessSlice'
+import { ConfirmModal } from '../../index'
 
-const ConfirmDeleteUserRoleModal = ({rolesAndInvites, deleteUserRole}) => {
+const ConfirmDeleteUserRoleModal = ({ rolesAndInvites, deleteUserRole }) => {
 
-  const {handleCloseDeleteUserRoleModal} = useManageAccess();
+  const { handleCloseDeleteUserRoleModal } = useManageAccess()
 
-  const deleteUserRoleModalOpenId = useSelector(selectDeleteUserRoleModalOpenId);
+  const deleteUserRoleModalOpenId = useSelector(selectDeleteUserRoleModalOpenId)
 
   const deleteModalUser = rolesAndInvites.user_roles.filter(
     (role) => role.user_id === deleteUserRoleModalOpenId
-  )[0];
+  )[0]
 
 
-  return <Modal
+  return <ConfirmModal
     centered
+    isDanger
     opened={deleteUserRoleModalOpenId !== null}
     onClose={handleCloseDeleteUserRoleModal}
-
-    title={<Title order={5} color='red.5'>Are you sure you want to delete this User Role?</Title>}
+    submitLabel="Delete"
+    onSubmit={() => deleteUserRole(deleteModalUser?.user_id)}
+    title="You are about to delete a user role!"
   >
-    <Stack spacing="xl">
-      <Stack>
-        <Text align="center" size="sm">
-          You are about to delete User role for
-        </Text>
-        <Text weight={500} align="center">{deleteModalUser && deleteModalUser.user_email}</Text>
-      </Stack>
-      <Group position="apart">
-        <Button onClick={handleCloseDeleteUserRoleModal} variant='subtle'>Cancel</Button>
-        <Button color="red" onClick={() => deleteUserRole(deleteModalUser?.user_id)}>Delete</Button>
-      </Group>
+    <Stack spacing="sm">
+      <Text align="center" size="sm">
+        Are you sure you want to delete User role for:
+      </Text>
+      <Text weight={500} align="center">{deleteModalUser && deleteModalUser.user_email}</Text>
     </Stack>
-  </Modal>
+
+  </ConfirmModal>
 }
-export default ConfirmDeleteUserRoleModal;
+export default ConfirmDeleteUserRoleModal
+

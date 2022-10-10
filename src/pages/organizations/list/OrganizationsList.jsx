@@ -1,10 +1,9 @@
 import { Button, LoadingOverlay, Stack } from '@mantine/core'
 import { IconPlus } from '@tabler/icons'
 
-import { useGetAllOrganizationsQuery } from 'redux/reducer/organizations/organizationsApiSlice'
-import OrganizationRow from './components/OrganizationRow'
+import OrganizationRow from './components/organizationRow/OrganizationRow'
 import { Content, Heading, PageTitle } from 'components'
-import NewOrganizationModal from './components/NewOrganizationModal'
+import NewOrganizationModal from './components/newOrganizationModal/NewOrganizationModal'
 import useOrganizationList from './useOrganizationList'
 
 
@@ -16,7 +15,6 @@ const OrganizationsList = () => {
   if (isLoading) {
     return <LoadingOverlay visible />
   }
-
 
   return <>
     <Heading>

@@ -1,21 +1,17 @@
-import { useGetOneOrganizationQuery } from 'redux/reducer/organizations/organizationsApiSlice'
-import { useNavigate, useParams } from 'react-router-dom'
 import { Tabs, Paper, LoadingOverlay } from '@mantine/core'
 
 import { Content, Heading, PageTitle } from 'components'
 import LoanApplicationsTab from './tabs/loanApplicationstab/LoanApplicationsTab'
 import SettingsTab from './tabs/settingsTab/SettingsTab'
 import Integrations from './tabs/integrationsTab/Integrations'
+import useOrganizationInstance from './useOrganizationInstance'
 
 const OrganizationInstance = () => {
 
-  const { id, tab } = useParams()
-  const navigate = useNavigate()
-  const defaultTab = 'applications'
-  const { data: organization, isSuccess } = useGetOneOrganizationQuery(id)
+  const { handleTabChange, defaultTab, organization, isSuccess, isLoading, tab } = useOrganizationInstance()
 
-  const handleTabChange = (value) => {
-    navigate(`/organizations/${id}/${value}`)
+  if (isLoading) {
+    return <LoadingOverlay visible />
   }
 
   return isSuccess && <>
@@ -32,7 +28,6 @@ const OrganizationInstance = () => {
       </Heading>
 
       <Content>
-
         <Tabs.Panel value="applications">
           <LoanApplicationsTab />
         </Tabs.Panel>

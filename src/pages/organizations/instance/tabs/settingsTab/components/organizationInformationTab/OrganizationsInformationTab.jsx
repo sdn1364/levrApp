@@ -1,64 +1,37 @@
-import {Group, Paper, Stack, TextInput, Title, Button, Text, Select} from "@mantine/core";
-import {useParams} from "react-router-dom";
-import {useForm} from "@mantine/form";
+import { Group, Paper, Stack, TextInput, Title, Button, Text, Select, LoadingOverlay } from '@mantine/core'
 
-import {useGetOneOrganizationQuery} from "redux/reducer/organizations/organizationsApiSlice";
-import useOrganizationsInformation from "./useOrganizationsInformation";
-import {useLogger} from "@mantine/hooks";
+import useOrganizationsInformation from './useOrganizationsInformation'
 
 
 const OrganizationsInformation = () => {
-  const {id} = useParams()
-  const {data: organization, isSuccess} = useGetOneOrganizationQuery(id);
-
-  const nameForm = useForm({
-    initialValues: {
-      name: organization?.name
-    }
-  });
-
-  const typeForm = useForm({
-    initialValues: {
-      org_type: organization?.org_type
-    }
-  })
 
   const {
+    isSuccess, isLoading, nameForm, typeForm, orgTypes,
     handleUpdateOrganizationName,
     handleUpdateOrganizationType,
     handleDeleteOrganization
-  } = useOrganizationsInformation(id);
+  } = useOrganizationsInformation()
+
+  if (isLoading) {
+    return <LoadingOverlay visible />
+  }
 
   return isSuccess && <Stack spacing="lg">
     <Title order={4}>Organization Information</Title>
     <Paper p="md" withBorder>
-
       <form onSubmit={nameForm.onSubmit(handleUpdateOrganizationName)}>
         <Stack spacing="md">
-          <TextInput label="Organization Name"
-                     {...nameForm.getInputProps('name')}
-          />
-
+          <TextInput label="Organization Name" {...nameForm.getInputProps('name')} />
           <Group position="right">
             <Button type="submit" variant="subtle">Change Name</Button>
           </Group>
         </Stack>
       </form>
-
     </Paper>
     <Paper p="md" withBorder>
       <form onSubmit={typeForm.onSubmit(handleUpdateOrganizationType)}>
         <Stack spacing="md">
-
-          <Select data={[
-            {value: '', label: 'Select'},
-            {value: 'ORG_BORROWER', label: 'Borrower'},
-            {value: 'ORG_BROKER', label: 'Brokerage'},
-            {value: 'ORG_LENDER', label: 'Lender'}
-          ]}
-                  {...typeForm.getInputProps('org_type')}
-                  label="Organization Type"
-          />
+          <Select data={orgTypes} {...typeForm.getInputProps('org_type')} label="Organization Type" />
           <Group position="right">
             <Button type="submit" variant="subtle">Change Type</Button>
           </Group>
@@ -81,4 +54,4 @@ const OrganizationsInformation = () => {
   </Stack>
 
 }
-export default OrganizationsInformation;
+export default OrganizationsInformation

@@ -10,7 +10,15 @@ import useManageAccess from './useManageAccess'
 import UserInviteModal from './components/UserInviteModal'
 
 
-const ManageAccess = ({ rolesAndInvites, availableRoles, title, handleEditInvitation, handleDeleteInvitation, handleDeleteUserRole, sendInvitation }) => {
+const ManageAccess = ({
+                        rolesAndInvites,
+                        availableRoles,
+                        title,
+                        handleEditInvitation,
+                        handleDeleteInvitation,
+                        handleDeleteUserRole,
+                        sendInvitation
+                      }) => {
 
   const renderRoles = () => {
     return rolesAndInvites.user_roles.map((user) => (

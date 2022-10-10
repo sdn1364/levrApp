@@ -1,10 +1,10 @@
 import { Select, TextInput } from '@mantine/core'
-import useOrganizationList from '../useOrganizationList'
 import { FormModal } from 'components'
+import useNewOrganizationModal from './useNewOrganizationModal'
 
 const NewOrganizationModal = () => {
 
-  const { form, opened, createNewOrganization, closeNewOrganizationModal } = useOrganizationList()
+  const { form, opened, createNewOrganization, closeNewOrganizationModal } = useNewOrganizationModal()
 
   return <FormModal
     opened={opened}

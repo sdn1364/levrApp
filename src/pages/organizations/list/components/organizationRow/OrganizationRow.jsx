@@ -11,7 +11,6 @@ const OrganizationRow = ({ organization }) => {
       component={Link}
       to={`/organizations/${organization.id}`}
       shadow="xs" p="md"
-      radius="md"
     >
       <Group position="apart">
         <Group>

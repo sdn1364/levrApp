@@ -1,66 +1,74 @@
-import {apiSlice} from "../../api/apiSlice";
+import { apiSlice } from '../../api/apiSlice'
 
 export const organizationsApiSlice = apiSlice.injectEndpoints({
 
   endpoints: builder => ({
     //queries from here
     getAllOrganizations: builder.query({
-      query: () => `/organizations/`,
-      transformResponse:(response, meta, arg) =>{
-        let newResponse = response.filter(res => res.is_deleted === false)
-        return newResponse
-        },
-      providesTags: ['Organizations'],
+      query: () => `organizations/`,
+      transformResponse: (response) => {
+        return response.filter(res => res.is_deleted === false)
+      },
+      providesTags: ['Organizations']
     }),
     getOneOrganization: builder.query({
-      query: (id) => `/organizations/${id}/`,
+      query: (id) => `organizations/${id}/`,
       providesTags: ['Organization']
     }),
     getOrganizationUserAndInvites: builder.query({
-      query: (id) => `/organizations/${id}/users_and_invites/`,
+      query: (id) => `organizations/${id}/users_and_invites/`,
       providesTags: ['OrganizationInvitations']
     }),
     // mutations from here
     createOrganization: builder.mutation({
-      query: ({name, org_type}) => ({
-        url: `/organizations/`,
+      query: ({ name, org_type }) => ({
+        url: `organizations/`,
         method: 'POST',
-        body: {name, org_type}
+        body: { name, org_type }
       }),
-      invalidatesTags: ['Organizations', 'Users'],
+      invalidatesTags: ['Organizations', 'Users']
     }),
     updateOrganizationName: builder.mutation({
-      query: ({id, name}) => ({
-        url: `/organizations/${id}/update_name/`,
+      query: ({ id, name }) => ({
+        url: `organizations/${id}/update_name/`,
         method: 'POST',
-        body: {name}
+        body: { name }
       }),
-      invalidatesTags: ['Organization'],
+      invalidatesTags: ['Organization']
 
     }),
     deleteOrganization: builder.mutation({
       query: (id) => ({
-        url: `/organizations/${id}/`,
+        url: `organizations/${id}/`,
         method: 'DELETE'
       }),
-      invalidatesTags:['Organizations']
+      invalidatesTags: ['Organizations']
     }),
     updateOrganizationType: builder.mutation({
-      query: ({id, org_type}) => ({
-        url: `/organizations/${id}/update_type/`,
+      query: ({ id, org_type }) => ({
+        url: `organizations/${id}/update_type/`,
         method: 'POST',
-        body: {org_type}
+        body: { org_type }
       }),
-      invalidatesTags: ['Organization'],
+      invalidatesTags: ['Organization']
     }),
     sendOrganizationInvitations: builder.mutation({
-      query: ({id, userRoles}) => ({
-        url: `/organizations/${id}/bulk_invite_users/`,
+      query: ({ id, userRoles }) => ({
+        url: `organizations/${id}/bulk_invite_users/`,
         method: 'POST',
-        body: {user_roles: userRoles}
+        body: { user_roles: userRoles }
       }),
       invalidatesTags: ['OrganizationInvitations']
-    })
+    }),
+    deleteOrganizationUserInvitation: builder.mutation({
+      query: ({ organizationId, invitationId }) => ({
+        url: `organizations/${organizationId}/delete_invitation/`,
+        method: 'DELETE',
+        body: { id: invitationId }
+      }),
+      invalidatesTags: ['OrganizationInvitations']
+    }),
+    resendUserInvitation: builder
   })
 })
 
@@ -73,5 +81,6 @@ export const {
   useUpdateOrganizationNameMutation,
   useUpdateOrganizationTypeMutation,
   useSendOrganizationInvitationsMutation,
-  useDeleteOrganizationMutation
+  useDeleteOrganizationMutation,
+  useDeleteOrganizationUserInvitationMutation
 } = organizationsApiSlice

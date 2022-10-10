@@ -1,29 +1,33 @@
-import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux'
 import {
   setOpenNewLoanApplicationModal,
   setCloseNewLoanApplicationModal,
   setOpenLoanApplicationReminderModal,
-  setCloseLoanApplicationReminderModal,
-} from 'redux/reducer/loanApplication/loanApplicationSlice';
+  setCloseLoanApplicationReminderModal
+} from 'redux/reducer/loanApplication/loanApplicationSlice'
+import { useGetAllLoanApplicationsQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
-const useLoanApplicationList = ()=>{
+const useLoanApplicationList = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const openNewLoanApplicationModal = ()=>{
+  const { data: loanApplications, isSuccess, isLoading } = useGetAllLoanApplicationsQuery()
+
+  const openNewLoanApplicationModal = () => {
     dispatch(setOpenNewLoanApplicationModal())
   }
-  const closeNewLoanApplicationModal = ()=>{
-    dispatch(setCloseNewLoanApplicationModal());
+  const closeNewLoanApplicationModal = () => {
+    dispatch(setCloseNewLoanApplicationModal())
   }
-  const openLoanApplicationReminderModal= ()=>{
+  const openLoanApplicationReminderModal = () => {
     dispatch(setOpenLoanApplicationReminderModal())
   }
-  const closeLoanApplicationReminderModal = ()=>{
+  const closeLoanApplicationReminderModal = () => {
     dispatch(setCloseLoanApplicationReminderModal())
   }
 
   return {
+    loanApplications, isSuccess, isLoading,
     openNewLoanApplicationModal,
     closeNewLoanApplicationModal,
     openLoanApplicationReminderModal,
@@ -31,4 +35,4 @@ const useLoanApplicationList = ()=>{
   }
 
 }
-export default useLoanApplicationList;
+export default useLoanApplicationList
