@@ -9,6 +9,7 @@ import useDocRequestTab from '../useDocRequestTab'
 import { useGetLoanApplicationStagesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import useLoanApplicationList from '../../../../list/useLoanApplicationList'
 import useNewDocReq from './useNewDocReq'
+import DownloadAllButton from './downloadAll/DownloadAllButton'
 
 const Stages = () => {
   const { id } = useParams()
@@ -21,7 +22,7 @@ const Stages = () => {
 
   return isSuccess && <>
     <Group pt="lg" pr={537} position="right">
-      <Button variant="outline" compact leftIcon={<IconDownload size={18} />}>Download All</Button>
+      <DownloadAllButton />
       <Button variant="outline" compact leftIcon={<IconMail size={18} />} onClick={() => openLoanApplicationReminderModal(id)} type="button">Send Message</Button>
       <Button compact onClick={handleOpenNewDocRequestModal}>New Document Request</Button>
 

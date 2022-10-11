@@ -1,5 +1,6 @@
 import { Grid, Paper, Tabs } from '@mantine/core'
 import ManageAccessTab from './components/manageAccessTab/ManageAccessTab'
+import LoanDetailsTab from './components/loanDetailsTab/LoanDetailsTab'
 
 const SettingsTab = () => {
   return <Tabs orientation="vertical" defaultValue="settings" variant="pills">
@@ -14,7 +15,7 @@ const SettingsTab = () => {
       </Grid.Col>
       <Grid.Col span={9}>
         <Tabs.Panel value="settings">
-
+          <LoanDetailsTab />
         </Tabs.Panel>
         <Tabs.Panel value="access">
           <ManageAccessTab />

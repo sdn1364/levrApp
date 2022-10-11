@@ -16,14 +16,6 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['DocumentRequest']
     }),
-    updateDocRequestStatus: builder.mutation({
-      query: ({ id, status }) => ({
-        url: `document_requests/${id}/update_status/`,
-        method: 'PUT',
-        body: { status }
-      }),
-      invalidatesTags: ['DocumentRequest']
-    }),
     getOneDocRequest: builder.query({
       query: (id) => `document_requests/${id}`,
       providesTags: ['DocumentRequest']
@@ -56,6 +48,18 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         return response.railz_query_parameters
       }
     }),
+    getAllDocRequests: builder.query({
+      query: () => `document_requests/`
+    }),
+    //mutations from here
+    updateDocRequestStatus: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `document_requests/${id}/update_status/`,
+        method: 'PUT',
+        body: { status }
+      }),
+      invalidatesTags: ['DocumentRequest']
+    }),
     createNewApiDocumentUpload: builder.mutation({
       query: ({ reqDocId, query_parameters }) => ({
         url: `document_requests/${reqDocId}/create_new_api_connection_upload/`,
@@ -66,7 +70,7 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
     updateDocRequestName: builder.mutation({
       query: ({ docRequestId, name }) => ({
         url: `document_requests/${docRequestId}/update_name/`,
-        method: 'POST',
+        method: 'PUT',
         body: { name }
       })
     })
@@ -90,5 +94,6 @@ export const {
   useGetDocReqFilesQuery,
   useGetDocReqGuideRailzParamsQuery,
   useCreateNewApiDocumentUploadMutation,
-  useUpdateDocRequestNameMutation
+  useUpdateDocRequestNameMutation,
+  useGetAllDocRequestsQuery
 } = docRequestApiSlice

@@ -1,5 +1,5 @@
-import { Accordion, Paper, ActionIcon, Menu, Group, Divider, Text, Box, Checkbox, ColorSwatch, Stack, useMantineTheme, Center, createStyles, Tooltip, Title } from '@mantine/core'
-import { IconUpload, IconMessage, IconGripVertical, IconTrash, IconDotsVertical, IconNotes } from '@tabler/icons'
+import { Accordion, Paper, ActionIcon, Menu, Group, Divider, Text, Box, Checkbox, ColorSwatch, Stack, useMantineTheme, Center, createStyles, Tooltip, Title, TextInput } from '@mantine/core'
+import { IconUpload, IconMessage, IconGripVertical, IconTrash, IconDotsVertical, IconNotes, IconCheck } from '@tabler/icons'
 import { RenderIfElse, CapitalizeFirstLetter, RenderIf } from 'utilities'
 import RequiredFiles from '../requiredFiles/RequiredFiles'
 import UploadDocsCounter from './components/UploadDocsCounter'
@@ -7,7 +7,7 @@ import RequiredFilesCount from './components/RequiredFilesCount'
 import People from './components/People'
 import useDocumentRequestRow from './useDocumentRequestRow'
 import UploadedFiles from '../uploadedFiles/UploadedFiles'
-import { EditableTextInput } from 'components'
+import { ActionGroup, EditableTextInput } from 'components'
 
 const useStyles = createStyles((theme) => ({
   itemDragging: {
@@ -19,7 +19,7 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
   const { classes, cx } = useStyles()
   const theme = useMantineTheme()
 
-  const { status, opened, setOpened, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, canManageDocRequests, canManageDocRequestFiles, handleOpenFileUploadModal, handleChangeDocRequestStatus } = useDocumentRequestRow(docReq)
+  const { status, opened, setOpened, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, canManageDocRequests, canManageDocRequestFiles, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName } = useDocumentRequestRow(docReq)
   return (
     <Accordion.Item {...provided.draggableProps} {...provided.dragHandleProps} ref={innerRef} className={cx({ [classes.itemDragging]: snapshot.isDragging })} value={`${docReq.id}`}>
       <Box ref={ref} sx={{ marginLeft: hovered || checked ? -36 : 0 }}>
@@ -59,7 +59,7 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
             </div>
             <Accordion.Control>
               <RenderIfElse isTrue={canManageDocRequests()} isFalse={docReq.name}>
-                <EditableTextInput singleClick defaultValue={docReq.name} save />
+                <EditableTextInput singleClick defaultValue={docReq.name} save={handleUpdateDocReqName} />
               </RenderIfElse>
             </Accordion.Control>
 
@@ -110,7 +110,13 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
                 <Center><IconNotes color={theme.colors['purple'][5]} stroke={1.5} size={25} /><Title ml="sm" order={5}>Note</Title></Center>
               </Group>
               <RenderIfElse isTrue={canManageDocRequests()} isFalse={<Text>{docReq.note}</Text>}>
-                <Text>{docReq.note}</Text>
+                <RenderIfElse isTrue={docReq.note.length === 0} isFalse={<EditableTextInput defaultValue={docReq.notes} />}>
+                  <Group>
+                    <TextInput
+                      sx={{ flex: 1 }} />
+                    <ActionIcon variant="subtle" color="green"><IconCheck size={18} /></ActionIcon>
+                  </Group>
+                </RenderIfElse>
               </RenderIfElse>
             </Stack>
           </Paper>

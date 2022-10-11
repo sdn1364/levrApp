@@ -7,14 +7,14 @@ import { useMantineTheme } from '@mantine/core'
 import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { usePermission } from 'hooks'
 import { showNotification } from '@mantine/notifications'
-import { useUpdateDocRequestStatusMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
 
 const useDocumentRequestRow = (docReq) => {
   const { id: loanAppId } = useParams()
   const theme = useMantineTheme()
   const dispatch = useDispatch()
   const [updateStatus] = useUpdateDocRequestStatusMutation()
-
+  const [updateDocReqName] = useUpdateDocRequestNameMutation()
   const [opened, setOpened] = useState(false)
   const [checked, setChecked] = useState(false)
 
@@ -62,7 +62,7 @@ const useDocumentRequestRow = (docReq) => {
   const handleUnSelectDocRequest = (id) => {
     dispatch(unSelectDocRequests(id))
   }
-  
+
   const onDocRequestCheckboxCheck = useCallback((e) => {
       if (!checked) {
         handleSelectDocRequest(e.target.value)
@@ -77,12 +77,29 @@ const useDocumentRequestRow = (docReq) => {
     [checked, handleSelectDocRequest, handleUnSelectDocRequest]
   )
 
+  const handleUpdateDocReqName = async (value) => {
+    await updateDocReqName({
+      docRequestId: docReq.id,
+      name: value
+    }).unwrap().then(res => {
+      showNotification({
+        title: 'Document Request name changed',
+        color: 'green'
+      })
+    }).catch(err => {
+      showNotification({
+        title: 'Something went wrong',
+        color: 'red'
+      })
+    })
+
+  }
   return {
     status, hovered, ref,
     opened, setOpened, checked,
     onDocRequestCheckboxCheck,
     handleOpenFileUploadModal,
-    handleCloseFileUploadModal,
+    handleCloseFileUploadModal, handleUpdateDocReqName,
     handleChangeDocRequestStatus, canManageDocRequests, canManageDocRequestFiles, handleOpenDocReqDeleteConfirmModal
   }
 }
