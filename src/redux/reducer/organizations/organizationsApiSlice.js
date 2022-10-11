@@ -52,6 +52,7 @@ export const organizationsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Organization']
     }),
+    //manage access mutations
     sendOrganizationInvitations: builder.mutation({
       query: ({ id, userRoles }) => ({
         url: `organizations/${id}/bulk_invite_users/`,
@@ -68,7 +69,7 @@ export const organizationsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['OrganizationInvitations']
     }),
-    resendUserInvitation: builder.mutation({
+    resendOrganizationUserInvitation: builder.mutation({
       query: ({ organizationId, invitationId }) => ({
         url: `organizations/${organizationId}/resend_invitation/`,
         method: 'POST',
@@ -103,10 +104,11 @@ export const {
   useCreateOrganizationMutation,
   useUpdateOrganizationNameMutation,
   useUpdateOrganizationTypeMutation,
+  // manage access mutations hooks
   useSendOrganizationInvitationsMutation,
   useDeleteOrganizationMutation,
   useDeleteOrganizationUserInvitationMutation,
-  useResendUserInvitationMutation,
+  useResendOrganizationUserInvitationMutation,
   useEditOrganizationInvitationMutation,
   useSetOrganizationUserRoleMutation
 } = organizationsApiSlice

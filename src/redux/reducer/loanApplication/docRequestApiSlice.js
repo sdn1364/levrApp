@@ -1,39 +1,39 @@
-import { apiSlice } from "../../api/apiSlice";
+import { apiSlice } from '../../api/apiSlice'
 
 const docRequestApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getLoanAppDocRequestOnStage: builder.query({
       query: ({ loanAppId, stageId }) => `document_requests/?loan_application=${loanAppId}`,
       transformResponse: (response, meta, arg) => {
-        return response.filter((docReq) => docReq.stage === arg.stageId).sort((a, b) => a.order - b.order);
+        return response.filter((docReq) => docReq.stage === arg.stageId).sort((a, b) => a.order - b.order)
       },
-      providesTags: ["DocumentRequest"]
+      providesTags: ['DocumentRequest']
     }),
     getLoanAppDocRequestLength: builder.query({
       query: ({ loanAppId }) => `document_requests/?loan_application=${loanAppId}`,
       transformResponse: (response, meta, arg) => {
-        return response.length;
+        return response.length
       },
-      providesTags: ["DocumentRequest"]
+      providesTags: ['DocumentRequest']
     }),
     updateDocRequestStatus: builder.mutation({
       query: ({ id, status }) => ({
         url: `document_requests/${id}/update_status/`,
-        method: "PUT",
+        method: 'PUT',
         body: { status }
       }),
-      invalidatesTags: ["DocumentRequest"]
+      invalidatesTags: ['DocumentRequest']
     }),
     getOneDocRequest: builder.query({
       query: (id) => `document_requests/${id}`,
-      providesTags: ["DocumentRequest"]
+      providesTags: ['DocumentRequest']
     }),
     getAllRequestGuideTemplate: builder.query({
       query: (id) => `document_request_guide_templates/?document_request_guide=${id}`
     }),
     getDocRequestGuide: builder.query({
       query: () => `document_request_guides/`,
-      providesTags: ["docRequestGuides"]
+      providesTags: ['docRequestGuides']
     }),
     getAllDocReqGuidePacks: builder.query({
       query: () => `document_request_guide_packs/`
@@ -44,7 +44,7 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
     getDocReqRequiredFilesCount: builder.query({
       query: (id) => `document_request_required_files/?document_request=${id}`,
       transformResponse: (response, meta, arg) => {
-        return response.length;
+        return response.length
       }
     }),
     getDocReqFiles: builder.query({
@@ -53,18 +53,25 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
     getDocReqGuideRailzParams: builder.query({
       query: (id) => `document_request_guides/${id}/`,
       transformResponse: (response, meta, arg) => {
-        return response.railz_query_parameters;
+        return response.railz_query_parameters
       }
     }),
     createNewApiDocumentUpload: builder.mutation({
       query: ({ reqDocId, query_parameters }) => ({
         url: `document_requests/${reqDocId}/create_new_api_connection_upload/`,
-        method: "POST",
+        method: 'POST',
         body: { query_parameters }
+      })
+    }),
+    updateDocRequestName: builder.mutation({
+      query: ({ docRequestId, name }) => ({
+        url: `document_requests/${docRequestId}/update_name/`,
+        method: 'POST',
+        body: { name }
       })
     })
   })
-});
+})
 
 export const {
   useGetLoanAppDocRequestOnStageQuery,
@@ -82,5 +89,6 @@ export const {
   useGetDocReqRequiredFilesCountQuery,
   useGetDocReqFilesQuery,
   useGetDocReqGuideRailzParamsQuery,
-  useCreateNewApiDocumentUploadMutation
-} = docRequestApiSlice;
+  useCreateNewApiDocumentUploadMutation,
+  useUpdateDocRequestNameMutation
+} = docRequestApiSlice

@@ -3,7 +3,7 @@ import { Stack, Button, LoadingOverlay } from '@mantine/core'
 import { Content, Heading, PageTitle } from 'components'
 
 import NewLoanApplicationModal from './components/newLoanApplicationModal/NewLoanApplicationModal'
-import LoanApplicationReminderModal from './components/LoanApplicationReminderModal'
+import LoanApplicationReminderModal from './components/loanApplicationReminderModal/LoanApplicationReminderModal'
 
 import useLoanApplicationList from './useLoanApplicationList'
 import { IconPlus } from '@tabler/icons'

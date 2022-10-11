@@ -1,4 +1,4 @@
-import {useDispatch} from "react-redux";
+import { useDispatch } from 'react-redux'
 import {
   closeUserInviteModal, openUserInviteModal,
   setDeleteInvitationModalOpenId,
@@ -8,28 +8,28 @@ import {
 const useManageAccess = () => {
 
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // Delete user invitation functions
-  const handleClickDeleteInvitation = (invitationId)=>{
+  const handleClickDeleteInvitation = (invitationId) => {
     dispatch(setDeleteInvitationModalOpenId(invitationId))
   }
-  const handleCloseDeleteInvitationModal = ()=>{
+  const handleCloseDeleteInvitationModal = () => {
     dispatch(setDeleteInvitationModalOpenId(null))
   }
 
   // Delete user role functions
-  const handleClickDeleteUserRole = (userId)=>{
+  const handleClickDeleteUserRole = (userId) => {
     dispatch(setDeleteUserRoleModalOpenId(userId))
   }
-  const handleCloseDeleteUserRoleModal = ()=>{
+  const handleCloseDeleteUserRoleModal = () => {
     dispatch(setDeleteUserRoleModalOpenId(null))
   }
 
-  const handleCloseUserInviteModal = ()=>{
+  const handleCloseUserInviteModal = () => {
     dispatch(closeUserInviteModal())
   }
-  const handleOpenUserInviteModal = ()=>{
+  const handleOpenUserInviteModal = () => {
     dispatch(openUserInviteModal())
   }
 
@@ -44,4 +44,4 @@ const useManageAccess = () => {
   }
 }
 
-export default useManageAccess;
+export default useManageAccess

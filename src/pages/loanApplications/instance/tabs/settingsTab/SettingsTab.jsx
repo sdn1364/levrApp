@@ -1,14 +1,14 @@
-import {Grid, Paper, Tabs} from "@mantine/core";
-import ManageAccessTab from "./components/ManageAccessTab";
+import { Grid, Paper, Tabs } from '@mantine/core'
+import ManageAccessTab from './components/manageAccessTab/ManageAccessTab'
 
-const SettingsTab = ()=> {
-  return  <Tabs orientation="vertical" defaultValue="settings" variant="pills">
-    <Grid gutter="lg" sx={{width: '100%'}}>
+const SettingsTab = () => {
+  return <Tabs orientation="vertical" defaultValue="settings" variant="pills">
+    <Grid gutter="lg" sx={{ width: '100%' }}>
       <Grid.Col span={3}>
         <Paper p="xs" withBorder>
           <Tabs.List>
-            <Tabs.Tab value="settings" >Organization Information</Tabs.Tab>
-            <Tabs.Tab value="access" >Manage Access</Tabs.Tab>
+            <Tabs.Tab value="settings">Loan Application Information</Tabs.Tab>
+            <Tabs.Tab value="access">Manage Access</Tabs.Tab>
           </Tabs.List>
         </Paper>
       </Grid.Col>
@@ -17,10 +17,10 @@ const SettingsTab = ()=> {
 
         </Tabs.Panel>
         <Tabs.Panel value="access">
-          <ManageAccessTab/>
+          <ManageAccessTab />
         </Tabs.Panel>
       </Grid.Col>
     </Grid>
   </Tabs>
 }
-export default SettingsTab;
+export default SettingsTab

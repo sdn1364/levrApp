@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   newLoanApplicationsModal: false,
-  loanApplicationReminderModal: false,
+  loanApplicationReminderModal: null,
   loadingLoanApplication: {
     loaded: false,
     step: 'Loading Loan Application',
@@ -25,11 +25,11 @@ const loanApplicationSlice = createSlice({
     setCloseNewLoanApplicationModal: (state) => {
       state.newLoanApplicationsModal = false
     },
-    setOpenLoanApplicationReminderModal: (state) => {
-      state.loanApplicationReminderModal = true
+    setOpenLoanApplicationReminderModal: (state, action) => {
+      state.loanApplicationReminderModal = action.payload
     },
     setCloseLoanApplicationReminderModal: (state) => {
-      state.loanApplicationReminderModal = false
+      state.loanApplicationReminderModal = null
     },
     setLoadingLoanApplication: (state, action) => {
       state.loadingLoanApplication = action.payload

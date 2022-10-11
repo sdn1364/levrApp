@@ -10,7 +10,7 @@ const NavbarLink = ({ icon: Icon, label, active, to }) => {
   return (
     <Tooltip label={label} position="right" transitionDuration={0}>
       <UnstyledButton to={to} component={Link} className={cx(classes.link, { [classes.active]: active })}>
-        <Icon color={active ? theme.colors['purple'][8] : theme.colors['gray'][7]} />
+        <Icon color={active ? (theme.colorScheme === 'light' ? theme.colors['secondary'][5] : theme.colors['purple'][2]) : theme.colors['gray'][7]} />
       </UnstyledButton>
     </Tooltip>
   )

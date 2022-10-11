@@ -1,15 +1,20 @@
 import { useClickOutside } from '@mantine/hooks'
 import { useState } from 'react'
 
-const useEditableTextInput = (oldValue) => {
+const useEditableTextInput = (oldValue, singleClick) => {
 
   const ref = useClickOutside(() => handleOnClose())
   const [changed, setChanged] = useState(null)
   const [focused, setFocused] = useState(false)
 
   const handleOnFocus = (e) => {
-    if (e.detail === 2)
+    if (e.detail === 2) {
       setFocused(true)
+    }
+    if (e.detail === 1 && singleClick) {
+      setFocused(true)
+
+    }
   }
   const handleOnClose = () => {
     if (focused) {

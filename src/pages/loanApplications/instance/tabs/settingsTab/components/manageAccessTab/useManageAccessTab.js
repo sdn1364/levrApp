@@ -1,28 +1,28 @@
-import { useDeleteOrganizationUserInvitationMutation, useEditOrganizationInvitationMutation, useGetOrganizationUserAndInvitesQuery, useResendOrganizationUserInvitationMutation, useSendOrganizationInvitationsMutation, useSetOrganizationUserRoleMutation } from 'redux/reducer/organizations/organizationsApiSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectInvitations, setDeleteInvitationModalOpenId, setDeleteUserRoleModalOpenId, setInvitationLoading, unsetInvitationLoading } from 'redux/reducer/ManageAccessSlice'
-import { showNotification } from '@mantine/notifications'
-import { emptyInvitations, closeUserInviteModal } from 'redux/reducer/ManageAccessSlice'
 import { useParams } from 'react-router-dom'
+import { useDeleteLoanAppUserInvitationMutation, useEditLoanAppInvitationMutation, useGetLoanAppUsersAndInvitesQuery, useResendLoanAppUserInvitationMutation, useSendLoanAppInvitationsMutation, useSetLoanAppUserRoleMutation } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { usePermission } from 'hooks'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeUserInviteModal, emptyInvitations, selectInvitations, setDeleteInvitationModalOpenId, setDeleteUserRoleModalOpenId, setInvitationLoading, unsetInvitationLoading } from 'redux/reducer/ManageAccessSlice'
+import { showNotification } from '@mantine/notifications'
 
 const useManageAccessTab = () => {
-  const { id: organizationId } = useParams()
-  const { getAvailableRolesForOrganization } = usePermission({ organizationId: organizationId })
+  const { id: loanAppId } = useParams()
+  const { data: rolesAndInvite, isSuccess, isLoading } = useGetLoanAppUsersAndInvitesQuery(loanAppId)
+  const { getAvailableRolesForLoanApplication } = usePermission({ loanAppId })
 
-  const { data: rolesAndInvites, isSuccess, isLoading } = useGetOrganizationUserAndInvitesQuery(organizationId)
-  const [deleteOrganizationUserInvitation] = useDeleteOrganizationUserInvitationMutation()
-  const [resendUserInvitation] = useResendOrganizationUserInvitationMutation()
-  const [editInvitation] = useEditOrganizationInvitationMutation()
-  const [setUserRole] = useSetOrganizationUserRoleMutation()
+  const [deleteOrganizationUserInvitation] = useDeleteLoanAppUserInvitationMutation()
+  const [resendUserInvitation] = useResendLoanAppUserInvitationMutation()
+  const [editInvitation] = useEditLoanAppInvitationMutation()
+  const [setUserRole] = useSetLoanAppUserRoleMutation()
 
   const invitations = useSelector(selectInvitations)
-  const [sendInvitation] = useSendOrganizationInvitationsMutation()
+  const [sendInvitation] = useSendLoanAppInvitationsMutation()
+
   const dispatch = useDispatch()
 
   const handleDeleteUserRole = async (id) => {
     await setUserRole({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       params: {
         user_id: id,
         roles: []
@@ -30,7 +30,7 @@ const useManageAccessTab = () => {
     }).unwrap()
       .then(res => {
         showNotification({
-          title: 'User removed from organization',
+          title: 'User removed from loan application',
           color: 'blue'
         })
         dispatch(setDeleteUserRoleModalOpenId(null))
@@ -44,7 +44,7 @@ const useManageAccessTab = () => {
 
   const handleDeleteInvitation = async (id) => {
     await deleteOrganizationUserInvitation({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       invitationId: id
     }).unwrap()
       .then(res => {
@@ -65,7 +65,7 @@ const useManageAccessTab = () => {
 
   const handleResendInvitation = async (id) => {
     await resendUserInvitation({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       invitationId: id
     }).unwrap()
       .then(res => {
@@ -83,7 +83,7 @@ const useManageAccessTab = () => {
 
   const handleSendInvitation = async () => {
     dispatch(setInvitationLoading())
-    await sendInvitation({ id: organizationId, userRoles: invitations }).unwrap()
+    await sendInvitation({ id: loanAppId, userRoles: invitations }).unwrap()
       .then(res => {
         showNotification({
           title: 'Invitations Sent',
@@ -107,7 +107,7 @@ const useManageAccessTab = () => {
 
   const handleEditInvitation = async (values) => {
     await editInvitation({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       params: values
     }).unwrap()
       .then(res => {
@@ -125,7 +125,7 @@ const useManageAccessTab = () => {
 
   const handleSetUserRole = async (values) => {
     await setUserRole({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       params: values
     }).unwrap()
       .then(res => {
@@ -143,7 +143,7 @@ const useManageAccessTab = () => {
 
   const handleSetInvitationRole = async (values) => {
     await editInvitation({
-      organizationId: organizationId,
+      loanAppId: loanAppId,
       params: values
     }).unwrap()
       .then(res => {
@@ -160,13 +160,14 @@ const useManageAccessTab = () => {
   }
 
   return {
-    isSuccess, isLoading, rolesAndInvites,
-    handleResendInvitation,
-    getAvailableRolesForOrganization,
+    rolesAndInvite,
+    isSuccess, isLoading,
+    getAvailableRolesForLoanApplication,
     handleDeleteInvitation,
     handleDeleteUserRole,
     handleSendInvitation,
     handleEditInvitation,
+    handleResendInvitation,
     handleSetUserRole,
     handleSetInvitationRole
   }

@@ -4,22 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/inviteUsers/InviteUsers.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inviteUsers/useInviteUsers.js" afterDir="false" />
+    <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
+      <change afterPath="$PROJECT_DIR$/src/components/modals/GenericModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/manageAccessTab/useManageAccessTab.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/loanApplicationReminderModal/components/user/User.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/loanApplicationReminderModal/components/user/useStyles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/loanApplicationReminderModal/useLoanApplicationReminderModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/useManageAccess.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/useManageAccess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editableTextInput/EditableTextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editableTextInput/EditableTextInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editableTextInput/useEditableTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editableTextInput/useEditableTextInput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/header/components/UserAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/header/components/UserAvatar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/usePermission.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePermission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/Stages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/Stages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/DocumentRequestRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/DocumentRequestRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/useDocumentRequestRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentRequestRow/useDocumentRequestRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/useDocRequestTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/useDocRequestTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/SettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/SettingsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/LoanDetailsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/LoanDetailsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/ManageAccessTab.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/LoanApplicationList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/LoanApplicationList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationReminderModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/loanApplicationReminderModal/LoanApplicationReminderModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/NewLoanApplicationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/NewLoanApplicationModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/useNewLoanApplicationModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/useNewLoanApplicationModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/useLoanApplicationList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/useLoanApplicationList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/useManageAccessTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/useManageAccessTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +53,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b8afbc12-5ed2-49c0-9895-56f124e00b5f" />
+        <option name="url" value="https://github.com/sdn1364/levrApp.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,6 +79,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Soheyl Delshad/Desktop/levrApp/src/components/modals",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -57,19 +88,22 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "prettierjs.PrettierConfiguration.Package": "",
-    "settings.editor.selected.configurable": "editing.templates",
+    "settings.editor.selected.configurable": "MTRecommendedPlugins",
     "settings.editor.splitter.proportion": "0.21013667",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\components\modals" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\list\components\loanApplicationReminderModal" />
+      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\list\components\newLoanApplicationModal\components\user" />
+      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\settingsTab\components\manageAccessTab" />
+      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\settingsTab\components\loanDetailsTab" />
       <recent name="$PROJECT_DIR$/src/components/modals/confirmModal" />
-      <recent name="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal" />
-      <recent name="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab" />
-      <recent name="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab" />
-      <recent name="$PROJECT_DIR$/src/pages/organizations/list/components/organizationRow" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -97,8 +131,17 @@
       <workItem from="1665332121031" duration="11267000" />
       <workItem from="1665379361882" duration="112000" />
       <workItem from="1665418304749" duration="297000" />
-      <workItem from="1665422127380" duration="15133000" />
+      <workItem from="1665422127380" duration="29646000" />
+      <workItem from="1665466413462" duration="7733000" />
     </task>
+    <task id="LOCAL-00001" summary="added invite use form module">
+      <created>1665441548931</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665441548931</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,5 +160,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added invite use form module" />
+    <option name="LAST_COMMIT_MESSAGE" value="added invite use form module" />
   </component>
 </project>

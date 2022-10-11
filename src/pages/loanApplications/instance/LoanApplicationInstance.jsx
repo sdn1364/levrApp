@@ -13,6 +13,7 @@ import useLoanApplicationInstance from './useLoanApplicationInstance'
 import { useDispatch } from 'react-redux'
 import { setLoadingLoanApplication } from 'redux/reducer/loanApplication/loanApplicationSlice'
 import { useEffect } from 'react'
+import SettingsTab from './tabs/settingsTab/SettingsTab'
 
 
 const LoanApplicationInstance = () => {
@@ -54,7 +55,7 @@ const LoanApplicationInstance = () => {
       ))
     }
 
-  }, [dispatch,isLoadingLoanApp, isLoadingThreadSummaries])
+  }, [dispatch, isLoadingLoanApp, isLoadingThreadSummaries])
 
   return isSuccess && <>
     {
@@ -102,7 +103,7 @@ const LoanApplicationInstance = () => {
           <MessagesTab />
         </Tabs.Panel>
         <Tabs.Panel value="settings">
-          this is settings
+          <SettingsTab />
         </Tabs.Panel>
       </Content>
     </Tabs>

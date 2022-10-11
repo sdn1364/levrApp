@@ -8,9 +8,8 @@ import {
   ROLE_LOANAPP_VIEWER
 } from 'roles'
 
-import { useLogger } from '@mantine/hooks'
-
 const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, organizationId }) => {
+
   const { data: user, isSuccess } = useGetUserQuery()
 
   const canStartNewLoanAsBroker = () => {
@@ -153,7 +152,6 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     return []
   }
 
-
   const canEditLoanDescriptionAndAmount = () => {
     if (isSuccess) {
       if (user.is_staff) return true
@@ -167,6 +165,40 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     return false
   }
 
+  const hasAccessToOrganizationAsMember = (id) => {
+    if (isSuccess) {
+      if (user.is_staff) return true
+      if (user.is_superuser) return true
+      if (organizationId) {
+        return user.permissions.Organization.ROLE_ORG_MEMBER.includes(organizationId)
+      } else {
+        return user.permissions.Organization.ROLE_ORG_MEMBER.includes(id)
+      }
+    }
+    return false
+  }
+
+  const hasAccessToOrganizationAsOwner = (id) => {
+    if (isSuccess) {
+      if (user.is_staff) return true
+      if (user.is_superuser) return true
+      if (organizationId) {
+        return user.permissions.Organization.ROLE_ORG_OWNER.includes(organizationId)
+      } else {
+        return user.permissions.Organization.ROLE_ORG_OWNER.includes(id)
+      }
+    }
+    return false
+  }
+
+  const hasAccessToOrganization = (id) => {
+    if (isSuccess) {
+      if (user.is_staff) return true
+      if (user.is_superuser) return true
+      if (hasAccessToOrganizationAsMember(id) || hasAccessToOrganizationAsOwner(id)) return true
+    }
+    return false
+  }
 
   return {
     canStartNewLoanAsBroker,
@@ -178,7 +210,10 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     canManageLoanApplicationRolesAndInvites,
     getAvailableRolesForLoanApplication,
     getAvailableRolesForOrganization,
-    canEditLoanDescriptionAndAmount
+    canEditLoanDescriptionAndAmount,
+    hasAccessToOrganizationAsMember,
+    hasAccessToOrganizationAsOwner,
+    hasAccessToOrganization
   }
 
 }

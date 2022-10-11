@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux'
 import {
   setOpenNewLoanApplicationModal,
-  setOpenLoanApplicationReminderModal,
-  setCloseLoanApplicationReminderModal
+  setOpenLoanApplicationReminderModal
 } from 'redux/reducer/loanApplication/loanApplicationSlice'
 import { useGetAllLoanApplicationsQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
@@ -16,18 +15,15 @@ const useLoanApplicationList = () => {
     dispatch(setOpenNewLoanApplicationModal())
   }
 
-  const openLoanApplicationReminderModal = () => {
-    dispatch(setOpenLoanApplicationReminderModal())
+  const openLoanApplicationReminderModal = (id) => {
+    dispatch(setOpenLoanApplicationReminderModal(id))
   }
-  const closeLoanApplicationReminderModal = () => {
-    dispatch(setCloseLoanApplicationReminderModal())
-  }
+
 
   return {
     loanApplications, isSuccess, isLoading,
     openNewLoanApplicationModal,
-    openLoanApplicationReminderModal,
-    closeLoanApplicationReminderModal
+    openLoanApplicationReminderModal
   }
 
 }
