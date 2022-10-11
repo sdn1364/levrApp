@@ -43,6 +43,9 @@ const useDocRequestTab = () => {
     setSearchParams(docRecId)
   }
 
+  const downloadALlFiles = () => {
+
+  }
 
   return {
     handleOnDragEnd,
@@ -50,7 +53,7 @@ const useDocRequestTab = () => {
     handleCloseSendEmailModal,
     allTab,
     handleCloseDocReqDeleteConfirmModal,
-    handleOpenDocumentGuide
+    handleOpenDocumentGuide, downloadALlFiles
   }
 }
 export default useDocRequestTab
