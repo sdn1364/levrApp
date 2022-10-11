@@ -69,7 +69,7 @@ const LoanApplicationInstance = () => {
           onTabChange={handleTabChange}>
       <Heading style={{ paddingRight: tab === defaultTab ? 537 : 50 }
       } tabs={<Tabs.List>
-        <Tabs.Tab value="documentRequest">Loan Applications</Tabs.Tab>
+        <Tabs.Tab value="documentRequest">Document Requests</Tabs.Tab>
         <Tabs.Tab value="messages"
                   rightSection={
                     (threadSummariesSuccess && threadSummaries > 0) &&

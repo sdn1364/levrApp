@@ -64,8 +64,7 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
             </Accordion.Control>
 
             <Group mr="xs" spacing="md" noWrap>
-              <People userId={docReq.assigned_to_user}
-                      userName={docReq.request_for_user_name} />
+              <People userId={docReq.assigned_to_user} userName={docReq.request_for_user_name} />
               <UploadDocsCounter count={docReq.upload_count} />
               <RequiredFilesCount docReqId={docReq.id} />
               <Divider orientation="vertical" />

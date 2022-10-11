@@ -8,7 +8,7 @@ import { useState } from 'react'
 import useDocRequestTab from '../useDocRequestTab'
 import { useGetLoanApplicationStagesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import useLoanApplicationList from '../../../../list/useLoanApplicationList'
-import useNewDocReq from './useNewDocReq'
+import useNewDocReqModal from './newDocRequestModal/useNewDocReqModal'
 import DownloadAllButton from './downloadAll/DownloadAllButton'
 
 const Stages = () => {
@@ -17,7 +17,7 @@ const Stages = () => {
   const [setAccordionValue] = useState([])
   const { openLoanApplicationReminderModal } = useLoanApplicationList()
   const { handleOnDragEnd, allTab } = useDocRequestTab()
-  const { handleOpenNewDocRequestModal } = useNewDocReq()
+  const { handleOpenNewDocRequestModal } = useNewDocReqModal()
 
 
   return isSuccess && <>

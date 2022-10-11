@@ -1,5 +1,5 @@
-import {Button, Group, Modal, MultiSelect, Stack, TransferList} from "@mantine/core";
-import useNewDocReq from "./useNewDocReq";
+import { Button, Group, Modal, MultiSelect, Stack, TransferList } from '@mantine/core'
+import useNewDocReqModal from './useNewDocReqModal'
 
 const NewDocRequestModal = () => {
 
@@ -10,16 +10,20 @@ const NewDocRequestModal = () => {
     guidePackData,
     opened,
     handleCloseNewDocRequestModal
-  } = useNewDocReq()
+  } = useNewDocReqModal()
+
+
+  //console.log(selected)
 
   return <Modal opened={opened} value={'select'}
                 onClose={handleCloseNewDocRequestModal} size="xl" centered
                 title="Add Document Request(s) to Loan Application"
   >
     <Stack spacing="xl">
-      <MultiSelect searchable clearable data={guidePackData()}
+
+      <MultiSelect shadow="xl" searchable clearable data={guidePackData()}
                    placeholder="Select all packs you need" defaultValue={''}
-        onChange={(value)=>handleChangePack(value)}
+                   onChange={(value) => handleChangePack(value)}
       />
       <TransferList
         listHeight={200}
@@ -31,7 +35,7 @@ const NewDocRequestModal = () => {
         breakpoint="sm"
       />
       <Group position="apart">
-        <Button onClick={handleCloseNewDocRequestModal} variant='subtle'>Cancel</Button>
+        <Button onClick={handleCloseNewDocRequestModal} variant="subtle">Cancel</Button>
         <Button>Add</Button>
       </Group>
     </Stack>

@@ -1,9 +1,9 @@
 import { Center, Title, Text, Button, Stack, Box } from '@mantine/core'
 import { IconFiles } from '@tabler/icons'
-import useNewDocReq from './useNewDocReq'
+import useNewDocReqModal from './newDocRequestModal/useNewDocReqModal'
 
 const EmptyDocRequest = () => {
-  const { handleOpenNewDocRequestModal } = useNewDocReq()
+  const { handleOpenNewDocRequestModal } = useNewDocReqModal()
 
   return <Box sx={{ flex: 1, padding: '20px 520px 20px 50px' }}>
     <Center sx={{ height: '60vh' }}>

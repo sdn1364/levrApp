@@ -9,7 +9,7 @@ import EmptyDocRequest from './components/EmptyDocRequest'
 import ConfirmDeleteDocReqModal from './components/ConfirmDeleteDocReqModal'
 import { useGetLoanAppDocRequestLengthQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import FileUploadModal from './components/FileUploadModal'
-import NewDocRequestModal from './components/NewDocRequestModal'
+import NewDocRequestModal from './components/newDocRequestModal/NewDocRequestModal'
 
 
 const DocumentRequestTab = () => {

@@ -4,8 +4,9 @@ import { useGetLoanAppUsersAndInvitesQuery } from 'redux/reducer/loanApplication
 import { useDispatch, useSelector } from 'react-redux'
 import { closeAddDocRequestModal, openAddDocReqModal, selectNewDocRequestModal } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useEffect, useState } from 'react'
+import { useListState } from '@mantine/hooks'
 
-const useNewDocReq = () => {
+const useNewDocReqModal = () => {
 
   const { id } = useParams()
   const dispatch = useDispatch()
@@ -28,16 +29,18 @@ const useNewDocReq = () => {
 
     if (guidePacksIsSuccess) {
       // eslint-disable-next-line array-callback-return
-      guidePacks.map((guidePack) => {
-        packArray.push({ value: guidePack.id, label: guidePack.name })
+      guidePacks.map(({ id, name }) => {
+        packArray.push({ value: id, label: name })
       })
     }
     return packArray
   }
 
-  const [selected, setSelected] = useState(null)
+  const [selected, selectedHandlers] = useListState([])
+  const [selectedPack, selectedPackHandlers] = useListState()
 
   useEffect(() => {
+
       let guidesData = []
 
       if (guidesIsSuccess) {
@@ -48,40 +51,61 @@ const useNewDocReq = () => {
             label: guide.name
           })
         })
-        setSelected([guidesData, []])
+        selectedHandlers.append(guidesData, [])
       }
     },
     [guidesIsSuccess])
 
   const handleSetSelected = (value) => {
-    setSelected(value)
+    selectedHandlers.setState(value)
   }
 
   const handleChangePack = (values) => {
-
     if (guidePacksIsSuccess) {
+      // eslint-disable-next-line array-callback-return
       values.map(value => {
-        let guidePack = guidePacks.filter(g => g.id === value)
+        let guidePack = guidePacks.filter(g => values.includes(g.id))
         changeTransferListSelection(guidePack[0].document_request_guides)
       })
     }
   }
-  const changeTransferListSelection = (guides) => {
-    const guideRepository = selected[0]
-    const selectedGuides = selected[1]
-    let redactedRepository = []
 
+  const changeTransferListSelection = (guides) => {
+    let guidesRefined = guides.map(guide => ({ value: `${guide.id}`, label: guide.name }))
+
+    let unSelectedGuides = selected[0]
+    let selectedGuides = selected[1]
+
+    let newSelectedGuides = []
+    let newUnSelectedGuides = []
     // eslint-disable-next-line array-callback-return
     guides.map(guide => {
-      redactedRepository = guideRepository.filter(g => `${g.value}` === `${guide.id}`)
-      if (selectedGuides.map((ug) => parseInt(ug.value)).indexOf(guide.id) === -1) {
-        selectedGuides.push({ value: `${guide.id}`, label: guide.name })
+      if (selectedGuides.indexOf({ value: `${guide.id}`, label: guide.name }) === -1) {
+        newSelectedGuides.push({ value: `${guide.id}`, label: guide.name })
       }
     })
 
-    setSelected([redactedRepository, selectedGuides])
+    newUnSelectedGuides = unSelectedGuides.filter(item => {
+      return !guidesRefined.some(guide => {
+        return guide.value === item.value
+      })
+    })
+
+    console.log(unSelectedGuides)
+    console.log(selectedGuides)
+    console.log(guidesRefined.values())
+    console.log('---------------------------------------------')
+    console.log('new unselected guids')
+    console.log(newUnSelectedGuides)
+    console.log('new selected guids')
+    console.log(newSelectedGuides)
+
+    selectedHandlers.setState([newUnSelectedGuides, newSelectedGuides])
+
   }
 
+
+  // other functions in new doc request modal
   const handleOpenNewDocRequestModal = () => {
     dispatch(openAddDocReqModal())
   }
@@ -98,7 +122,7 @@ const useNewDocReq = () => {
           label: guide.name
         })
       })
-      setSelected([guidesData, []])
+      selectedHandlers.setState([guidesData, []])
     }
   }
 
@@ -111,14 +135,13 @@ const useNewDocReq = () => {
   }
 
   return {
-    selected,
+    selected, opened,
     handleChangePack,
     handleSetSelected,
     guidePackData,
-    opened,
     handleCloseNewDocRequestModal,
     handleOpenNewDocRequestModal,
     shouldShowPersonSelect
   }
 }
-export default useNewDocReq
+export default useNewDocReqModal
