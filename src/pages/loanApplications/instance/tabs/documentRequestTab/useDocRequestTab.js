@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux'
 import {
   openSendEmailModal,
-  closeSendEmailModal, closeDeleteDocRequestConfirm
-
+  closeSendEmailModal,
+  closeDeleteDocRequestConfirm
 } from 'redux/reducer/loanApplication/docRequestSlice'
 import { StandardString } from 'utilities'
 import { useSearchParams } from 'react-router-dom'
+import { useReorderDocRequestsMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
 
 const useDocRequestTab = () => {
 
@@ -22,10 +23,6 @@ const useDocRequestTab = () => {
     dispatch(closeSendEmailModal())
   }
 
-
-  const handleOnDragEnd = () => {
-    console.log('drag ended')
-  }
 
   const allTab = (loanAppStages) => {
     let stages = []
@@ -48,10 +45,8 @@ const useDocRequestTab = () => {
   }
 
   return {
-    handleOnDragEnd,
     handleOpenSendEmailModal,
     handleCloseSendEmailModal,
-    allTab,
     handleCloseDocReqDeleteConfirmModal,
     handleOpenDocumentGuide, downloadALlFiles
   }

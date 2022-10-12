@@ -73,6 +73,17 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: { name }
       })
+    }),
+    reorderDocRequests: builder.mutation({
+      query: ({ docReqId, to_stage_id, to_index }) => ({
+        url: `document_requests/${docReqId}/reorder/`,
+        method: 'PUT',
+        body: {
+          to_stage_id,
+          to_index
+        }
+      }),
+      invalidatesTags: ['DocumentRequest']
     })
   })
 })
@@ -95,5 +106,6 @@ export const {
   useGetDocReqGuideRailzParamsQuery,
   useCreateNewApiDocumentUploadMutation,
   useUpdateDocRequestNameMutation,
-  useGetAllDocRequestsQuery
+  useGetAllDocRequestsQuery,
+  useReorderDocRequestsMutation
 } = docRequestApiSlice

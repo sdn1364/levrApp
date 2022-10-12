@@ -1,21 +1,15 @@
-import { Button, Group, Modal, Stack, TextInput, Text, useMantineTheme } from "@mantine/core";
-import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
-import { IconPhoto, IconUpload, IconX } from "@tabler/icons";
-import * as PropTypes from "prop-types";
-import { selectFileUploadModal } from "redux/reducer/loanApplication/docRequestSlice";
-import { useSelector } from "react-redux";
-import useDocumentRequestRow from "./documentRequestRow/useDocumentRequestRow";
+import { Button, Group, Modal, Stack, TextInput, Text, useMantineTheme } from '@mantine/core'
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
+import { IconPhoto, IconUpload, IconX } from '@tabler/icons'
+import { selectFileUploadModal } from 'redux/reducer/loanApplication/docRequestSlice'
+import { useSelector } from 'react-redux'
+import useFileUploadModal from './useFileUploadModal'
 
-Text.propTypes = {
-  size: PropTypes.string,
-  inline: PropTypes.bool,
-  children: PropTypes.node
-};
 const FileUploadModal = () => {
 
-  const theme = useMantineTheme();
-  const opened = useSelector(selectFileUploadModal);
-  const { handleCloseFileUploadModal } = useDocumentRequestRow();
+  const theme = useMantineTheme()
+  const opened = useSelector(selectFileUploadModal)
+  const { handleCloseFileUploadModal } = useFileUploadModal()
 
   return <Modal opened={opened !== null} centered
                 onClose={handleCloseFileUploadModal}
@@ -23,23 +17,23 @@ const FileUploadModal = () => {
   >
     <Stack spacing="xl">
       <TextInput label="Name" placeholder="Type the name of the document" />
-      <Dropzone onDrop={(files) => console.log("accepted files", files)}
-                onReject={(files) => console.log("rejected files", files)}
+      <Dropzone onDrop={(files) => console.log('accepted files', files)}
+                onReject={(files) => console.log('rejected files', files)}
                 accept={IMAGE_MIME_TYPE}
       >
-        <Group position="center" spacing="xl" style={{ minHeight: 220, pointerEvents: "none" }}>
+        <Group position="center" spacing="xl" style={{ minHeight: 220, pointerEvents: 'none' }}>
           <Dropzone.Accept>
             <IconUpload
               size={50}
               stroke={1.5}
-              color={theme.colors[theme.primaryColor][theme.colorScheme === "light" ? 4 : 6]}
+              color={theme.colors[theme.primaryColor][theme.colorScheme === 'light' ? 4 : 6]}
             />
           </Dropzone.Accept>
           <Dropzone.Reject>
             <IconX
               size={50}
               stroke={1.5}
-              color={theme.colors["red"][theme.colorScheme === "light" ? 4 : 6]}
+              color={theme.colors['red'][theme.colorScheme === 'light' ? 4 : 6]}
             />
           </Dropzone.Reject>
           <Dropzone.Idle>
@@ -62,6 +56,6 @@ const FileUploadModal = () => {
       </Group>
     </Stack>
 
-  </Modal>;
-};
-export default FileUploadModal;
+  </Modal>
+}
+export default FileUploadModal

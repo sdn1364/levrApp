@@ -77,7 +77,7 @@ const useNewDocReqModal = () => {
     let selectedGuides = selected[1]
 
     let newSelectedGuides = []
-    let newUnSelectedGuides = []
+    
     // eslint-disable-next-line array-callback-return
     guides.map(guide => {
       if (selectedGuides.indexOf({ value: `${guide.id}`, label: guide.name }) === -1) {
@@ -85,20 +85,11 @@ const useNewDocReqModal = () => {
       }
     })
 
-    newUnSelectedGuides = unSelectedGuides.filter(item => {
+    let newUnSelectedGuides = unSelectedGuides.filter(item => {
       return !guidesRefined.some(guide => {
         return guide.value === item.value
       })
     })
-
-    console.log(unSelectedGuides)
-    console.log(selectedGuides)
-    console.log(guidesRefined.values())
-    console.log('---------------------------------------------')
-    console.log('new unselected guids')
-    console.log(newUnSelectedGuides)
-    console.log('new selected guids')
-    console.log(newSelectedGuides)
 
     selectedHandlers.setState([newUnSelectedGuides, newSelectedGuides])
 

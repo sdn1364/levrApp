@@ -1,10 +1,10 @@
 import { Table, Text, Center, ActionIcon, Group, Button, Stack } from '@mantine/core'
 import { IconDownload, IconUpload, IconJpg, IconTrash } from '@tabler/icons'
-import People from '../documentRequestRow/components/People'
+import People from '../documentStage/components/documentRequestRow/components/People'
 import { DownloadButton, TimeAgo } from 'components'
 import { useGetDocReqFilesQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import { HumanFileSize } from 'utilities'
-import useDocumentRequestRow from '../documentRequestRow/useDocumentRequestRow'
+import useDocumentRequestRow from '../documentStage/components/documentRequestRow/useDocumentRequestRow'
 
 const UploadedFiles = ({ docReqId }) => {
 

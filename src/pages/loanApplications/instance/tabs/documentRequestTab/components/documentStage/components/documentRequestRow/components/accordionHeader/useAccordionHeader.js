@@ -1,30 +1,24 @@
-import { useDispatch } from 'react-redux'
-import { openUploadDocumentModal, closeUploadDocumentModal, selectDocRequests, unSelectDocRequests, openDeleteDocRequestConfirm } from 'redux/reducer/loanApplication/docRequestSlice'
-import { useParams } from 'react-router-dom'
+import { useMantineTheme } from '@mantine/core'
 import { useCallback, useState } from 'react'
 import { useHover } from '@mantine/hooks'
-import { useMantineTheme } from '@mantine/core'
-import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
-import { usePermission } from 'hooks'
+import { openDeleteDocRequestConfirm, openUploadDocumentModal, selectDocRequests, unSelectDocRequests } from '../../../../../../../../../../../redux/reducer/loanApplication/docRequestSlice'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { showNotification } from '@mantine/notifications'
-import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from '../../../../../../../../../../../redux/reducer/loanApplication/docRequestApiSlice'
+import { usePermission } from '../../../../../../../../../../../hooks'
+import { useGetOneLoanApplicationQuery } from '../../../../../../../../../../../redux/reducer/loanApplication/loanApplicationApiSlice'
 
-const useDocumentRequestRow = (docReq) => {
+const useAccordionHeader = (docReq) => {
   const { id: loanAppId } = useParams()
   const theme = useMantineTheme()
+  const [opened, setOpened] = useState(false)
+  const { hovered, ref } = useHover()
+  const [checked, setChecked] = useState(false)
   const dispatch = useDispatch()
   const [updateStatus] = useUpdateDocRequestStatusMutation()
   const [updateDocReqName] = useUpdateDocRequestNameMutation()
-  const [opened, setOpened] = useState(false)
-  const [checked, setChecked] = useState(false)
-
-  const { hovered, ref } = useHover()
-  const handleOpenFileUploadModal = (id) => {
-    dispatch(openUploadDocumentModal(id))
-  }
-  const handleCloseFileUploadModal = () => {
-    dispatch(closeUploadDocumentModal())
-  }
+  const { data: loanApplicationInstance } = useGetOneLoanApplicationQuery(loanAppId)
 
   const status = [
     { name: 'gray', color: theme.colors['gray'][5] },
@@ -34,26 +28,13 @@ const useDocumentRequestRow = (docReq) => {
     { name: 'yellow', color: theme.colors['yellow'][5] },
     { name: 'red', color: theme.colors['red'][5] }
   ]
-  const handleChangeDocRequestStatus = async (status, id) => {
-    await updateStatus({ id, status }).unwrap()
-      .then(res =>
-        showNotification({
-          title: 'Document Request Status changed'
-        })
-      ).catch(err => console.log(err))
-  }
 
-  const { data: loanApplicationInstance } = useGetOneLoanApplicationQuery(loanAppId)
-
-
-  const handleOpenDocReqDeleteConfirmModal = (docReq) => {
-    dispatch(openDeleteDocRequestConfirm(docReq))
-  }
   const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
     loanAppId,
     documentRequest: docReq,
     borrowerOrganizationId: loanApplicationInstance.borrower_org
   })
+
 
   const handleSelectDocRequest = (id) => {
     dispatch(selectDocRequests(id))
@@ -62,7 +43,9 @@ const useDocumentRequestRow = (docReq) => {
   const handleUnSelectDocRequest = (id) => {
     dispatch(unSelectDocRequests(id))
   }
-
+  const handleOpenDocReqDeleteConfirmModal = (docReq) => {
+    dispatch(openDeleteDocRequestConfirm(docReq))
+  }
   const onDocRequestCheckboxCheck = useCallback((e) => {
       if (!checked) {
         handleSelectDocRequest(e.target.value)
@@ -76,7 +59,17 @@ const useDocumentRequestRow = (docReq) => {
     },
     [checked, handleSelectDocRequest, handleUnSelectDocRequest]
   )
-
+  const handleOpenFileUploadModal = (id) => {
+    dispatch(openUploadDocumentModal(id))
+  }
+  const handleChangeDocRequestStatus = async (status, id) => {
+    await updateStatus({ id, status }).unwrap()
+      .then(res =>
+        showNotification({
+          title: 'Document Request Status changed'
+        })
+      ).catch(err => console.log(err))
+  }
   const handleUpdateDocReqName = async (value) => {
     await updateDocReqName({
       docRequestId: docReq.id,
@@ -94,13 +87,7 @@ const useDocumentRequestRow = (docReq) => {
     })
 
   }
-  return {
-    status, hovered, ref,
-    opened, setOpened, checked,
-    onDocRequestCheckboxCheck,
-    handleOpenFileUploadModal,
-    handleCloseFileUploadModal, handleUpdateDocReqName,
-    handleChangeDocRequestStatus, canManageDocRequests, canManageDocRequestFiles, handleOpenDocReqDeleteConfirmModal
-  }
+  return { status, opened, setOpened, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests, canManageDocRequestFiles }
 }
-export default useDocumentRequestRow
+
+export default useAccordionHeader
