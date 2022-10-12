@@ -5,18 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/avtarUpload/useAvatarUpload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/personalInformation/usePersonalInformation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/PrivateLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/PrivateLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/heading/Heading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/heading/Heading.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/NavbarLink.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/sidebar/components/useStyle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/DocumentStage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/DocumentStage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/NewLoanApplicationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/NewLoanApplicationModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/SidebarSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/SidebarSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/ProfileSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/ProfileSettings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/AvatarUpload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/avtarUpload/AvatarUpload.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/EmailSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/EmailSettings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/PersonalInformation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/personalInformation/PersonalInformation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/AccountSettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/AccountSettingsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/SecurityTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/securityTab/SecurityTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/api/apiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/api/apiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "prettierjs.PrettierConfiguration.Package": "",
-    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "settings.editor.selected.configurable": "editing.templates",
     "settings.editor.splitter.proportion": "0.21013667",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
@@ -77,11 +79,11 @@
       <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\components\modals" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\documentRequestTab\components\stages" />
-      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\documentRequestTab\components\fileUploadModal" />
-      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\documentRequestTab\components\documentStage\components" />
-      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\documentRequestTab\components\documentStage" />
-      <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\pages\loanApplications\instance\tabs\documentRequestTab\components\newDocRequestModal" />
+      <recent name="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/personalInformation" />
+      <recent name="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/avtarUpload" />
+      <recent name="$PROJECT_DIR$/src/pages/profile/tabs/securityTab" />
+      <recent name="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components" />
+      <recent name="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -116,7 +118,7 @@
       <workItem from="1665508802346" duration="21413000" />
       <workItem from="1665534496551" duration="4790000" />
       <workItem from="1665540075384" duration="76000" />
-      <workItem from="1665541146196" duration="3698000" />
+      <workItem from="1665541146196" duration="12943000" />
     </task>
     <task id="LOCAL-00001" summary="added invite use form module">
       <created>1665441548931</created>

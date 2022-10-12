@@ -11,6 +11,7 @@ const Sidebar = () => {
   const { navLinks, isActive } = useSidebar()
   const dispatch = useDispatch()
   const sideBarState = useSelector(selectSidebarStat)
+  
   return (
     <Navbar width={{ base: sideBarState ? 210 : 60, height: '100%' }} p="sm">
 

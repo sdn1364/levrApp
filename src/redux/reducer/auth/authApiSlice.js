@@ -1,31 +1,50 @@
-import {apiSlice} from "../../api/apiSlice";
-import {LOGIN, RESET,USER, USERS} from 'api';
+import { apiSlice } from '../../api/apiSlice'
+import { authUrl } from 'api'
 
 export const authApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder=>({
+  endpoints: builder => ({
     login: builder.mutation({
       query: credentials => ({
-        url: LOGIN,
+        url: `${authUrl}/login/`,
         method: 'POST',
-        body: {...credentials}
+        body: { ...credentials }
       }),
       invalidatesTags: ['User']
     }),
     forgot: builder.mutation({
-      query: credentials =>({
-        url: RESET,
+      query: credentials => ({
+        url: `${authUrl}/password/reset/`,
         method: 'POST',
-        body: {email: credentials.email}
+        body: { email: credentials.email }
       })
     }),
     getUser: builder.query({
-      query: ()=>USER,
-      providesTags: ['User'],
+      query: () => `${authUrl}/user/`,
+      providesTags: ['User']
 
     }),
     getUserImage: builder.query({
-      query: (id)=>`${USERS + id}/profile_image/`,
+      query: (id) => `/users/${id}/profile_image/`,
       providesTags: ['User']
+    }),
+    updateUserFullName: builder.mutation({
+      query: ({ userId, userFullName }) => ({
+        url: `/users/${userId}/update_full_name/`,
+        method: 'PUT',
+        body: { full_name: userFullName }
+      }),
+      invalidatesTags: ['User']
+    }),
+    updateUserImage: builder.mutation({
+      query: ({ userId, formData }) => ({
+        url: `users/${userId}/upload_profile_image/`,
+        method: 'PUT',
+        body: formData,
+        headers: {
+          contentType: 'multipart/form-data'
+        }
+      }),
+      invalidatesTags: ['User']
     })
   })
 })
@@ -35,5 +54,7 @@ export const {
   useLoginMutation,
   useForgotMutation,
   useGetUserQuery,
-  useGetUserImageQuery
+  useGetUserImageQuery,
+  useUpdateUserFullNameMutation,
+  useUpdateUserImageMutation
 } = authApiSlice

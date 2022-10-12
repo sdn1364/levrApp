@@ -29,7 +29,9 @@ const LoanApplicationRow = ({ la, redacted }) => {
       </Tooltip>
       <Group position="right">
         {
-          !redacted && <ActionIcon variant="subtle" color="primary" onClick={() => openLoanApplicationReminderModal(la.id)}><IconBell stroke={1} size={16} /></ActionIcon>
+          !redacted && <Tooltip label="Send Reminder">
+            <ActionIcon variant="subtle" color="primary" onClick={() => openLoanApplicationReminderModal(la.id)}><IconBell stroke={1} size={16} /></ActionIcon>
+          </Tooltip>
         }
       </Group>
     </Group>
