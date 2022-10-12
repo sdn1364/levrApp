@@ -14,7 +14,19 @@ const useStyles = createStyles((theme) => ({
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0]
     }
   },
+  linkWide: {
+    width: '100%',
+    height: 40,
+    borderRadius: theme.radius.md,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'start',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
 
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0]
+    }
+  },
   active: {
     '&, &:hover': {
       backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,

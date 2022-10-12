@@ -90,6 +90,7 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
     "css-loader": "^6.7.1",
+    "eslint-config-react-app": "^7.0.1",
     "prop-types": "^15.8.1",
     "webpack": "^5.74.0"
   }

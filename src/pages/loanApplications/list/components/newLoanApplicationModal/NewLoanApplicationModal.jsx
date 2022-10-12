@@ -25,7 +25,7 @@ const NewLoanApplicationModal = () => {
             data={allOrganizations()} label="Your Organization for this Loan Application" />
           <TextInput {...form.getInputProps('loan_description')} label="Loan Description (Borrower name and Loan purpose)" />
           <TextInput {...form.getInputProps('requested_amount')} icon={<IconCurrencyDollarCanadian size={14} />} label="Requested Loan Amount (CAD)" />
-        </Stack>>
+        </Stack>
       </Stepper.Step>
       <Stepper.Step label="Invite Users" description="Second Step" allowStepSelect={active > 1}>
         <InviteUsers availableRoles={[ROLE_LOANAPP_BORROWER, ROLE_LOANAPP_BROKER, ROLE_LOANAPP_LENDER, ROLE_LOANAPP_VIEWER]} />
