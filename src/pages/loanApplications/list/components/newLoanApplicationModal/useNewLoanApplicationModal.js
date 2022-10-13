@@ -17,15 +17,16 @@ const useNewLoanApplicationModal = () => {
   const [createNewLoanApp] = useCreateLoanApplicationMutation()
 
   const form = useForm({
+    validateInputOnChange: true,
     initialValues: {
       org_id: '',
       loan_description: '',
       requested_amount: ''
     },
     validate: {
-      org_id: value => value !== '' ? null : 'This Field must not be empty',
-      loan_description: value => value !== '' ? null : 'This Field must not be empty',
-      requested_amount: value => value !== '' ? null : 'This Field must not be empty'
+      org_id: (value => value !== '' ? null : 'This Field must not be empty'),
+      loan_description: (value => value !== '' ? null : 'Please add a Loan Description'),
+      requested_amount: (value => value !== '' ? (isNaN(value) ? 'Please add a valid number as Requested amount' : null) : 'Requested amount of Loan can not be empty')
     }
   })
 
@@ -70,6 +71,7 @@ const useNewLoanApplicationModal = () => {
           color: 'green'
         })
       }).catch(err => {
+        console.log(err)
         showNotification({
           title: 'Something went wrong',
           color: 'red'

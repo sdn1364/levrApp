@@ -1,4 +1,4 @@
-import { Accordion, Paper, ActionIcon, Group, Text, Stack, useMantineTheme, Center, Title, TextInput } from '@mantine/core'
+import { Accordion, Paper, ActionIcon, Group, Text, Stack, useMantineTheme, Center, Title, TextInput, Tooltip } from '@mantine/core'
 import { IconNotes, IconCheck } from '@tabler/icons'
 import { RenderIfElse } from 'utilities'
 import RequiredFiles from '../../../requiredFiles/RequiredFiles'
@@ -19,7 +19,7 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
     <AccordionHeader docReq={docReq} provided={provided} />
     <Accordion.Panel sx={(theme) => ({ borderLeft: '5px solid ' + theme.colors[docReq.status][5] })}>
       <Stack>
-        <RenderIfElse isTrue={canManageDocRequestFiles()} isFalse={<Text align="center">You don not have permission to access these files</Text>}>
+        <RenderIfElse isTrue={canManageDocRequests()} isFalse={<Text align="center">You don not have permission to access these files</Text>}>
           <RequiredFiles docReq={docReq} />
         </RenderIfElse>
         <Paper p="sm" sx={{ backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
@@ -32,7 +32,10 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
                 <Group>
                   <TextInput
                     sx={{ flex: 1 }} />
-                  <ActionIcon variant="subtle" color="green"><IconCheck size={18} /></ActionIcon>
+                  <Tooltip label="Click to save your note">
+
+                    <ActionIcon variant="subtle" color="green"><IconCheck size={18} /></ActionIcon>
+                  </Tooltip>
                 </Group>
               </RenderIfElse>
             </RenderIfElse>

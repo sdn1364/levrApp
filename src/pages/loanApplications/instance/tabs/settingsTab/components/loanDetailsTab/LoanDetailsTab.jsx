@@ -3,10 +3,13 @@ import { IconCurrencyDollarCanadian } from '@tabler/icons'
 import { useParams } from 'react-router-dom'
 import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { TimeAgo } from 'components'
+import { RenderIf } from '../../../../../../../utilities'
+import { usePermission } from '../../../../../../../hooks'
 
 const LoanDetailsTab = () => {
   const { id } = useParams()
   const { data: loanApp, isSuccess } = useGetOneLoanApplicationQuery(id)
+  const { canDeleteLoanApplication } = usePermission({})
   return isSuccess && <>
     <Stack spacing="xs">
       <Group position="apart">
@@ -32,22 +35,25 @@ const LoanDetailsTab = () => {
           </Group>
         </Stack>
       </Paper>
-      <Title order={5} color="red.5">Danger zone</Title>
-      <Paper p="md" withBorder>
-        <form>
-          <Stack spacing="md">
-            <Text>
-              This will delete all Document Requests and attached Documents.
-            </Text>
-            <Text color="red" weight={500}>
-              This action is irreversible.
-            </Text>
-            <Group position="left">
-              <Button type="submit" variant="outline" color="red.5">Delete Loan Application</Button>
-            </Group>
-          </Stack>
-        </form>
-      </Paper>
+      <RenderIf isTrue={canDeleteLoanApplication()}>
+        <Title order={5} color="red.5">Danger zone</Title>
+        <Paper p="md" withBorder>
+          <form>
+            <Stack spacing="md">
+              <Text>
+                This will delete all Document Requests and attached Documents.
+              </Text>
+              <Text color="red" weight={500}>
+                This action is irreversible.
+              </Text>
+              <Group position="left">
+                <Button type="submit" variant="outline" color="red.5">Delete Loan Application</Button>
+              </Group>
+            </Stack>
+          </form>
+        </Paper>
+      </RenderIf>
+
     </Stack>
   </>
 }

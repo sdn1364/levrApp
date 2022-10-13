@@ -37,7 +37,6 @@ const useNewDocReqModal = () => {
   }
 
   const [selected, selectedHandlers] = useListState([])
-  const [selectedPack, selectedPackHandlers] = useListState()
 
   useEffect(() => {
 
@@ -77,7 +76,7 @@ const useNewDocReqModal = () => {
     let selectedGuides = selected[1]
 
     let newSelectedGuides = []
-    
+
     // eslint-disable-next-line array-callback-return
     guides.map(guide => {
       if (selectedGuides.indexOf({ value: `${guide.id}`, label: guide.name }) === -1) {
