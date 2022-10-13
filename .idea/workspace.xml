@@ -7,9 +7,10 @@
     <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/usePermission.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePermission.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/useDocumentRequestRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/useDocumentRequestRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/newDocRequestModal/NewDocRequestModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/newDocRequestModal/NewDocRequestModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/newDocRequestModal/useNewDocReqModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/newDocRequestModal/useNewDocReqModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +111,7 @@
       <workItem from="1665534496551" duration="4790000" />
       <workItem from="1665540075384" duration="76000" />
       <workItem from="1665541146196" duration="19723000" />
-      <workItem from="1665673132648" duration="6210000" />
+      <workItem from="1665673132648" duration="8180000" />
     </task>
     <task id="LOCAL-00001" summary="added invite use form module">
       <created>1665441548931</created>

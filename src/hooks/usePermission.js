@@ -31,8 +31,6 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
 
   const canManageDocRequests = () => {
     if (isSuccess) {
-      console.log(user)
-      console.log(loanAppId)
       if (user.is_staff) return true
       if (user.is_superuser) return true
 

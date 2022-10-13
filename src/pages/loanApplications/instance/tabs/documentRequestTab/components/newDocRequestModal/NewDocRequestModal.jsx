@@ -11,11 +11,8 @@ const NewDocRequestModal = () => {
     guidePackData,
     opened,
     handleCloseNewDocRequestModal,
-    showPerson
+    shouldShowPersonSelect
   } = useNewDocReqModal()
-
-
-  //console.log(selected)
 
   return <Modal opened={opened} value={'select'}
                 onClose={handleCloseNewDocRequestModal} size="xl" centered
@@ -36,15 +33,15 @@ const NewDocRequestModal = () => {
         titles={['All Guides', 'Selected Guides']}
         breakpoint="sm"
       />
-      <RenderIf isTrue={showPerson}>
+      <RenderIf isTrue={shouldShowPersonSelect({})}>
         <Stack>
           <Stack>
             <Title order={5}>Personal documents selected</Title>
-            <Text size="sm" color="dimmed"></Text>
+            <Text size="sm" color="dimmed">Please select the Borrower from whom you are requesting personal documents:</Text>
           </Stack>
         </Stack>
       </RenderIf>
-  
+
       <Group position="apart">
         <Button onClick={handleCloseNewDocRequestModal} variant="subtle">Cancel</Button>
         <Button>Add</Button>

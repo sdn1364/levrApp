@@ -33,7 +33,6 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
                   <TextInput
                     sx={{ flex: 1 }} />
                   <Tooltip label="Click to save your note">
-
                     <ActionIcon variant="subtle" color="green"><IconCheck size={18} /></ActionIcon>
                   </Tooltip>
                 </Group>

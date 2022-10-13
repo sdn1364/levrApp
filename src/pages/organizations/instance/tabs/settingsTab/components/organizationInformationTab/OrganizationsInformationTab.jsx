@@ -14,7 +14,7 @@ const OrganizationsInformation = () => {
     handleUpdateOrganizationType,
     handleDeleteOrganization
   } = useOrganizationsInformation()
-  const { hasAccessToOrganizationAsOwner } = usePermission({ organizationId: organizationId })
+  const { hasAccessToOrganizationAsOwner } = usePermission({ organizationId: parseInt(organizationId) })
 
   if (isLoading) {
     return <LoadingOverlay visible />

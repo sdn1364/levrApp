@@ -15,14 +15,19 @@ const useNewDocReqModal = () => {
   const { data: guides, isSuccess: guidesIsSuccess } = useGetDocRequestGuideQuery()
   const { data: rolesAndInvitations, isSuccess: rolesIsSuccess } = useGetLoanAppUsersAndInvitesQuery(id)
 
-  const [showPerson, setShowPerson] = useState(false)
+  let existingBorrowers = []
+  let invitedBorrowers = []
 
-  /*
-      existingBorrowers: rolesIsSuccess && rolesAndInvitations.userRoles
-        .filter((invt) => invt.roles.includes("ROLE_LOANAPP_BORROWER")),
-      invitedBorrowers: rolesIsSuccess && rolesAndInvitations.invitations
-        .filter((invt) => invt.objectPermissions.includes("ROLE_LOANAPP_BORROWER")),
-  */
+  /*  useEffect(() => {
+      if (rolesIsSuccess) {
+
+        existingBorrowers = rolesAndInvitations.userRoles
+          .filter((invt) => invt.roles.includes('ROLE_LOANAPP_BORROWER'))
+        invitedBorrowers = rolesAndInvitations.invitations
+          .filter((invt) => invt.object_permissions.includes('ROLE_LOANAPP_BORROWER'))
+      }
+    }, [existingBorrowers, invitedBorrowers, rolesAndInvitations])*/
+
 
   const opened = useSelector(selectNewDocRequestModal)
 
@@ -118,22 +123,25 @@ const useNewDocReqModal = () => {
     }
   }
 
-  const shouldShowPersonSelect = ({ documentRequestGuides, selectedDocumentRequestGuides }) => {
+  const shouldShowPersonSelect = ({ selectedDocumentRequestGuides }) => {
+
     for (let selected of selectedDocumentRequestGuides) {
-      if ((Object.values(documentRequestGuides || {})).filter((guide) => guide.id === selected.id)[0].documentParentType === 'U')
+      if ((Object.values(guides || {})).filter((guide) => guide.id === selected.id)[0].document_parent_type === 'U')
         return true
     }
     return false
   }
 
   return {
-    selected, opened, showPerson,
+    selected, opened,
     handleChangePack,
     handleSetSelected,
     guidePackData,
     handleCloseNewDocRequestModal,
     handleOpenNewDocRequestModal,
-    shouldShowPersonSelect
+    shouldShowPersonSelect,
+    existingBorrowers,
+    invitedBorrowers
   }
 }
 export default useNewDocReqModal
