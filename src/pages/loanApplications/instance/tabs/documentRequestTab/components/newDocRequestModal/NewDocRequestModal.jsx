@@ -1,5 +1,6 @@
 import { Button, Group, Modal, MultiSelect, Stack, Title, TransferList, Text } from '@mantine/core'
 import useNewDocReqModal from './useNewDocReqModal'
+import { RenderIf } from '../../../../../../../utilities'
 
 const NewDocRequestModal = () => {
 
@@ -10,7 +11,7 @@ const NewDocRequestModal = () => {
     guidePackData,
     opened,
     handleCloseNewDocRequestModal,
-    shouldShowPersonSelect
+    showPerson
   } = useNewDocReqModal()
 
 
@@ -35,15 +36,15 @@ const NewDocRequestModal = () => {
         titles={['All Guides', 'Selected Guides']}
         breakpoint="sm"
       />
-      {
-        shouldShowPersonSelect && <Stack>
+      <RenderIf isTrue={showPerson}>
+        <Stack>
           <Stack>
             <Title order={5}>Personal documents selected</Title>
             <Text size="sm" color="dimmed"></Text>
           </Stack>
         </Stack>
-      }
-
+      </RenderIf>
+  
       <Group position="apart">
         <Button onClick={handleCloseNewDocRequestModal} variant="subtle">Cancel</Button>
         <Button>Add</Button>

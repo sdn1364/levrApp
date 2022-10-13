@@ -15,6 +15,8 @@ const useNewDocReqModal = () => {
   const { data: guides, isSuccess: guidesIsSuccess } = useGetDocRequestGuideQuery()
   const { data: rolesAndInvitations, isSuccess: rolesIsSuccess } = useGetLoanAppUsersAndInvitesQuery(id)
 
+  const [showPerson, setShowPerson] = useState(false)
+
   /*
       existingBorrowers: rolesIsSuccess && rolesAndInvitations.userRoles
         .filter((invt) => invt.roles.includes("ROLE_LOANAPP_BORROWER")),
@@ -125,7 +127,7 @@ const useNewDocReqModal = () => {
   }
 
   return {
-    selected, opened,
+    selected, opened, showPerson,
     handleChangePack,
     handleSetSelected,
     guidePackData,
