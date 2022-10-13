@@ -1,8 +1,11 @@
 import { ManageAccess } from 'components'
 import useManageAccessTab from './useManageAccessTab'
 import { LoadingOverlay } from '@mantine/core'
+import { usePermission } from '../../../../../../../hooks'
+import { useParams } from 'react-router-dom'
 
 const ManageAccessTab = () => {
+  const { id: organizationId } = useParams()
 
   const {
     isSuccess, isLoading, rolesAndInvites,
@@ -15,7 +18,7 @@ const ManageAccessTab = () => {
     handleSetUserRole,
     handleSetInvitationRole
   } = useManageAccessTab()
-
+  const { hasAccessToOrganizationAsOwner } = usePermission({ organizationId: organizationId })
   if (isLoading) {
     return <LoadingOverlay visible />
   }
@@ -31,6 +34,7 @@ const ManageAccessTab = () => {
     resendInvitation={handleResendInvitation}
     setUserRole={handleSetUserRole}
     setInvitationRole={handleSetInvitationRole}
+    isOwner={hasAccessToOrganizationAsOwner()}
   />
 }
 export default ManageAccessTab

@@ -4,9 +4,10 @@ import RoleSelect from './RoleSelect'
 import { READABLE_ROLE_MAPPING } from 'roles'
 import { IconTrash } from '@tabler/icons'
 import useManageAccess from 'components/ManageAccess/useManageAccess'
+import { RenderIf } from '../../../utilities'
 
 
-const RolesRow = ({ user, availableRole, setUserRole }) => {
+const RolesRow = ({ user, availableRole, setUserRole, isOwner }) => {
 
   const { handleClickDeleteUserRole } = useManageAccess()
 
@@ -15,7 +16,7 @@ const RolesRow = ({ user, availableRole, setUserRole }) => {
     <td>
       <Group spacing="sm">
         <UserAvatar size={40} userId={user.user_id} radius={40} />
-        <Stack>
+        <Stack spacing={1}>
           <Text size="sm" weight={500}>
             {user.user_full_name}
           </Text>
@@ -38,7 +39,9 @@ const RolesRow = ({ user, availableRole, setUserRole }) => {
     </td>
     <td><Badge fullWidth color="green">Accepted</Badge></td>
     <td>
-      <ActionIcon variant="subtle" onClick={() => handleClickDeleteUserRole(user.user_id)}><IconTrash size={16} /></ActionIcon>
+      <RenderIf isTrue={isOwner}>
+        <ActionIcon variant="subtle" onClick={() => handleClickDeleteUserRole(user.user_id)}><IconTrash size={16} /></ActionIcon>
+      </RenderIf>
     </td>
   </tr>
 }

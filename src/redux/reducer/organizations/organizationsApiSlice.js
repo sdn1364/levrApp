@@ -91,7 +91,7 @@ export const organizationsApiSlice = apiSlice.injectEndpoints({
         body: params
 
       }),
-      invalidatesTags: ['OrganizationInvitations']
+      invalidatesTags: ['OrganizationInvitations', 'Organization']
     })
 
   })

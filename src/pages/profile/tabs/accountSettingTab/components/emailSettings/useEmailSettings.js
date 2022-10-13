@@ -12,7 +12,7 @@ const useEmailSettings = () => {
     },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      password: (value) => value === undefined ? 'Password can not be empty' : null
+      password: (value) => value === '' ? 'Password can not be empty' : null
     }
   })
 
@@ -28,7 +28,12 @@ const useEmailSettings = () => {
           title: 'User Email updated',
           color: 'green'
         })
-      }).catch(err => console.log(err.data.email))
+      }).catch(err => {
+        showNotification({
+          title: err.data.email || err.data.password,
+          color: 'red'
+        })
+      })
   }
 
   return { user, handleUpdateUserEmail, form, isSuccess }

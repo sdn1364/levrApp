@@ -8,6 +8,7 @@ import ConfirmDeleteInvitationModal from './components/ConfirmDeleteInvitationMo
 import { IconPlus } from '@tabler/icons'
 import useManageAccess from './useManageAccess'
 import UserInviteModal from './components/UserInviteModal'
+import { RenderIf } from '../../utilities'
 
 
 const ManageAccess = ({
@@ -20,12 +21,13 @@ const ManageAccess = ({
                         deleteUserRole,
                         sendInvitation,
                         setUserRole,
-                        setInvitationRole
+                        setInvitationRole,
+                        isOwner
                       }) => {
 
   const renderRoles = () => {
     return rolesAndInvites.user_roles.map((user) => (
-      <RolesRow availableRole={availableRoles} key={user.user_id} user={user} setUserRole={setUserRole} />
+      <RolesRow isOwner={isOwner} availableRole={availableRoles} key={user.user_id} user={user} setUserRole={setUserRole} />
     ))
   }
 
@@ -60,7 +62,9 @@ const ManageAccess = ({
       <Stack spacing="lg">
         <Group position="apart">
           <Title order={4}>{title}</Title>
-          <Button size="xs" leftIcon={<IconPlus size={14} />} onClick={handleOpenUserInviteModal}>Invite Users</Button>
+          <RenderIf isTrue={isOwner}>
+            <Button size="xs" leftIcon={<IconPlus size={14} />} onClick={handleOpenUserInviteModal}>Invite Users</Button>
+          </RenderIf>
         </Group>
         <Paper p="xs" withBorder>
 

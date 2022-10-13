@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
-      <change afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/useEmailSettings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/AccountSettingsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/AccountSettingsTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/EmailSettings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/EmailSettings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/avtarUpload/useAvatarUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/avtarUpload/useAvatarUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/auth/authApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/useEmailSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/useEmailSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +113,7 @@
       <workItem from="1665508802346" duration="21413000" />
       <workItem from="1665534496551" duration="4790000" />
       <workItem from="1665540075384" duration="76000" />
-      <workItem from="1665541146196" duration="15974000" />
+      <workItem from="1665541146196" duration="18337000" />
     </task>
     <task id="LOCAL-00001" summary="added invite use form module">
       <created>1665441548931</created>
