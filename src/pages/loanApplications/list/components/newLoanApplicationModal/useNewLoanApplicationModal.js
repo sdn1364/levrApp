@@ -39,6 +39,7 @@ const useNewLoanApplicationModal = () => {
   const closeNewLoanApplicationModal = () => {
     dispatch(setCloseNewLoanApplicationModal())
     setActive(0)
+    dispatch(emptyInvitations())
     form.reset()
   }
 

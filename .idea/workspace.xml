@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
+      <change afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/emptyLoanApplicationList/EmptyLoanApplicationList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/emptyLoanApplicationList/useEmptyLoanApplicationList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/useEmailSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/tabs/accountSettingTab/components/emailSettings/useEmailSettings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/organizations/organizationsApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteUserRoleModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/ConfirmDeleteUserRoleModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inviteUsers/InviteUsers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inviteUsers/InviteUsers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inviteUsers/useInviteUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inviteUsers/useInviteUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/useNewLoanApplicationModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/newLoanApplicationModal/useNewLoanApplicationModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/LoanApplicationsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/loanApplicationstab/LoanApplicationsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/ManageAccessSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/ManageAccessSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,27 +48,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/soheyldelshad/Desktop/levrApp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "",
-    "settings.editor.selected.configurable": "editing.templates",
-    "settings.editor.splitter.proportion": "0.21013667",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/soheyldelshad/Desktop/levrApp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.21013667&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.2.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Soheyl Delshad\Desktop\levrApp\src\components\modals" />
@@ -113,7 +113,8 @@
       <workItem from="1665508802346" duration="21413000" />
       <workItem from="1665534496551" duration="4790000" />
       <workItem from="1665540075384" duration="76000" />
-      <workItem from="1665541146196" duration="18337000" />
+      <workItem from="1665541146196" duration="19723000" />
+      <workItem from="1665673132648" duration="2149000" />
     </task>
     <task id="LOCAL-00001" summary="added invite use form module">
       <created>1665441548931</created>

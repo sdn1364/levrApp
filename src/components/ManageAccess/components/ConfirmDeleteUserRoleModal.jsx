@@ -22,11 +22,11 @@ const ConfirmDeleteUserRoleModal = ({ rolesAndInvites, deleteUserRole }) => {
     onClose={handleCloseDeleteUserRoleModal}
     submitLabel="Delete"
     onSubmit={() => deleteUserRole(deleteModalUser?.user_id)}
-    title="You are about to delete a user role!"
+    title="You are about to delete a User role!"
   >
     <Stack spacing="sm">
       <Text align="center" size="sm">
-        Are you sure you want to delete User role for:
+        Are you sure you want to remove access for this User:
       </Text>
       <Text weight={500} align="center">{deleteModalUser && deleteModalUser.user_email}</Text>
     </Stack>

@@ -29,10 +29,18 @@ const manageAccessSlice = createSlice({
       state.invitations.push(action.payload)
     },
     removeInvitations: (state, action) => {
-      const newInvitations = state.invitations.filter(invite =>
+      state.invitations = state.invitations.filter(invite =>
         invite.email !== action.payload.email
       )
-      state.invitations = newInvitations
+    },
+    updateInvitation: (state, action) => {
+      state.invitations = state.invitations.map((invite) => {
+        if (invite.email === action.payload.email) {
+          return action.payload
+        } else {
+          return invite
+        }
+      })
     },
     emptyInvitations: (state) => {
       state.invitations = []
@@ -62,6 +70,7 @@ export const {
   removeInvitations,
   emptyInvitations,
   unsetInvitationLoading,
-  setInvitationLoading
+  setInvitationLoading,
+  updateInvitation
 } = manageAccessSlice.actions
 export default manageAccessSlice.reducer

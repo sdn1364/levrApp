@@ -27,7 +27,7 @@ const InviteUsers = ({ availableRoles }) => {
               <Group position="apart">
                 <Text size="xs">{invite.email}</Text>
                 <Group>
-                  <Select size="xs" defaultValue={invite.role} placeholder="Select" onChange={(e) => changeRole(e, invite.email)} data={roles} variant="subtle" />
+                  <Select size="xs" defaultValue={invite.role} placeholder="Select" onChange={(value) => changeRole({ role: value, email: invite.email })} data={roles} variant="subtle" />
                   <ActionIcon variant="subtle" onClick={() => deleteInvitation(invite)}><IconTrash size={14} /></ActionIcon>
                 </Group>
               </Group>
