@@ -13,7 +13,6 @@ const useAvatarUpload = (userId) => {
   const handleUploadAvatar = (value) => {
     setFile(URL.createObjectURL(value))
   }
-
   const handleFinishUploadAvatar = async () => {
     const formData = new FormData()
     formData.append('image', file)
@@ -23,7 +22,6 @@ const useAvatarUpload = (userId) => {
         title: 'User image updated',
         color: 'green'
       })).catch(err => console.log(err))
-
   }
 
   return { handleUploadAvatar, resetRef, clearFile, file, handleFinishUploadAvatar }

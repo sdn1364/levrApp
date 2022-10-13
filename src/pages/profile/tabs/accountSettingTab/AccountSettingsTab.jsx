@@ -1,5 +1,5 @@
 import { Stack } from '@mantine/core'
-import EmailSettings from './components/EmailSettings'
+import EmailSettings from './components/emailSettings/EmailSettings'
 import PersonalInformation from './components/personalInformation/PersonalInformation'
 
 const AccountSettingsTab = () => {

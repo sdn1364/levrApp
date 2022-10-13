@@ -45,6 +45,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }
       }),
       invalidatesTags: ['User']
+    }),
+    updateUserEmail: builder.mutation({
+      query: ({ userId, userEmail, confirmPassword }) => ({
+        url: `users/${userId}/update_email/`,
+        method: 'PUT',
+        body: { email: userEmail, password: confirmPassword }
+      }),
+      invalidatesTags: ['User']
     })
   })
 })
@@ -56,5 +64,6 @@ export const {
   useGetUserQuery,
   useGetUserImageQuery,
   useUpdateUserFullNameMutation,
-  useUpdateUserImageMutation
+  useUpdateUserImageMutation,
+  useUpdateUserEmailMutation
 } = authApiSlice
