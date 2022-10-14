@@ -25,7 +25,7 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     if (isSuccess) {
       if (user.is_staff) return true
       if (user.is_superuser) return true
-      if (user.permissions.LoanApplication.ROLE_LOANAPP_BROKER.include(loanAppId)) return true
+      if (user.permissions.LoanApplication.ROLE_LOANAPP_BROKER.includes(loanAppId)) return true
     }
   }
 

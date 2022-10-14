@@ -51,6 +51,22 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['loanApplications']
     }),
+    addNewDocReqToLoanApp: builder.mutation({
+      query: ({
+                loanAppId,
+                documentRequestGuides,
+                assignedToUsers,
+                assignedToInvitations
+              }) => ({
+        url: `loan_applications/${loanAppId}/create_new_document_requests/`,
+        method: 'POST',
+        body: {
+          document_request_guides: documentRequestGuides,
+          assigned_to_user: assignedToUsers,
+          assigned_to_invitations: assignedToInvitations
+        }
+      })
+    }),
     //Loan application manage access mutations
     sendLoanAppInvitations: builder.mutation({
       query: ({ id, userRoles }) => ({
@@ -93,6 +109,13 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
 
       }),
       invalidatesTags: ['LoanApplicationsInvitations']
+    }),
+    loanAppSendReminder: builder.mutation({
+      query: ({ loanAppId, params }) => ({
+        url: `loan_applications/${loanAppId}/send_reminder/`,
+        method: 'POST',
+        body: params
+      })
     })
   })
 })
@@ -111,5 +134,7 @@ export const {
   useDeleteLoanAppUserInvitationMutation,
   useResendLoanAppUserInvitationMutation,
   useEditLoanAppInvitationMutation,
-  useSetLoanAppUserRoleMutation
+  useSetLoanAppUserRoleMutation,
+  useAddNewDocReqToLoanAppMutation,
+  useLoanAppSendReminderMutation
 } = loanApplicationApiSlice

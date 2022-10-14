@@ -1,19 +1,19 @@
 import { useParams } from 'react-router-dom'
 import { useGetAllDocReqGuidePacksQuery, useGetDocRequestGuideQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
-import { useGetLoanAppUsersAndInvitesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeAddDocRequestModal, openAddDocReqModal, selectNewDocRequestModal } from 'redux/reducer/loanApplication/docRequestSlice'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useListState } from '@mantine/hooks'
+import { useAddNewDocReqToLoanAppMutation } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
 const useNewDocReqModal = () => {
 
-  const { id } = useParams()
+  const { id: loanAppId } = useParams()
   const dispatch = useDispatch()
 
   const { data: guidePacks, isSuccess: guidePacksIsSuccess } = useGetAllDocReqGuidePacksQuery()
   const { data: guides, isSuccess: guidesIsSuccess } = useGetDocRequestGuideQuery()
-
+  const [addNewDocReqToLoanApp] = useAddNewDocReqToLoanAppMutation()
 
   const opened = useSelector(selectNewDocRequestModal)
 
@@ -108,7 +108,7 @@ const useNewDocReqModal = () => {
     }
   }
 
-  const shouldShowPersonSelect = (selectedDocumentRequestGuides) => {
+  const shouldShowPersonSelect = () => {
 
     if (selected[1]) {
       for (let slctd of selected[1]) {
@@ -120,6 +120,15 @@ const useNewDocReqModal = () => {
 
   }
 
+  const handleAddNewDocReqToLoanApplication = async () => {
+
+    await addNewDocReqToLoanApp({
+      loanAppId: loanAppId,
+      documentRequestGuides: selected[1].map(guide => (parseInt(guide.value)))
+
+    }).unwrap()
+  }
+
   return {
     selected, opened,
     handleChangePack,
@@ -127,7 +136,8 @@ const useNewDocReqModal = () => {
     guidePackData,
     handleCloseNewDocRequestModal,
     handleOpenNewDocRequestModal,
-    shouldShowPersonSelect
+    shouldShowPersonSelect,
+    handleAddNewDocReqToLoanApplication
   }
 }
 export default useNewDocReqModal

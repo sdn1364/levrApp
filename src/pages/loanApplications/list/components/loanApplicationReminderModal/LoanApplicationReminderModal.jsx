@@ -3,32 +3,10 @@ import useLoanApplicationReminderModal from './useLoanApplicationReminderModal'
 import { GenericModal } from 'components'
 import { Stack, Text, Paper, LoadingOverlay } from '@mantine/core'
 import User from './components/user/User'
-import { useState } from 'react'
 
 const LoanApplicationReminderModal = () => {
-  const { opened, value, closeLoanApplicationReminderModal, sendReminder, loanAppUsersAndInvites, loanAppUsersAndInvitesIsSuccess, isLoading } = useLoanApplicationReminderModal()
-  const [form, setForm] = useState({
-    message: value,
-    selectedUsers: [],
-    selectedInvitations: []
-  })
+  const { opened, form, msg, setMsg, handleChecked, closeLoanApplicationReminderModal, sendReminder, loanAppUsersAndInvites, loanAppUsersAndInvitesIsSuccess, isLoading } = useLoanApplicationReminderModal()
 
-
-  const handleChecked = (event) => {
-    const {
-      target: { value, name, checked }
-    } = event
-
-    const id = parseInt(value, 10)
-
-    setForm((form) => ({
-      ...form,
-      [name]: checked
-        ? [...form[name], id]
-        : form[name].filter((element) => element !== id)
-    }))
-    console.log(form)
-  }
 
   return <GenericModal
     opened={opened !== null}
@@ -36,6 +14,7 @@ const LoanApplicationReminderModal = () => {
     size="lg"
     centered
     submitText="Send"
+    submit={() => sendReminder(form)}
     onClose={closeLoanApplicationReminderModal}
   >
     {
@@ -44,23 +23,24 @@ const LoanApplicationReminderModal = () => {
         <Stack>
           {
             loanAppUsersAndInvites.user_roles.length > 0 ? loanAppUsersAndInvites.user_roles.map((user, index) => {
-              return <User onChange={handleChecked} name="selectedUsers"
+              return <User handleOnChange={handleChecked} name="selectedUsers"
                            userId={user.user_id} key={`owner-${index}`} title={user.user_email} />
-            }) : <Text size="lg" align="center" weight={500}>No use has accepted the invitation yet</Text>
+            }) : <Text size="lg" align="center" weight={500}>No User has accepted the invitation yet</Text>
           }
           {
             loanAppUsersAndInvites.invitations.length > 0 ? loanAppUsersAndInvites.invitations.map((user, index) => {
-              return <User onChange={handleChecked} name="selectedInvitations"
-                           userId={user.user_id} key={`invite-${index}`} title={user.to_email} description="Invitation not yet accepted" />
+              return <User handleOnChange={handleChecked} name="selectedInvitations"
+                           userId={user.id} key={`invite-${index}`} title={user.to_email} description="Invitation not yet accepted" />
             }) : null
           }
         </Stack>
       </Paper> : <LoadingOverlay visible={isLoading} />
     }
 
-    <RichTextEditor value={value}
+    <RichTextEditor value={msg}
                     sx={{ minHeight: 150 }}
                     id="rte"
+                    onChange={setMsg}
                     controls={[
                       ['bold', 'italic', 'underline', 'link'],
                       ['unorderedList', 'h1', 'h2', 'h3'],

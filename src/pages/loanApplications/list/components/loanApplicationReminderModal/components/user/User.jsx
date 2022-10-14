@@ -6,7 +6,7 @@ import { UserAvatar } from 'components'
 const User = ({
                 checked,
                 defaultChecked,
-                onChange,
+                handleOnChange,
                 title,
                 description,
                 className,
@@ -20,9 +20,9 @@ const User = ({
     value: checked,
     defaultValue: defaultChecked,
     finalValue: false,
-    onChange
-  })
+    onChange: (value) => handleOnChange({ value, userId, name })
 
+  })
   return (
     <UnstyledButton
       {...others}
@@ -31,16 +31,14 @@ const User = ({
       className={cx(classes.button, className)}
     >
       <Checkbox
-
         checked={value}
         tabIndex={-1}
         size="sm"
-        onChange={onChange}
+        onChange={() => {
+        }}
         mr="xl"
         radius="xs"
-        name={name}
         styles={{ input: { cursor: 'pointer' } }}
-        value={userId}
       />
       <Group sx={{ width: '100%' }} position="apart">
         <Group>

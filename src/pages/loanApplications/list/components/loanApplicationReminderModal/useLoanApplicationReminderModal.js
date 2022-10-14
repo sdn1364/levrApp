@@ -1,6 +1,9 @@
 import { selectLoanApplicationReminderModal, setCloseLoanApplicationReminderModal } from 'redux/reducer/loanApplication/loanApplicationSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useGetLoanAppUsersAndInvitesQuery, useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import { useGetLoanAppUsersAndInvitesQuery, useGetOneLoanApplicationQuery, useLoanAppSendReminderMutation } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import { showNotification } from '@mantine/notifications'
+import { useEffect, useState } from 'react'
+import { useSetState } from '@mantine/hooks'
 
 const useLoanApplicationReminderModal = () => {
   const opened = useSelector(selectLoanApplicationReminderModal)
@@ -12,6 +15,7 @@ const useLoanApplicationReminderModal = () => {
   const { data: loanApp, isSuccess: loanAppIsSuccess } = useGetOneLoanApplicationQuery(parseInt(opened), {
     skip: opened === null
   })
+  const [sendLoanAppReminder] = useLoanAppSendReminderMutation()
 
   let value = ''
 
@@ -22,18 +26,63 @@ const useLoanApplicationReminderModal = () => {
   const dispatch = useDispatch()
   const closeLoanApplicationReminderModal = () => {
     dispatch(setCloseLoanApplicationReminderModal())
+    setForm({ selectedUsers: [], selectedInvitations: [] })
   }
 
-  const sendReminder = (values) => {
-    console.log(values)
+  const [msg, setMsg] = useState('')
+
+  useEffect(() => {
+    if (value !== '') {
+      setMsg(value)
+    }
+  }, [value])
+
+
+  const [form, setForm] = useSetState({
+    message: value,
+    selectedUsers: [],
+    selectedInvitations: []
+  })
+  useEffect(() => {
+    setForm({ message: msg })
+  }, [msg])
+
+  const handleChecked = ({ value, userId, name }) => {
+    if (value) {
+      setForm({
+        [name]: value
+          ? [...form[name], userId]
+          : form[name].filter((element) => element !== userId)
+      })
+    }
+  }
+
+  const sendReminder = async ({ message, selectedUsers, selectedInvitations }) => {
+    await sendLoanAppReminder({
+      loanAppId: loanApp.id,
+      params: {
+        message: message,
+        users: selectedUsers,
+        invitations: selectedInvitations
+      }
+    }).unwrap().then(res => {
+      showNotification({
+        title: 'Reminder Sent',
+        color: 'green'
+      })
+      closeLoanApplicationReminderModal()
+      setForm({ selectedUsers: [], selectedInvitations: [] })
+    }).catch(
+      err => console.log(err)
+    )
   }
 
   return {
-    value, opened, isLoading,
+    value, opened, isLoading, form, msg, setMsg,
     loanAppUsersAndInvites,
     loanAppUsersAndInvitesIsSuccess,
     closeLoanApplicationReminderModal,
-    sendReminder
+    sendReminder, handleChecked
 
   }
 }
