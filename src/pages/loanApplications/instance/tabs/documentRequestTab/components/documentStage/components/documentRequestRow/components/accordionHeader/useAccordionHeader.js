@@ -1,18 +1,17 @@
 import { useMantineTheme } from '@mantine/core'
 import { useCallback, useState } from 'react'
 import { useHover } from '@mantine/hooks'
-import { openDeleteDocRequestConfirm, openUploadDocumentModal, selectDocRequests, unSelectDocRequests } from '../../../../../../../../../../../redux/reducer/loanApplication/docRequestSlice'
+import { openDeleteDocRequestConfirm, openUploadDocumentModal, selectDocRequests, unSelectDocRequests } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { showNotification } from '@mantine/notifications'
-import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from '../../../../../../../../../../../redux/reducer/loanApplication/docRequestApiSlice'
-import { usePermission } from '../../../../../../../../../../../hooks'
-import { useGetOneLoanApplicationQuery } from '../../../../../../../../../../../redux/reducer/loanApplication/loanApplicationApiSlice'
+import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { usePermission } from 'hooks'
+import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
 const useAccordionHeader = (docReq) => {
   const { id: loanAppId } = useParams()
   const theme = useMantineTheme()
-  const [opened, setOpened] = useState(false)
   const { hovered, ref } = useHover()
   const [checked, setChecked] = useState(false)
   const dispatch = useDispatch()
@@ -30,7 +29,7 @@ const useAccordionHeader = (docReq) => {
   ]
 
   const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
-    loanAppId,
+    loanAppId: parseInt(loanAppId),
     documentRequest: docReq,
     borrowerOrganizationId: loanApplicationInstance.borrower_org
   })
@@ -87,7 +86,8 @@ const useAccordionHeader = (docReq) => {
     })
 
   }
-  return { status, opened, setOpened, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests, canManageDocRequestFiles }
+
+  return { status, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests, canManageDocRequestFiles }
 }
 
 export default useAccordionHeader

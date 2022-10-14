@@ -1,4 +1,4 @@
-import { Accordion, ActionIcon, Box, Center, Checkbox, ColorSwatch, Divider, Group, Menu, Paper, Tooltip, useMantineTheme } from '@mantine/core'
+import { Accordion, ActionIcon, Box, Checkbox, Center, ColorSwatch, Divider, Group, Menu, Paper, Tooltip, useMantineTheme } from '@mantine/core'
 import { CapitalizeFirstLetter, RenderIf, RenderIfElse } from 'utilities'
 import { IconDotsVertical, IconGripVertical, IconMessage, IconTrash, IconUpload } from '@tabler/icons'
 import { EditableTextInput } from 'components'
@@ -6,10 +6,12 @@ import People from '../People'
 import UploadDocsCounter from '../UploadDocsCounter'
 import RequiredFilesCount from '../RequiredFilesCount'
 import useAccordionHeader from './useAccordionHeader'
+import { useLogger } from '@mantine/hooks'
 
 const AccordionHeader = ({ docReq, provided }) => {
   const theme = useMantineTheme()
-  const { status, opened, setOpened, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests, canManageDocRequestFiles } = useAccordionHeader(docReq)
+
+  const { status, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests } = useAccordionHeader(docReq)
   return <Box ref={ref} sx={{ marginLeft: hovered || checked ? -36 : 0 }}>
     <Group>
       {(hovered || checked) && <Checkbox onChange={onDocRequestCheckboxCheck} value={docReq.id} />}
@@ -17,12 +19,13 @@ const AccordionHeader = ({ docReq, provided }) => {
         flex: 1,
         display: 'flex',
         alignItems: 'center',
-        borderLeft: '5px solid ' + theme.colors[docReq.status][5]
+        borderLeft: '5px solid ' + theme.colors[docReq.status][5],
+        borderBottomLeftRadius: 0
       }}>
         <RenderIfElse isTrue={canManageDocRequests()} isFalse={<ActionIcon variant="transparent" disabled size="lg">
           <ColorSwatch size={14} color={theme.colors[docReq.status][5]} radius="sm" />
         </ActionIcon>}>
-          <Menu position="bottom-start" shadow="md" width={120} opened={opened} onChange={setOpened}>
+          <Menu position="bottom-start" shadow="md" width={120}>
             <Menu.Target>
               <ActionIcon size="lg">
                 <ColorSwatch size={14} color={theme.colors[docReq.status][5]} radius="xs" />

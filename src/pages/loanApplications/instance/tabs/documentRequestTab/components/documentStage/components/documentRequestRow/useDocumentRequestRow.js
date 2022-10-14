@@ -7,10 +7,7 @@ const useDocumentRequestRow = (docReq) => {
   const { id: loanAppId } = useParams()
 
   const { data: loanApplicationInstance } = useGetOneLoanApplicationQuery(loanAppId)
-
-
-  console.log(docReq)
-
+  
   const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
     loanAppId: parseInt(loanAppId),
     documentRequest: docReq,

@@ -8,14 +8,16 @@ import { EditableTextInput } from 'components'
 import useStyles from './useStyles'
 import AccordionHeader from './components/accordionHeader/AccordionHeader'
 
-
 const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
   const { classes, cx } = useStyles()
   const theme = useMantineTheme()
 
   const { canManageDocRequests, canManageDocRequestFiles } = useDocumentRequestRow(docReq)
 
-  return docReq ? <Accordion.Item {...provided.draggableProps} {...provided.dragHandleProps} sx={{ overflow: 'hidden' }} ref={innerRef} className={cx({ [classes.itemDragging]: snapshot.isDragging })} value={`${docReq.id}`}>
+  return <Accordion.Item {...provided.draggableProps}
+                         {...provided.dragHandleProps}
+                         ref={innerRef}
+                         shadow="md" sx={{ overflow: 'hidden' }} className={cx({ [classes.itemDragging]: snapshot.isDragging })} value={`${docReq.id}`}>
     <AccordionHeader docReq={docReq} provided={provided} />
     <Accordion.Panel sx={(theme) => ({ borderLeft: '5px solid ' + theme.colors[docReq.status][5] })}>
       <Stack>
@@ -45,6 +47,6 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
         </Paper>
       </Stack>
     </Accordion.Panel>
-  </Accordion.Item> : null
+  </Accordion.Item>
 }
 export default DocumentRequestRow

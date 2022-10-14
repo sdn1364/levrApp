@@ -13,20 +13,6 @@ const useNewDocReqModal = () => {
 
   const { data: guidePacks, isSuccess: guidePacksIsSuccess } = useGetAllDocReqGuidePacksQuery()
   const { data: guides, isSuccess: guidesIsSuccess } = useGetDocRequestGuideQuery()
-  const { data: rolesAndInvitations, isSuccess: rolesIsSuccess } = useGetLoanAppUsersAndInvitesQuery(id)
-
-  let existingBorrowers = []
-  let invitedBorrowers = []
-
-  /*  useEffect(() => {
-      if (rolesIsSuccess) {
-
-        existingBorrowers = rolesAndInvitations.userRoles
-          .filter((invt) => invt.roles.includes('ROLE_LOANAPP_BORROWER'))
-        invitedBorrowers = rolesAndInvitations.invitations
-          .filter((invt) => invt.object_permissions.includes('ROLE_LOANAPP_BORROWER'))
-      }
-    }, [existingBorrowers, invitedBorrowers, rolesAndInvitations])*/
 
 
   const opened = useSelector(selectNewDocRequestModal)
@@ -101,7 +87,6 @@ const useNewDocReqModal = () => {
 
   }
 
-
   // other functions in new doc request modal
   const handleOpenNewDocRequestModal = () => {
     dispatch(openAddDocReqModal())
@@ -123,13 +108,16 @@ const useNewDocReqModal = () => {
     }
   }
 
-  const shouldShowPersonSelect = ({ selectedDocumentRequestGuides }) => {
+  const shouldShowPersonSelect = (selectedDocumentRequestGuides) => {
 
-    for (let selected of selectedDocumentRequestGuides) {
-      if ((Object.values(guides || {})).filter((guide) => guide.id === selected.id)[0].document_parent_type === 'U')
-        return true
+    if (selected[1]) {
+      for (let slctd of selected[1]) {
+        if ((Object.values(guides || {})).filter((guide) => guide.id === parseInt(slctd.value))[0].document_parent_type === 'U')
+          return true
+      }
+      return false
     }
-    return false
+
   }
 
   return {
@@ -139,9 +127,7 @@ const useNewDocReqModal = () => {
     guidePackData,
     handleCloseNewDocRequestModal,
     handleOpenNewDocRequestModal,
-    shouldShowPersonSelect,
-    existingBorrowers,
-    invitedBorrowers
+    shouldShowPersonSelect
   }
 }
 export default useNewDocReqModal

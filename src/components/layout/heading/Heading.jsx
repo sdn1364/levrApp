@@ -3,7 +3,7 @@ import { createStyles, Group, Paper, Stack } from '@mantine/core'
 const useStyles = createStyles((theme, { haveTabs }) => ({
   heading: {
     height: 'auto',
-    borderBottom: `solid 1px ${theme.colors.gray[2]}`,
+    borderBottom: `solid 1px ${theme.colorScheme === 'light' ? theme.colors.gray[2] : theme.colors.gray[8]}`,
     padding: haveTabs ? '30px 50px 10px 50px' : '30px 50px'
   }
 }))

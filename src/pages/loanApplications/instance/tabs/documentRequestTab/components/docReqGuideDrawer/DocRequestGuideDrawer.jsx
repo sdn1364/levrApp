@@ -1,46 +1,45 @@
-import { Paper, useMantineTheme, Stack, ScrollArea, Title, LoadingOverlay, Modal, TypographyStylesProvider, Text, Button, Divider, Group, Center } from "@mantine/core";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useGetOneDocRequestQuery } from "redux/reducer/loanApplication/docRequestApiSlice";
-import { IconArrowBigLeftLine, IconExternalLink } from "@tabler/icons";
-import { useState } from "react";
-import DocReqGuideTemplates from "./DocReqGuideTemplates";
-import { RenderIf } from "utilities";
-import RequiredFiles from "../requiredFiles/RequiredFiles";
-import useDocReqGuideDrawer from "./useDocReqGuideDrawer";
-import ApiUploadModal from "./ApiUploadModal";
-import { useGetOneLoanApplicationQuery } from "redux/reducer/loanApplication/loanApplicationApiSlice";
+import { Paper, useMantineTheme, Stack, ScrollArea, Title, LoadingOverlay, Modal, TypographyStylesProvider, Text, Button, Divider, Group, Center } from '@mantine/core'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { useGetOneDocRequestQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { IconArrowBigLeftLine, IconExternalLink } from '@tabler/icons'
+import { useState } from 'react'
+import DocReqGuideTemplates from './DocReqGuideTemplates'
+import { RenderIf } from 'utilities'
+import RequiredFiles from '../requiredFiles/RequiredFiles'
+import useDocReqGuideDrawer from './useDocReqGuideDrawer'
+import ApiUploadModal from './ApiUploadModal'
+import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
 const DocRequestGuideDrawer = () => {
-  const theme = useMantineTheme();
+  const theme = useMantineTheme()
 
-  const { id: loanAppId } = useParams();
-  let [searchParams] = useSearchParams();
-  const [guideDetailModal, setGuideDetailModal] = useState(false);
-  const docReqId = searchParams.get("documentRequestId");
-  const { handleOpenApiUploadModal } = useDocReqGuideDrawer();
+  const { id: loanAppId } = useParams()
+  let [searchParams] = useSearchParams()
+  const [guideDetailModal, setGuideDetailModal] = useState(false)
+  const docReqId = searchParams.get('documentRequestId')
+  const { handleOpenApiUploadModal } = useDocReqGuideDrawer()
 
-  const { data: docReq, isSuccess, isLoading } = useGetOneDocRequestQuery(docReqId, {skip: docReqId === null});
-  const { data: loanApplication, isSuccess: loanAppIsSuccess } = useGetOneLoanApplicationQuery(loanAppId);
+  const { data: docReq, isSuccess, isLoading } = useGetOneDocRequestQuery(docReqId, { skip: docReqId === 'null' || docReqId === null })
+  const { data: loanApplication, isSuccess: loanAppIsSuccess } = useGetOneLoanApplicationQuery(loanAppId)
 
   const handleOpenGuideDetailModel = () => {
-    setGuideDetailModal(true);
-  };
+    setGuideDetailModal(true)
+  }
   const handleCloseGuideDetailModel = () => {
-    setGuideDetailModal(false);
-  };
-
+    setGuideDetailModal(false)
+  }
 
   return (
     <Paper
       radius={0}
       sx={{
-        position: "fixed",
+        position: 'fixed',
         right: 0,
         top: 0,
-        height: "100%",
+        height: '100%',
         width: 500,
-        padding: "85px 15px 15px 15px",
-        borderLeft: "1px solid " + (theme.colorScheme === "light" ? theme.colors["gray"][2] : theme.colors["gray"][8])
+        padding: '85px 15px 15px 15px',
+        borderLeft: '1px solid ' + (theme.colorScheme === 'light' ? theme.colors['gray'][2] : theme.colors['gray'][8])
       }}>
       <LoadingOverlay visible={isLoading} />
 
@@ -76,7 +75,7 @@ const DocRequestGuideDrawer = () => {
               style={{
                 borderRadius: 5,
                 height: 350,
-                background: theme.colorScheme === "light" ? theme.colors["gray"][1] : theme.colors["gray"][9]
+                background: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
               }}
               offsetScrollbars>
               <TypographyStylesProvider>
@@ -98,12 +97,12 @@ const DocRequestGuideDrawer = () => {
           </Stack>
         </>
       ) : (
-        <Center sx={{ height: "100%" }}>
+        <Center sx={{ height: '100%' }}>
           <IconArrowBigLeftLine />
           <Text ml="sm">Please Select a Document Request for more details</Text>
         </Center>
       )}
     </Paper>
-  );
-};
-export default DocRequestGuideDrawer;
+  )
+}
+export default DocRequestGuideDrawer

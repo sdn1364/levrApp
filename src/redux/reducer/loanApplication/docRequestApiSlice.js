@@ -17,7 +17,7 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       providesTags: ['DocumentRequest']
     }),
     getOneDocRequest: builder.query({
-      query: (id) => `document_requests/${id}`,
+      query: (id) => `document_requests/${id}/`,
       providesTags: ['DocumentRequest']
     }),
     getAllRequestGuideTemplate: builder.query({

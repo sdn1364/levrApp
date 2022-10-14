@@ -28,6 +28,7 @@ const NewLoanApplicationModal = () => {
         </Stack>
       </Stepper.Step>
       <Stepper.Step label="Invite Users" description="Second Step" allowStepSelect={active > 1}>
+        <Text align="center" color="dimmed">You can do this later</Text>
         <InviteUsers availableRoles={[ROLE_LOANAPP_BORROWER, ROLE_LOANAPP_BROKER, ROLE_LOANAPP_LENDER, ROLE_LOANAPP_VIEWER]} />
       </Stepper.Step>
     </Stepper>

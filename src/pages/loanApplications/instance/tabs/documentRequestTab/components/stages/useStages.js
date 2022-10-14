@@ -3,6 +3,7 @@ import { useGetLoanApplicationStagesQuery } from 'redux/reducer/loanApplication/
 import { useGetAllDocRequestsQuery, useReorderDocRequestsMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import { StandardString } from 'utilities'
 import { useListState } from '@mantine/hooks'
+import { useEffect } from 'react'
 
 const useStages = () => {
   const { id } = useParams()
@@ -15,11 +16,9 @@ const useStages = () => {
   const [docRequestOrderPerStage, docRequestOrderPerStageHandler] = useListState()
 
 
-  const docRequestPerStage = () => {
+  useEffect(() => {
     const ordering = {}
     if (isSuccess && allDocReqIsSuccess) {
-
-
       loanAppStages.forEach((stage) => {
         ordering[stage.id] = allDocRequests
           .filter((docRequest) => docRequest.stage === stage.id)
@@ -27,8 +26,8 @@ const useStages = () => {
           .map((docRequest) => docRequest.id)
       })
     }
-    return ordering
-  }
+    docRequestOrderPerStageHandler.setState(ordering)
+  }, [isSuccess, allDocReqIsSuccess])
 
   const allTab = () => {
     let stages = []
@@ -55,7 +54,13 @@ const useStages = () => {
     const toIndex = destination.index
     const documentRequestId = parseInt(draggableId.replace('docReq_', ''))
 
-    console.log(toStageId)
+    const fromStageId = parseInt(source.droppableId.replace('stage-', ''))
+    const fromIndex = source.index
+
+    docRequestOrderPerStage[fromStageId].splice(fromIndex, 1)
+    docRequestOrderPerStage[toStageId].splice(toIndex, 0, documentRequestId)
+
+    docRequestOrderPerStageHandler.setState(docRequestOrderPerStage)
 
 
     await reorderDocRequest({
@@ -66,7 +71,7 @@ const useStages = () => {
 
   }
 
-  return { loanAppStages, docRequestOrderPerStage, isSuccess, allDocRequests, allDocReqIsSuccess, isLoading, allDocReqIsLoading, allTab, handleOnDragEnd, docRequestPerStage }
+  return { loanAppStages, isSuccess, allDocRequests, allDocReqIsSuccess, isLoading, allDocReqIsLoading, allTab, handleOnDragEnd, docRequestOrderPerStage }
 
 }
 

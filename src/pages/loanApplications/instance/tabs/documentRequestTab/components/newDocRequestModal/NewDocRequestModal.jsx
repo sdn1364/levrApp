@@ -1,8 +1,12 @@
-import { Button, Group, Modal, MultiSelect, Stack, Title, TransferList, Text } from '@mantine/core'
+import { Button, Group, Modal, MultiSelect, Stack, Title, TransferList, Text, Paper } from '@mantine/core'
 import useNewDocReqModal from './useNewDocReqModal'
-import { RenderIf } from '../../../../../../../utilities'
+import { RenderIf } from 'utilities'
+import User from '../../../../../list/components/loanApplicationReminderModal/components/user/User'
 
-const NewDocRequestModal = () => {
+const NewDocRequestModal = ({
+                              existingBorrowers,
+                              invitedBorrowers
+                            }) => {
 
   const {
     selected,
@@ -33,12 +37,30 @@ const NewDocRequestModal = () => {
         titles={['All Guides', 'Selected Guides']}
         breakpoint="sm"
       />
-      <RenderIf isTrue={shouldShowPersonSelect({})}>
+      <RenderIf isTrue={shouldShowPersonSelect()}>
+
         <Stack>
-          <Stack>
+          <Stack spacing={1}>
             <Title order={5}>Personal documents selected</Title>
             <Text size="sm" color="dimmed">Please select the Borrower from whom you are requesting personal documents:</Text>
           </Stack>
+          <Paper p="md" withBorder>
+
+            <Stack>
+              {
+                existingBorrowers ? existingBorrowers.map((user, index) => {
+                  return <User name="selectedUsers" onChange={() => console.log('checked')}
+                               userId={user.user_id} key={`owner-${index}`} title={user.user_email} />
+                }) : <Text size="lg" align="center" weight={500}>No use has accepted the invitation yet</Text>
+              }
+              {
+                invitedBorrowers ? invitedBorrowers.map((user, index) => {
+                  return <User name="selectedInvitations" onChange={() => console.log('checked')}
+                               userId={user.user_id} key={`invite-${index}`} title={user.to_email} description="Invitation not yet accepted" />
+                }) : null
+              }
+            </Stack>
+          </Paper>
         </Stack>
       </RenderIf>
 

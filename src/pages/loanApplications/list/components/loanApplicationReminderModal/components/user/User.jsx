@@ -26,6 +26,7 @@ const User = ({
   return (
     <UnstyledButton
       {...others}
+      radius="md"
       onClick={() => handleChange(!value)}
       className={cx(classes.button, className)}
     >

@@ -7,6 +7,7 @@ const useStyles = createStyles((theme) => ({
     border: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[3]
     }`,
+    borderRadius: theme.radius.md,
     padding: theme.spacing.sm,
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
 
