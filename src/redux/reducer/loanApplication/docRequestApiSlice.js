@@ -7,7 +7,7 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       transformResponse: (response, meta, arg) => {
         return response.filter((docReq) => docReq.stage === arg.stageId).sort((a, b) => a.order - b.order)
       },
-      providesTags: ['DocumentRequest']
+      providesTags: ['DocumentRequests']
     }),
     getLoanAppDocRequestLength: builder.query({
       query: ({ loanAppId }) => `document_requests/?loan_application=${loanAppId}`,
@@ -49,7 +49,8 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       }
     }),
     getAllDocRequests: builder.query({
-      query: () => `document_requests/`
+      query: () => `document_requests/`,
+      providesTags: ['DocumentRequests']
     }),
     //mutations from here
     updateDocRequestStatus: builder.mutation({
@@ -72,7 +73,8 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         url: `document_requests/${docRequestId}/update_name/`,
         method: 'PUT',
         body: { name }
-      })
+      }),
+      invalidatesTags: ['DocumentRequest']
     }),
     reorderDocRequests: builder.mutation({
       query: ({ docReqId, to_stage_id, to_index }) => ({
@@ -83,8 +85,9 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
           to_index
         }
       }),
-      invalidatesTags: ['DocumentRequest']
+      invalidatesTags: ['DocumentRequests']
     })
+
   })
 })
 

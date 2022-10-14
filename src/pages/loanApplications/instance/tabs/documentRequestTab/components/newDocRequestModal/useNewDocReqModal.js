@@ -3,8 +3,9 @@ import { useGetAllDocReqGuidePacksQuery, useGetDocRequestGuideQuery } from 'redu
 import { useDispatch, useSelector } from 'react-redux'
 import { closeAddDocRequestModal, openAddDocReqModal, selectNewDocRequestModal } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useEffect } from 'react'
-import { useListState } from '@mantine/hooks'
+import { useListState, useSetState } from '@mantine/hooks'
 import { useAddNewDocReqToLoanAppMutation } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import { showNotification } from '@mantine/notifications'
 
 const useNewDocReqModal = () => {
 
@@ -120,13 +121,35 @@ const useNewDocReqModal = () => {
 
   }
 
+  const [users, setUsers] = useSetState({
+    selectedUsers: [],
+    selectedInvitations: []
+  })
+
+  const handleChecked = ({ value, userId, name }) => {
+    if (value) {
+      setUsers({
+        [name]: value
+          ? [...users[name], userId]
+          : users[name].filter((element) => element !== userId)
+      })
+    }
+  }
+
   const handleAddNewDocReqToLoanApplication = async () => {
 
     await addNewDocReqToLoanApp({
-      loanAppId: loanAppId,
-      documentRequestGuides: selected[1].map(guide => (parseInt(guide.value)))
-
+      loanAppId: parseInt(loanAppId),
+      document_request_guides: selected[1].map(guide => (parseInt(guide.value))),
+      assigned_to_users: users['selectedUsers'],
+      assigned_to_invitations: users['selectedInvitations']
     }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'Document Request(s) added'
+        })
+        handleCloseNewDocRequestModal()
+      }).catch(err => console.log(err))
   }
 
   return {
@@ -137,7 +160,8 @@ const useNewDocReqModal = () => {
     handleCloseNewDocRequestModal,
     handleOpenNewDocRequestModal,
     shouldShowPersonSelect,
-    handleAddNewDocReqToLoanApplication
+    handleAddNewDocReqToLoanApplication,
+    handleChecked
   }
 }
 export default useNewDocReqModal

@@ -16,7 +16,8 @@ const NewDocRequestModal = ({
     opened,
     handleCloseNewDocRequestModal,
     shouldShowPersonSelect,
-    handleAddNewDocReqToLoanApplication
+    handleAddNewDocReqToLoanApplication,
+    handleChecked
   } = useNewDocReqModal()
 
   return <Modal opened={opened} value={'select'}
@@ -50,13 +51,13 @@ const NewDocRequestModal = ({
             <Stack>
               {
                 existingBorrowers ? existingBorrowers.map((user, index) => {
-                  return <User name="selectedUsers" onChange={(value) => console.log(value)}
+                  return <User name="selectedUsers" onChange={handleChecked}
                                userId={user.user_id} key={`owner-${index}`} title={user.user_email} />
                 }) : <Text size="lg" align="center" weight={500}>No use has accepted the invitation yet</Text>
               }
               {
                 invitedBorrowers ? invitedBorrowers.map((user, index) => {
-                  return <User name="selectedInvitations" onChange={(value) => console.log(value)}
+                  return <User name="selectedInvitations" onChange={handleChecked}
                                userId={user.user_id} key={`invite-${index}`} title={user.to_email} description="Invitation not yet accepted" />
                 }) : null
               }

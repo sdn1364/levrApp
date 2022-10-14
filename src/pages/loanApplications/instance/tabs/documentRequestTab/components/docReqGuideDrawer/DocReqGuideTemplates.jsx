@@ -1,6 +1,7 @@
 import { useGetAllRequestGuideTemplateQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import { Center, Group, Title, Stack, Paper, useMantineTheme, Text, ActionIcon } from '@mantine/core'
 import { IconDownload, IconFileDescription, IconFileText } from '@tabler/icons'
+import { DownloadButton } from '../../../../../../../components'
 
 const DocReqGuideTemplates = ({ docReqGuideId }) => {
   const theme = useMantineTheme()
@@ -13,8 +14,8 @@ const DocReqGuideTemplates = ({ docReqGuideId }) => {
       </Group>
       <Stack spacing="xs">
         {
-          docReqTemplates.map(({ file_extension, name }) => (
-            <Group key={name} position="apart" p="md">
+          docReqTemplates.map(({ file_extension, name, file_url }, index) => (
+            <Group key={index} position="apart" p="md">
               <Group spacing="xs">
                 {
                   file_extension === 'pdf' && <IconFileText color={theme.colors['red'][5]} size={25} stroke={1} />
@@ -23,7 +24,8 @@ const DocReqGuideTemplates = ({ docReqGuideId }) => {
                   {name}
                 </Text>
               </Group>
-              <ActionIcon color="purple"><IconDownload size={18} /></ActionIcon>
+              <ActionIcon color="purple"> <DownloadButton url={file_url}
+                                                          fileName={`${name}.${file_extension}`} /></ActionIcon>
             </Group>
           ))
         }

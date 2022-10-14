@@ -1,39 +1,75 @@
-import { Box, Grid, Paper, Group, ActionIcon, TextInput, Title, UnstyledButton, ScrollArea, Text, Popover, Tooltip, Stack, useMantineTheme, Divider } from '@mantine/core'
+import { Box, Grid, Paper, Group, ActionIcon, TextInput, Title, UnstyledButton, ScrollArea, Text, Popover, Tooltip, Stack, useMantineTheme, Divider, LoadingOverlay } from '@mantine/core'
 import { IconMoodSmile, IconReload, IconSend } from '@tabler/icons'
 import EmojiPicker from 'emoji-picker-react'
 import { UserAvatar } from 'components'
-import { useParams } from 'react-router-dom'
-import { useGetLoanAppThreadSummariesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { useLogger } from '@mantine/hooks'
+import useMessages from './useMessages'
 
 const MessagesTab = () => {
   const theme = useMantineTheme()
-  const { id } = useParams()
-  const { data, isSuccess } = useGetLoanAppThreadSummariesQuery(id)
-  useLogger('messages tab', [])
-  return <Box>
+  const { threadSummaries, isSuccess, isLoading } = useMessages()
+  useLogger('messages', [threadSummaries])
+  if (isLoading) {
+    return <LoadingOverlay visible />
+  }
+  return isSuccess && <Box>
     <Grid sx={{ maxHeight: 'calc(100vh - 80px - 160px)' }}>
       <Grid.Col span={3} style={{ maxHeight: '100%' }}>
         <Paper withBorder shadow="sm" p="md" sx={{ height: '100%' }}>
           <ScrollArea sx={{ maxHeight: '100%' }}>
             <Stack>
               <Title order={5} color="dimmed">Groups</Title>
-              <UnstyledButton>
-                <Group>
-                  <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-                  <div>
-                    <Text>Soheyl Delshad</Text>
-                    <Text size="xs" color="dimmed">soheyl@levrfinance.com</Text>
-                  </div>
-                </Group>
-              </UnstyledButton>
+              {
+                threadSummaries.channel_summaries.map((channel) => (
+                  <UnstyledButton key={`channel-${channel.id}`}>
+                    <Group>
+                      <UserAvatar color="blue" size={50} userId={channel.id}>{channel.name}</UserAvatar>
+                      <div>
+                        <Text>{channel.name}</Text>
+                        <Text size="xs" color="dimmed"></Text>
+                      </div>
+                    </Group>
+                  </UnstyledButton>
+                ))
+              }
+
+              {/*              {threadSummaries.userSummaries.map((user) => (
+                <ThreadItem
+                  key={`user-${user.id}`}
+                  avatarId={user.id}
+                  avatarName={(user.fullName || user.email)[0]}
+                  text={user.fullName || user.email}
+                  selected={user.id === selectedUserId}
+                  onClick={() => selectThread({ selectedUserId: user.id })}
+                  unreadCount={user.unreadCount}
+                  lastMessageText={user.lastMessageText}
+                  lastMessageTimestamp={user.lastMessageTimestamp}
+                />
+              ))}*/}
+              
+              <Title order={5} color="dimmed">Private Messages</Title>
+              {
+                threadSummaries.user_summaries.map((user) => (
+                  <UnstyledButton key={`user-${user.id}`}>
+                    <Group>
+                      <UserAvatar color="blue" size={50} userId={user.id}>{user.email}</UserAvatar>
+                      <div>
+                        <Text>{user.full_name || user.email}</Text>
+                        <Text size="xs" color="dimmed">{user.email}</Text>
+                      </div>
+                    </Group>
+                  </UnstyledButton>
+                ))
+              }
             </Stack>
           </ScrollArea>
         </Paper>
       </Grid.Col>
       <Grid.Col span={9}>
+        {/*chat area*/}
         <Paper withBorder shadow="sm" p="md" sx={{ height: '100%' }}>
           <Stack sx={{ height: '100%' }} spacing="lg">
+            {/*current loaded user*/}
             <Paper p="sm" sx={{ background: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
               <Group position="apart">
                 <Group>

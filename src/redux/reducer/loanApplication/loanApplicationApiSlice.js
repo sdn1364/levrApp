@@ -54,18 +54,19 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
     addNewDocReqToLoanApp: builder.mutation({
       query: ({
                 loanAppId,
-                documentRequestGuides,
-                assignedToUsers,
-                assignedToInvitations
+                document_request_guides,
+                assigned_to_users,
+                assigned_to_invitations
               }) => ({
         url: `loan_applications/${loanAppId}/create_new_document_requests/`,
         method: 'POST',
         body: {
-          document_request_guides: documentRequestGuides,
-          assigned_to_user: assignedToUsers,
-          assigned_to_invitations: assignedToInvitations
+          document_request_guides: document_request_guides,
+          assigned_to_users: assigned_to_users,
+          assigned_to_invitations: assigned_to_invitations
         }
-      })
+      }),
+      invalidatesTags: ['DocumentRequests']
     }),
     //Loan application manage access mutations
     sendLoanAppInvitations: builder.mutation({
