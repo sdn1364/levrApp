@@ -6,12 +6,13 @@ import {
 } from 'redux/reducer/loanApplication/docRequestSlice'
 import { StandardString } from 'utilities'
 import { useSearchParams } from 'react-router-dom'
-import { useReorderDocRequestsMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { showNotification } from '@mantine/notifications'
+import { useDeleteDocReqMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
 
 const useDocRequestTab = () => {
 
   let [searchParams, setSearchParams] = useSearchParams()
-
+  const [deleteDocReq, { isLoading }] = useDeleteDocReqMutation()
   const dispatch = useDispatch()
 
 
@@ -44,7 +45,21 @@ const useDocRequestTab = () => {
 
   }
 
+  const handleDeleteDocReq = async (docReqId) => {
+    await deleteDocReq({
+      documentRequestId: docReqId
+    }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'Document Request deleted'
+        })
+        handleCloseDocReqDeleteConfirmModal()
+      }).catch(err => console.log(err))
+  }
+
   return {
+    isLoading,
+    handleDeleteDocReq,
     handleOpenSendEmailModal,
     handleCloseSendEmailModal,
     handleCloseDocReqDeleteConfirmModal,

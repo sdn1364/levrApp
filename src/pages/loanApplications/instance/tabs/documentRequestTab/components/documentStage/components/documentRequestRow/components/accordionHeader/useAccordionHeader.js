@@ -63,10 +63,11 @@ const useAccordionHeader = (docReq) => {
   }
   const handleChangeDocRequestStatus = async (status, id) => {
     await updateStatus({ id, status }).unwrap()
-      .then(res =>
-        showNotification({
-          title: 'Document Request Status changed'
-        })
+      .then(res => {
+          showNotification({
+            title: 'Document Request Status changed'
+          })
+        }
       ).catch(err => console.log(err))
   }
   const handleUpdateDocReqName = async (value) => {
@@ -87,7 +88,15 @@ const useAccordionHeader = (docReq) => {
 
   }
 
-  return { status, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests, canManageDocRequestFiles }
+  return {
+    status, hovered, ref, checked, onDocRequestCheckboxCheck,
+    handleOpenDocReqDeleteConfirmModal,
+    handleOpenFileUploadModal,
+    handleChangeDocRequestStatus,
+    handleUpdateDocReqName,
+    canManageDocRequests,
+    canManageDocRequestFiles
+  }
 }
 
 export default useAccordionHeader

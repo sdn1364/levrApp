@@ -3,13 +3,15 @@ import { IconCurrencyDollarCanadian } from '@tabler/icons'
 import { useParams } from 'react-router-dom'
 import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { TimeAgo } from 'components'
-import { RenderIf } from '../../../../../../../utilities'
-import { usePermission } from '../../../../../../../hooks'
+import { RenderIf } from 'utilities'
+import { usePermission } from 'hooks'
+import { useDispatch } from 'react-redux'
 
 const LoanDetailsTab = () => {
   const { id } = useParams()
   const { data: loanApp, isSuccess } = useGetOneLoanApplicationQuery(id)
   const { canDeleteLoanApplication } = usePermission({})
+
   return isSuccess && <>
     <Stack spacing="xs">
       <Group position="apart">

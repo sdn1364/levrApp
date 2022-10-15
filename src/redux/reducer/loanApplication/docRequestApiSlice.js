@@ -50,7 +50,10 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
     }),
     getAllDocRequests: builder.query({
       query: () => `document_requests/`,
-      providesTags: ['DocumentRequests']
+      providesTags: (result, error, arg) =>
+        result
+          ? [...result.map(({ id }) => ({ type: 'DocumentRequest', id })), 'DocumentRequest']
+          : ['DocumentRequest']
     }),
     //mutations from here
     updateDocRequestStatus: builder.mutation({
@@ -59,14 +62,15 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: { status }
       }),
-      invalidatesTags: ['DocumentRequest']
+      invalidatesTags: (result, error, arg) => [{ type: 'DocumentRequest', id: arg.id }]
     }),
     createNewApiDocumentUpload: builder.mutation({
       query: ({ reqDocId, query_parameters }) => ({
         url: `document_requests/${reqDocId}/create_new_api_connection_upload/`,
         method: 'POST',
         body: { query_parameters }
-      })
+      }),
+      invalidatesTags: ['DocumentRequests']
     }),
     updateDocRequestName: builder.mutation({
       query: ({ docRequestId, name }) => ({
@@ -74,7 +78,7 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: { name }
       }),
-      invalidatesTags: ['DocumentRequest']
+      invalidatesTags: ['DocumentRequests']
     }),
     reorderDocRequests: builder.mutation({
       query: ({ docReqId, to_stage_id, to_index }) => ({
@@ -86,17 +90,28 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         }
       }),
       invalidatesTags: ['DocumentRequests']
+    }),
+    updateDocReqNote: builder.mutation({
+      query: ({ docReqId, note }) => ({
+        url: `document_requests/${docReqId}/update_note/`,
+        method: 'PUT',
+        body: { note: note }
+      }),
+      invalidatesTags: ['DocumentRequests']
+    }),
+    deleteDocReq: builder.mutation({
+      query: ({ documentRequestId }) => ({
+        url: `document_requests/${documentRequestId}`,
+        method: 'DELETE',
+        body: {}
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: 'DocumentRequest', id: arg.id }]
     })
-
   })
 })
 
 export const {
   useGetLoanAppDocRequestOnStageQuery,
-  useCreateNewDocumentUploadMutation,
-  userDeleteDocumentRequestMutation,
-  useGetDocumentRequestQuery,
-  useSaveDocRequestOrderMutation,
   useUpdateDocRequestStatusMutation,
   useGetLoanAppDocRequestLengthQuery,
   useGetOneDocRequestQuery,
@@ -110,5 +125,7 @@ export const {
   useCreateNewApiDocumentUploadMutation,
   useUpdateDocRequestNameMutation,
   useGetAllDocRequestsQuery,
-  useReorderDocRequestsMutation
+  useReorderDocRequestsMutation,
+  useUpdateDocReqNoteMutation,
+  useDeleteDocReqMutation
 } = docRequestApiSlice

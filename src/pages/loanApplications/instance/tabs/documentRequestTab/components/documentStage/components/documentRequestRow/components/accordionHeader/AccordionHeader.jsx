@@ -6,12 +6,18 @@ import People from '../People'
 import UploadDocsCounter from '../UploadDocsCounter'
 import RequiredFilesCount from '../RequiredFilesCount'
 import useAccordionHeader from './useAccordionHeader'
-import { useLogger } from '@mantine/hooks'
 
 const AccordionHeader = ({ docReq, provided }) => {
   const theme = useMantineTheme()
 
-  const { status, hovered, ref, checked, onDocRequestCheckboxCheck, handleOpenDocReqDeleteConfirmModal, handleOpenFileUploadModal, handleChangeDocRequestStatus, handleUpdateDocReqName, canManageDocRequests } = useAccordionHeader(docReq)
+  const {
+    status, hovered, ref, checked, onDocRequestCheckboxCheck,
+    handleOpenDocReqDeleteConfirmModal,
+    handleOpenFileUploadModal,
+    handleChangeDocRequestStatus,
+    handleUpdateDocReqName,
+    canManageDocRequests
+  } = useAccordionHeader(docReq)
   return <Box ref={ref} sx={{ marginLeft: hovered || checked ? -36 : 0 }}>
     <Group>
       {(hovered || checked) && <Checkbox onChange={onDocRequestCheckboxCheck} value={docReq.id} />}
@@ -43,12 +49,14 @@ const AccordionHeader = ({ docReq, provided }) => {
             </Menu.Dropdown>
           </Menu>
         </RenderIfElse>
-        <div {...provided.dragHandleProps}>
-          <Center>
-            <IconGripVertical size={18} stroke={1.5} />
-          </Center>
-        </div>
-        <Accordion.Control>
+        <RenderIf isTrue={canManageDocRequests()}>
+          <div {...provided.dragHandleProps}>
+            <Center>
+              <IconGripVertical size={18} stroke={1.5} />
+            </Center>
+          </div>
+        </RenderIf>
+        <Accordion.Control sx={{ paddingTop: canManageDocRequests() ? '16px' : '26px', paddingBottom: canManageDocRequests() ? '16px' : '26px' }}>
           <RenderIfElse isTrue={canManageDocRequests()} isFalse={docReq.name}>
             <EditableTextInput singleClick defaultValue={docReq.name} save={handleUpdateDocReqName} />
           </RenderIfElse>

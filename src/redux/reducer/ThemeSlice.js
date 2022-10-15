@@ -1,28 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  theme: 'dark'
+  toggleFocus: false
 }
+
 export const themeSlice = createSlice(
   {
     name: 'theme',
     initialState,
     reducers: {
-      toggleTheme: (state) => {
-        if (state.theme === 'dark') {
-          document.querySelector('html').classList.remove('dark')
-          document.querySelector('html').classList.add('light')
-
-          state.theme = 'light';
-        } else {
-          document.querySelector('html').classList.remove('light')
-          document.querySelector('html').classList.add('dark');
-          state.theme = 'dark';
-        }
+      toggleFocus: (state, action) => {
+        state.toggleFocus = action.payload
       }
     }
   }
 )
-export const themeState = (state) => state.theme.theme;
-export const {toggleTheme} = themeSlice.actions;
-export default themeSlice.reducer;
+
+export const selectFocus = (state) => state.theme.toggleFocus
+export const { toggleFocus } = themeSlice.actions
+export default themeSlice.reducer

@@ -12,7 +12,7 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
   const { classes, cx } = useStyles()
   const theme = useMantineTheme()
 
-  const { canManageDocRequests, canManageDocRequestFiles } = useDocumentRequestRow(docReq)
+  const { noteForm, handleUpdateNote, canManageDocRequests } = useDocumentRequestRow(docReq)
 
   return <Accordion.Item {...provided.draggableProps}
                          {...provided.dragHandleProps}
@@ -30,12 +30,13 @@ const DocumentRequestRow = ({ docReq, innerRef, provided, snapshot }) => {
               <Center><IconNotes color={theme.colors['purple'][5]} stroke={1.5} size={25} /><Title ml="sm" order={5}>Note</Title></Center>
             </Group>
             <RenderIfElse isTrue={canManageDocRequests()} isFalse={<Text>{docReq.note}</Text>}>
-              <RenderIfElse isTrue={docReq.note.length === 0} isFalse={<EditableTextInput defaultValue={docReq.notes} />}>
+              <RenderIfElse isTrue={docReq.note.length === 0} isFalse={<EditableTextInput save={(value) => handleUpdateNote({ note: value })} defaultValue={docReq.note} />}>
                 <Group>
                   <TextInput
+                    {...noteForm.getInputProps('note')}
                     sx={{ flex: 1 }} />
                   <Tooltip label="Click to save your note">
-                    <ActionIcon variant="subtle" color="green"><IconCheck size={18} /></ActionIcon>
+                    <ActionIcon variant="subtle" color="green" onClick={noteForm.onSubmit(handleUpdateNote)}><IconCheck size={18} /></ActionIcon>
                   </Tooltip>
                 </Group>
               </RenderIfElse>

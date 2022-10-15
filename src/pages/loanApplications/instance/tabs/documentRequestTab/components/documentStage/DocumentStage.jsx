@@ -1,4 +1,4 @@
-import { Accordion, Stack } from '@mantine/core'
+import { Accordion } from '@mantine/core'
 import { Draggable } from 'react-beautiful-dnd'
 import { StandardString } from 'utilities'
 import useDocumentStage from './useDocumentStage'

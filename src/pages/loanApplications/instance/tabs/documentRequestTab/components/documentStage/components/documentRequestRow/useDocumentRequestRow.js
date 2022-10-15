@@ -4,11 +4,15 @@ import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loa
 import { usePermission } from 'hooks'
 import { openUploadDocumentModal } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useDispatch } from 'react-redux'
+import { useUpdateDocReqNoteMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { useForm } from '@mantine/form'
+import { showNotification } from '@mantine/notifications'
 
 const useDocumentRequestRow = (docReq) => {
   const { id: loanAppId } = useParams()
 
   const { data: loanApplicationInstance } = useGetOneLoanApplicationQuery(loanAppId)
+  const [updateDocReqNote] = useUpdateDocReqNoteMutation()
   const dispatch = useDispatch()
   const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
     loanAppId: parseInt(loanAppId),
@@ -18,8 +22,29 @@ const useDocumentRequestRow = (docReq) => {
   const handleOpenFileUploadModal = (id) => {
     dispatch(openUploadDocumentModal(id))
   }
+  const noteForm = useForm({
+    initialValues: {
+      note: docReq ? docReq.note : ''
+    }
+  })
+  const handleUpdateNote = async ({ note }) => {
+    await updateDocReqNote({
+      docReqId: docReq.id,
+      note: note
+    }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'Doceument Request Note Updates'
+        })
+      })
+  }
+
   return {
-    canManageDocRequests, canManageDocRequestFiles, handleOpenFileUploadModal
+    noteForm,
+    canManageDocRequests,
+    canManageDocRequestFiles,
+    handleOpenFileUploadModal,
+    handleUpdateNote
   }
 }
 export default useDocumentRequestRow

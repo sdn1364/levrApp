@@ -7,7 +7,8 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
       providesTags: ['loanApplications']
     }),
     getOneLoanApplication: builder.query({
-      query: (id) => `/loan_applications/${id}/`
+      query: (id) => `/loan_applications/${id}/`,
+      providesTags: ['LoanApplication']
     }),
     getLoanApplicationStages: builder.query({
       query: (id) => `/loan_application_stages/?loan_application=${id}`

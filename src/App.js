@@ -22,7 +22,7 @@ function App() {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider withGlobalStyles withNormalizeCSS theme={{ ...theme, colorScheme: colorScheme }}>
-        <NotificationsProvider>
+        <NotificationsProvider position="top-center">
           <Routes>
             <Route path="/" element={<Layout />}>
               {/*public routes*/}

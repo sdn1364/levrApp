@@ -1,9 +1,24 @@
 import { TimeAgo } from 'components'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useGetLoanAppThreadSummariesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import { useEffect } from 'react'
+import { useScrollIntoView } from '@mantine/hooks'
 
 const useMessages = () => {
   const { id } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams({
+    selectedChannelId: 0,
+    selectedUserId: 0
+  })
+  const selectedChannelId = parseInt(
+    searchParams.get('selectedChannelId') || '0',
+    10
+  )
+  const selectedUserId = parseInt(
+    searchParams.get('selectedUserId') || '0',
+    10
+  )
+  const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView()
   const { data: threadSummaries, isSuccess, isLoading } = useGetLoanAppThreadSummariesQuery(id)
 
   function wrangleMessages({ allMessages, selectedChannelId, selectedUserId }) {
@@ -51,7 +66,12 @@ const useMessages = () => {
     return result
   }
 
-  return { wrangleMessages, threadSummaries, isSuccess, isLoading }
+  useEffect(() => {
+    scrollIntoView({ easing: 0 })
+
+  }, [scrollIntoView, selectedChannelId, selectedUserId])
+
+  return { wrangleMessages, scrollIntoView, targetRef, scrollableRef, threadSummaries, isSuccess, isLoading }
 }
 
 export default useMessages

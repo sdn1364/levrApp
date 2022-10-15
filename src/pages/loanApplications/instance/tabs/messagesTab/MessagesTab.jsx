@@ -7,8 +7,9 @@ import useMessages from './useMessages'
 
 const MessagesTab = () => {
   const theme = useMantineTheme()
-  const { threadSummaries, isSuccess, isLoading } = useMessages()
+  const { threadSummaries, isSuccess, isLoading, scrollIntoView, targetRef, scrollableRef } = useMessages()
   useLogger('messages', [threadSummaries])
+
   if (isLoading) {
     return <LoadingOverlay visible />
   }
@@ -46,7 +47,7 @@ const MessagesTab = () => {
                   lastMessageTimestamp={user.lastMessageTimestamp}
                 />
               ))}*/}
-              
+
               <Title order={5} color="dimmed">Private Messages</Title>
               {
                 threadSummaries.user_summaries.map((user) => (
@@ -77,12 +78,12 @@ const MessagesTab = () => {
                   <Text size="sm">Soheyl Delshad</Text>
                 </Group>
                 <Tooltip label="Click to load older messages">
-                  <ActionIcon color="purple"><IconReload size={16} /></ActionIcon>
+                  <ActionIcon color="purple" onClick={() => scrollIntoView()}><IconReload size={16} /></ActionIcon>
                 </Tooltip>
               </Group>
             </Paper>
             <Paper withBorder p="sm" sx={{ maxHeight: '100%', background: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
-              <ScrollArea style={{ maxHeight: '100%', height: 500 }}>
+              <ScrollArea style={{ maxHeight: '100%', height: 500 }} viewportRef={scrollableRef}>
                 <Stack>
                   <Divider label="new messages" labelPosition="center" />
                   <Group position="right" align="end">
@@ -197,7 +198,7 @@ const MessagesTab = () => {
                     </Paper>
                   </Group>
 
-
+                  <div ref={targetRef}>end of chat</div>
                 </Stack>
               </ScrollArea>
             </Paper>
