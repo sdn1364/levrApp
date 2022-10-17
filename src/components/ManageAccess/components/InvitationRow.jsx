@@ -3,27 +3,29 @@ import { IconSend, IconTrash } from '@tabler/icons'
 
 import RoleSelect from './RoleSelect'
 import { READABLE_ROLE_MAPPING } from 'roles'
-import { EditableTextInput, TimeAgo } from 'components'
+import { CheckPermission, EditableTextInput, TimeAgo } from 'components'
 import useManageAccess from '../useManageAccess'
 
-const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation, setInvitationRole }) => {
+const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation, setInvitationRole, module }) => {
 
   const { handleClickDeleteInvitation } = useManageAccess()
 
   return <tr>
     <td>
-      <EditableTextInput save={(value) => editInvitation({
-        to_email: value,
-        invitation_id: invite.id,
-        roles: invite.object_permissions
-      })} defaultValue={invite.to_email} />
+      <CheckPermission ifUserCan="edit invitation email" module={module} denied={<Text>{invite.to_email}</Text>}>
+        <EditableTextInput save={(value) => editInvitation({
+          to_email: value,
+          invitation_id: invite.id,
+          roles: invite.object_permissions
+        })} defaultValue={invite.to_email} />
+      </CheckPermission>
     </td>
     <td>
       {
         availableRole.includes(invite.object_permissions[0])
           ? <RoleSelect value={invite.object_permissions} availableRole={availableRole}
                         onSave={(value) => setInvitationRole({ to_email: invite.to_email, invitation_id: invite.id, roles: [value] })} />
-          : <Text>{READABLE_ROLE_MAPPING[invite.object_permissions[0]]}</Text>
+          : <Text align="center">{READABLE_ROLE_MAPPING[invite.object_permissions[0]]}</Text>
       }
     </td>
     <td>
@@ -35,7 +37,9 @@ const InvitationRow = ({ invite, availableRole, editInvitation, resendInvitation
       </Stack>
     </td>
     <td>
-      <ActionIcon variant="subtle" onClick={() => handleClickDeleteInvitation(invite.id)}><IconTrash size={16} /></ActionIcon>
+      <CheckPermission ifUserCan="delete invitation" module={module}>
+        <ActionIcon variant="subtle" onClick={() => handleClickDeleteInvitation(invite.id)}><IconTrash size={16} /></ActionIcon>
+      </CheckPermission>
     </td>
   </tr>
 }

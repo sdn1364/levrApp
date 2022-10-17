@@ -4,7 +4,7 @@ import useManageAccess from '../useManageAccess'
 import { useSelector } from 'react-redux'
 import { InviteUsers } from 'components'
 
-const UserInviteModal = ({ availableRoles, sendInvitation }) => {
+const UserInviteModal = ({ availableRoles, sendInvitation, module }) => {
 
   const opened = useSelector(selectUserInviteModalOpened)
   const invitationsLoading = useSelector(selectInvitationsLoading)
@@ -19,7 +19,7 @@ const UserInviteModal = ({ availableRoles, sendInvitation }) => {
   >
     <LoadingOverlay visible={invitationsLoading} overlayBlur={2} />
 
-    <InviteUsers availableRoles={availableRoles} />
+    <InviteUsers module={module} availableRoles={availableRoles} />
     <Group position="apart" mt="lg">
       <Button onClick={handleCloseUserInviteModal} variant="subtle">Cancel</Button>
       <Button disabled={invitations.length === 0} onClick={sendInvitation}>Send Invitation</Button>

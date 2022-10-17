@@ -9,6 +9,7 @@ import { IconPlus } from '@tabler/icons'
 import useManageAccess from './useManageAccess'
 import UserInviteModal from './components/UserInviteModal'
 import { RenderIf } from '../../utilities'
+import { CheckPermission } from 'components'
 
 
 const ManageAccess = ({
@@ -22,12 +23,12 @@ const ManageAccess = ({
                         sendInvitation,
                         setUserRole,
                         setInvitationRole,
-                        isOwner
+                        module
                       }) => {
 
   const renderRoles = () => {
     return rolesAndInvites.user_roles.map((user) => (
-      <RolesRow isOwner={isOwner} availableRole={availableRoles} key={user.user_id} user={user} setUserRole={setUserRole} />
+      <RolesRow module={module} availableRole={availableRoles} key={user.user_id} user={user} setUserRole={setUserRole} />
     ))
   }
 
@@ -40,7 +41,7 @@ const ManageAccess = ({
       </tr>
       {
         rolesAndInvites.invitations.map((invite) => (
-          <InvitationRow key={invite.id} invite={invite} availableRole={availableRoles} editInvitation={editInvitation} resendInvitation={resendInvitation} setInvitationRole={setInvitationRole} />
+          <InvitationRow module={module} key={invite.id} invite={invite} availableRole={availableRoles} editInvitation={editInvitation} resendInvitation={resendInvitation} setInvitationRole={setInvitationRole} />
         ))
       }
       <tr>
@@ -58,13 +59,13 @@ const ManageAccess = ({
     <>
       <ConfirmDeleteUserRoleModal rolesAndInvites={rolesAndInvites} deleteUserRole={deleteUserRole} />
       <ConfirmDeleteInvitationModal rolesAndInvites={rolesAndInvites} deleteInvitation={deleteInvitation} />
-      <UserInviteModal availableRoles={availableRoles} sendInvitation={sendInvitation} />
+      <UserInviteModal module={module} availableRoles={availableRoles} sendInvitation={sendInvitation} />
       <Stack spacing="lg">
         <Group position="apart">
           <Title order={4}>{title}</Title>
-          <RenderIf isTrue={isOwner}>
+          <CheckPermission ifUserCan="invite users" module={module}>
             <Button size="xs" leftIcon={<IconPlus size={14} />} onClick={handleOpenUserInviteModal}>Invite Users</Button>
-          </RenderIf>
+          </CheckPermission>
         </Group>
         <Paper p="xs" withBorder>
 

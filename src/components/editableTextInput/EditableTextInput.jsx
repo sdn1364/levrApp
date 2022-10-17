@@ -4,11 +4,12 @@ import { ActionGroup } from 'components'
 
 const EditableTextInput = ({ label, defaultValue, save, singleClick, others }) => {
 
-  const { ref, focused, changed, handleOnFocus, handleOnClose, handleOnChange } = useEditableTextInput(defaultValue, singleClick)
+  const { ref, inputRef, focused, resetState, changed, handleOnFocus, handleOnClose, handleOnChange } = useEditableTextInput(defaultValue, singleClick)
 
   return <Group ref={ref}>
     <Tooltip label={singleClick ? 'Click to change' : 'Double Click to change'}>
       <TextInput label={label}
+                 ref={inputRef}
                  defaultValue={defaultValue}
                  sx={{ flex: 1, margin: 0 }}
                  onClick={handleOnFocus}
@@ -18,7 +19,10 @@ const EditableTextInput = ({ label, defaultValue, save, singleClick, others }) =
                  variant={focused ? 'default' : 'unstyled'} />
     </Tooltip>
     {
-      changed && <ActionGroup onOk={() => save(changed)} onCancel={handleOnClose} />
+      changed && <ActionGroup onOk={() => {
+        save(changed)
+        resetState()
+      }} onCancel={handleOnClose} />
     }
   </Group>
 }

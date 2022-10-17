@@ -4,6 +4,7 @@ import { IconBell, IconCurrencyDollarCanadian } from '@tabler/icons'
 import CurrencyFormat from 'react-currency-format'
 
 import useLoanApplicationList from '../useLoanApplicationList'
+import { CheckPermission } from 'components'
 
 const LoanApplicationRow = ({ la, redacted }) => {
 
@@ -28,11 +29,14 @@ const LoanApplicationRow = ({ la, redacted }) => {
         </Paper>
       </Tooltip>
       <Group position="right">
-        {
-          !redacted && <Tooltip label="Send Reminder">
-            <ActionIcon variant="subtle" color="primary" onClick={() => openLoanApplicationReminderModal(la.id)}><IconBell stroke={1} size={16} /></ActionIcon>
-          </Tooltip>
-        }
+        <CheckPermission ifUserCan="send reminder" module="loan application" moduleId={la.id}>
+          {
+            !redacted && <Tooltip label="Send Reminder">
+              <ActionIcon variant="subtle" color="primary" onClick={() => openLoanApplicationReminderModal(la.id)}><IconBell stroke={1} size={16} /></ActionIcon>
+            </Tooltip>
+          }
+        </CheckPermission>
+
       </Group>
     </Group>
   </Paper>

@@ -3,8 +3,9 @@ import { IconPlus, IconTrash } from '@tabler/icons'
 import { useSelector } from 'react-redux'
 import { selectInvitations } from 'redux/reducer/ManageAccessSlice'
 import useInviteUsers from './useInviteUsers'
+import { CheckPermission } from 'components'
 
-const InviteUsers = ({ availableRoles }) => {
+const InviteUsers = ({ availableRoles, module }) => {
 
   const invitations = useSelector(selectInvitations)
 
@@ -27,7 +28,9 @@ const InviteUsers = ({ availableRoles }) => {
               <Group position="apart">
                 <Text size="xs">{invite.email}</Text>
                 <Group>
-                  <Select size="xs" defaultValue={invite.role} placeholder="Select" onChange={(value) => changeRole({ role: value, email: invite.email })} data={roles} variant="subtle" />
+                  <CheckPermission ifUserCan="invite users" module={module} denied={<Text size="xs">Member</Text>}>
+                    <Select size="xs" defaultValue={invite.role} placeholder="Select" onChange={(value) => changeRole({ role: value, email: invite.email })} data={roles} variant="subtle" />
+                  </CheckPermission>
                   <ActionIcon variant="subtle" onClick={() => deleteInvitation(invite)}><IconTrash size={14} /></ActionIcon>
                 </Group>
               </Group>

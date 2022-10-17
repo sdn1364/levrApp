@@ -1,24 +1,16 @@
-import { useParams } from 'react-router-dom'
-
-import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
-import { usePermission } from 'hooks'
 import { openUploadDocumentModal } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useDispatch } from 'react-redux'
-import { useUpdateDocReqNoteMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
+import { useDeleteUploadedFileMutation, useUpdateDocReqFileNameMutation, useUpdateDocReqNoteMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import { useForm } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
 
 const useDocumentRequestRow = (docReq) => {
-  const { id: loanAppId } = useParams()
 
-  const { data: loanApplicationInstance } = useGetOneLoanApplicationQuery(loanAppId)
   const [updateDocReqNote] = useUpdateDocReqNoteMutation()
+  const [deleteUploadedFile] = useDeleteUploadedFileMutation()
+  const [updateFileName] = useUpdateDocReqFileNameMutation()
   const dispatch = useDispatch()
-  const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
-    loanAppId: parseInt(loanAppId),
-    documentRequest: docReq,
-    borrowerOrganizationId: loanApplicationInstance.borrower_org
-  })
+
   const handleOpenFileUploadModal = (id) => {
     dispatch(openUploadDocumentModal(id))
   }
@@ -34,17 +26,38 @@ const useDocumentRequestRow = (docReq) => {
     }).unwrap()
       .then(res => {
         showNotification({
-          title: 'Doceument Request Note Updates'
+          title: 'Document Request Note Updates'
         })
       })
   }
-
+  const handelDeleteUploadedFile = async (docReqFileId) => {
+    await deleteUploadedFile(docReqFileId).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'File Deleted',
+          color: 'blue'
+        })
+      }).catch(err => console.log(err))
+  }
+  const handleUpdateFileName = async ({ value, fileId }) => {
+    console.log(fileId)
+    await updateFileName({
+      docReqFileId: fileId,
+      name: value
+    }).unwrap()
+      .then(res => {
+        showNotification({
+          title: 'File name updated',
+          color: 'green'
+        })
+      }).catch(err => console.log(err))
+  }
   return {
     noteForm,
-    canManageDocRequests,
-    canManageDocRequestFiles,
     handleOpenFileUploadModal,
-    handleUpdateNote
+    handleUpdateNote,
+    handelDeleteUploadedFile,
+    handleUpdateFileName
   }
 }
 export default useDocumentRequestRow

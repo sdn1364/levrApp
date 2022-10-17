@@ -22,6 +22,7 @@ const OrganizationInstance = () => {
       <Heading tabs={
         <Tabs.List>
           <Tabs.Tab value="applications">Loan Applications</Tabs.Tab>
+          
           <RenderIf isTrue={hasAccessToOrganization(organization.id)}>
             <Tabs.Tab value="integration">Integrations</Tabs.Tab>
           </RenderIf>

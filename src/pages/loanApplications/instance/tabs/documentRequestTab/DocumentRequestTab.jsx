@@ -24,6 +24,7 @@ const DocumentRequestTab = () => {
     <LoanApplicationReminderModal />
     <ConfirmDeleteDocReqModal />
     <FileUploadModal />
+
     <NewDocRequestModal existingBorrowers={rolesIsSuccess ? rolesAndInvitations.user_roles.filter((invt) => invt.roles.includes('ROLE_LOANAPP_BORROWER')) : []}
                         invitedBorrowers={rolesIsSuccess ? rolesAndInvitations.invitations.filter((invt) => invt.object_permissions.includes('ROLE_LOANAPP_BORROWER')) : []}
     />

@@ -1,20 +1,15 @@
 import { Table, Text, Center, ActionIcon, Group, Button, Stack, Box } from '@mantine/core'
 import { IconUpload, IconJpg, IconTrash, IconFileText } from '@tabler/icons'
 import People from '../documentStage/components/documentRequestRow/components/People'
-import { DownloadButton, EditableTextInput, TimeAgo } from 'components'
+import { CheckPermission, DownloadButton, EditableTextInput, TimeAgo } from 'components'
 import { useGetDocReqFilesQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
-import { HumanFileSize, RenderIfElse } from 'utilities'
+import { HumanFileSize } from 'utilities'
 import useDocumentRequestRow from '../documentStage/components/documentRequestRow/useDocumentRequestRow'
-import { usePermission } from 'hooks'
-import { useParams } from 'react-router-dom'
 
 const UploadedFiles = ({ docReqId }) => {
-
-  const { id: loanAppId } = useParams()
-
   const { data: docReqFiles, isSuccess } = useGetDocReqFilesQuery(docReqId)
-  const { handleOpenFileUploadModal } = useDocumentRequestRow()
-  const { canManageDocRequests } = usePermission({ loanAppId: loanAppId })
+  const { handleOpenFileUploadModal, handelDeleteUploadedFile, handleUpdateFileName } = useDocumentRequestRow()
+
   return (isSuccess && docReqFiles.length > 0) ? <Table>
     <thead>
     <tr>
@@ -28,18 +23,19 @@ const UploadedFiles = ({ docReqId }) => {
 
     <tbody>
     {
-      docReqFiles.map(({ created_by, created_by_email, file_size, upload_time, name, file_extension, file_url }, index) => (
+      docReqFiles.map(({ created_by, created_by_email, file_size, upload_time, name, file_extension, file_url, id }, index) => (
         <tr key={index}>
           <td style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
             <Center inline>
               {(file_extension === 'jpg' || file_extension === 'jpeg') && <IconJpg size={18} />}
               {(file_extension === 'pdf') && <IconFileText size={18} />}
             </Center>
-            <Box sx={{ width: '100%' }} ml={18}>
-              <RenderIfElse isTrue={canManageDocRequests()} isFalse={name}>
-                <EditableTextInput singleClick defaultValue={name} />
-              </RenderIfElse>
-            </Box>
+            <CheckPermission ifUserCan="edit file name" module="loan application" denied={<Text size="sm">{name}</Text>}>
+
+              <Box sx={{ width: '100%' }} ml={18}>
+                <EditableTextInput singleClick defaultValue={name} save={(value) => handleUpdateFileName({ value, fileId: id })} />
+              </Box>
+            </CheckPermission>
 
           </td>
           <td><Center>{HumanFileSize(file_size)}</Center></td>
@@ -50,20 +46,29 @@ const UploadedFiles = ({ docReqId }) => {
           <td><Center><TimeAgo timestamp={upload_time} /></Center></td>
           <td>
             <Group>
-              <DownloadButton url={file_url} fileName={`${name}.${file_extension}`} />
-              <ActionIcon color="red"><IconTrash size={18} /></ActionIcon>
+              <CheckPermission ifUserCan="download document request file" module="loan application">
+                <DownloadButton url={file_url} fileName={`${name}.${file_extension}`} />
+              </CheckPermission>
+              <CheckPermission ifUserCan="delete document request file" module="loan application">
+                {
+                  ({ permission }) => (
+                    <ActionIcon color="red" onClick={() => handelDeleteUploadedFile(id)} disabled={!permission}><IconTrash size={18} /></ActionIcon>
+                  )
+                }
+              </CheckPermission>
             </Group>
           </td>
         </tr>
       ))
     }
     </tbody>
-  </Table> : <Stack>
-
-    <Text align="center">It feels lonely here upload your first document</Text>
-    <Center>
-      <Button onClick={() => handleOpenFileUploadModal(docReqId)} leftIcon={<IconUpload size={18} />}>Upload Document</Button>
-    </Center>
-  </Stack>
+  </Table> : <CheckPermission ifUserCan="upload files to document" module="loan application">
+    <Stack>
+      <Text align="center">It feels lonely here upload your first document</Text>
+      <Center>
+        <Button onClick={() => handleOpenFileUploadModal(docReqId)} leftIcon={<IconUpload size={18} />}>Upload Document</Button>
+      </Center>
+    </Stack>
+  </CheckPermission>
 }
 export default UploadedFiles

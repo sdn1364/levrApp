@@ -40,7 +40,8 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       }
     }),
     getDocReqFiles: builder.query({
-      query: (id) => `document_request_files/?document_request=${id}`
+      query: (id) => `document_request_files/?document_request=${id}`,
+      providesTags: ['DocumentRequestFile']
     }),
     getDocReqGuideRailzParams: builder.query({
       query: (id) => `document_request_guides/${id}/`,
@@ -106,6 +107,22 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         body: {}
       }),
       invalidatesTags: (result, error, arg) => [{ type: 'DocumentRequest', id: arg.id }]
+    }),
+    deleteUploadedFile: builder.mutation({
+      query: (docReqFileId) => ({
+        url: `document_request_files/${docReqFileId}`,
+        method: 'DELETE',
+        body: { id: docReqFileId }
+      }),
+      invalidatesTags: ['DocumentRequestFile']
+    }),
+    updateDocReqFileName: builder.mutation({
+      query: ({ docReqFileId, name }) => ({
+        url: `document_request_files/${docReqFileId}/update_name/`,
+        method: 'PUT',
+        body: { name }
+      }),
+      invalidatesTags: ['DocumentRequestFile']
     })
   })
 })
@@ -127,5 +144,7 @@ export const {
   useGetAllDocRequestsQuery,
   useReorderDocRequestsMutation,
   useUpdateDocReqNoteMutation,
-  useDeleteDocReqMutation
+  useDeleteDocReqMutation,
+  useDeleteUploadedFileMutation,
+  useUpdateDocReqFileNameMutation
 } = docRequestApiSlice

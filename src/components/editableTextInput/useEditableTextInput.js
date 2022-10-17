@@ -1,9 +1,10 @@
 import { useClickOutside } from '@mantine/hooks'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 const useEditableTextInput = (oldValue, singleClick) => {
 
   const ref = useClickOutside(() => handleOnClose())
+  const inputRef = useRef()
   const [changed, setChanged] = useState(null)
   const [focused, setFocused] = useState(false)
 
@@ -27,7 +28,13 @@ const useEditableTextInput = (oldValue, singleClick) => {
     setChanged(e.target.value)
   }
   const reset = () => {
-    ref.current.value = oldValue
+    inputRef.current.value = oldValue
+    setFocused(false)
+    setChanged('')
+  }
+  const resetState = () => {
+    setFocused(false)
+    setChanged('')
   }
 
   return {
@@ -36,7 +43,11 @@ const useEditableTextInput = (oldValue, singleClick) => {
     handleOnClose,
     handleOnChange,
     changed,
-    focused
+    focused,
+    setFocused,
+    setChanged,
+    resetState,
+    inputRef
   }
 }
 export default useEditableTextInput

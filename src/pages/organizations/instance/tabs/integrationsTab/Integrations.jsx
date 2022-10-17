@@ -3,6 +3,7 @@ import RailzConnect from '@railzai/railz-connect'
 import { usePermission } from 'hooks'
 import { RenderIfElse } from 'utilities'
 import { Text } from '@mantine/core'
+import { CheckPermission } from 'components'
 
 const Integrations = ({ organization }) => {
 
@@ -25,9 +26,9 @@ const Integrations = ({ organization }) => {
   }, [organization])
 
   return (
-    <RenderIfElse isTrue={hasAccessToOrganizationAsOwner()} isFalse={<Text>You do not Permission to view This Tab</Text>}>
+    <CheckPermission ifUserCan="view integrations" denied={<Text align="center">You do not Permission to view This Tab</Text>}>
       <div id="railz-connect" ref={ref}></div>
-    </RenderIfElse>
+    </CheckPermission>
   )
 }
 export default Integrations

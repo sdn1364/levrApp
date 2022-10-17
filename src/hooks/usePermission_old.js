@@ -8,7 +8,7 @@ import {
   ROLE_LOANAPP_VIEWER
 } from 'roles'
 
-const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, organizationId }) => {
+const usePermission_old = ({ loanAppId, documentRequest, borrowerOrganizationId, organizationId }) => {
 
   const { data: user, isSuccess } = useGetUserQuery()
 
@@ -33,7 +33,6 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     if (isSuccess) {
       if (user.is_staff) return true
       if (user.is_superuser) return true
-
       if (user.permissions.LoanApplication.ROLE_LOANAPP_BORROWER.includes(loanAppId)) return false
       if (user.permissions.LoanApplication.ROLE_LOANAPP_BROKER.includes(loanAppId)) return true
       if (user.permissions.LoanApplication.ROLE_LOANAPP_LENDER.includes(loanAppId)) return true
@@ -100,9 +99,9 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
     if (isSuccess) {
       if (user.is_staff) return true
       if (user.is_superuser) return true
-      if (user.permissions.LoanApplication.ROLELOAN_APP_BORROWER.includes(loanAppId)) return true
-      if (user.permissions.LoanApplication.ROLELOAN_APP_BROKER.includes(loanAppId)) return true
-      if (user.permissions.LoanApplication.ROLELOAN_APP_LENDER.includes(loanAppId)) return true
+      if (user.permissions.LoanApplication.ROLE_LOAN_APP_BORROWER.includes(loanAppId)) return true
+      if (user.permissions.LoanApplication.ROLE_LOAN_APP_BROKER.includes(loanAppId)) return true
+      if (user.permissions.LoanApplication.ROLE_LOAN_APP_LENDER.includes(loanAppId)) return true
 
       // A bit loose, but actually changing things is controlled by backend, and assumed this user can see this
       //    page only if they have Org<=>LoanApp association already.
@@ -216,4 +215,4 @@ const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, org
   }
 
 }
-export default usePermission
+export default usePermission_old

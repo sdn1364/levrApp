@@ -1,13 +1,12 @@
 import { Group, Text, Badge, ActionIcon, Center, Stack } from '@mantine/core'
-import { UserAvatar } from 'components'
+import { CheckPermission, UserAvatar } from 'components'
 import RoleSelect from './RoleSelect'
 import { READABLE_ROLE_MAPPING } from 'roles'
 import { IconTrash } from '@tabler/icons'
 import useManageAccess from 'components/ManageAccess/useManageAccess'
-import { RenderIf } from '../../../utilities'
 
 
-const RolesRow = ({ user, availableRole, setUserRole, isOwner }) => {
+const RolesRow = ({ user, availableRole, setUserRole }) => {
 
   const { handleClickDeleteUserRole } = useManageAccess()
 
@@ -35,13 +34,12 @@ const RolesRow = ({ user, availableRole, setUserRole, isOwner }) => {
             : <Text>{READABLE_ROLE_MAPPING[user.roles[0]]}</Text>
         }
       </Center>
-
     </td>
     <td><Badge fullWidth color="green">Accepted</Badge></td>
     <td>
-      <RenderIf isTrue={isOwner}>
+      <CheckPermission ifUserCan="delete user role" module={module}>
         <ActionIcon variant="subtle" onClick={() => handleClickDeleteUserRole(user.user_id)}><IconTrash size={16} /></ActionIcon>
-      </RenderIf>
+      </CheckPermission>
     </td>
   </tr>
 }

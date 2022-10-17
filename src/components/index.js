@@ -17,6 +17,7 @@ export { default as ActionGrid } from './actionGrid/ActionGrid'
 export { default as LoadingLoanApplication } from './LoadingLoanApplication'
 export { default as InviteUsers } from './inviteUsers/InviteUsers'
 export { default as DownloadButton } from './downloadButton/DownloadButton'
+export { default as CheckPermission } from './checkPermission/CheckPermission'
 
 // ============================================================================= Icons from here
 export { default as IconShop } from './icons/IconShop'

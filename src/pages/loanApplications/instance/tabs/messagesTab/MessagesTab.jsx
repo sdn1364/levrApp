@@ -22,7 +22,13 @@ const MessagesTab = () => {
               <Title order={5} color="dimmed">Groups</Title>
               {
                 threadSummaries.channel_summaries.map((channel) => (
-                  <UnstyledButton key={`channel-${channel.id}`}>
+                  <UnstyledButton key={`channel-${channel.id}`} sx={theme => ({
+                    padding: '5px 3px',
+                    borderRadius: theme.radius.md,
+                    '&:hover': {
+                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
+                    }
+                  })}>
                     <Group>
                       <UserAvatar color="blue" size={50} userId={channel.id}>{channel.name}</UserAvatar>
                       <div>
@@ -51,7 +57,13 @@ const MessagesTab = () => {
               <Title order={5} color="dimmed">Private Messages</Title>
               {
                 threadSummaries.user_summaries.map((user) => (
-                  <UnstyledButton key={`user-${user.id}`}>
+                  <UnstyledButton key={`user-${user.id}`} sx={theme => ({
+                    padding: '5px 3px',
+                    borderRadius: theme.radius.md,
+                    '&:hover': {
+                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
+                    }
+                  })}>
                     <Group>
                       <UserAvatar color="blue" size={50} userId={user.id}>{user.email}</UserAvatar>
                       <div>

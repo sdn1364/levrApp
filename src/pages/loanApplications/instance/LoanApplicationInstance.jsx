@@ -5,7 +5,7 @@ import CurrencyFormat from 'react-currency-format'
 
 import { useGetOneLoanApplicationQuery, useGetLoanAppThreadSummariesCountQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
-import { Content, Heading, LoadingLoanApplication, PageTitle } from 'components'
+import { CheckPermission, Content, Heading, LoadingLoanApplication, PageTitle } from 'components'
 
 import MessagesTab from './tabs/messagesTab/MessagesTab'
 import DocumentRequestTab from './tabs/documentRequestTab/DocumentRequestTab'
@@ -84,7 +84,6 @@ const LoanApplicationInstance = () => {
                   }
         >Messages</Tabs.Tab>
         <Tabs.Tab value="settings">Settings</Tabs.Tab>
-
       </Tabs.List>}>
         <PageTitle hasBack to="/loan-applications">{isSuccess ? loanApplication.loan_description : null}</PageTitle>
         <Stack spacing="xs">

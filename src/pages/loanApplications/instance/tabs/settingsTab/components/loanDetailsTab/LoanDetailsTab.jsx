@@ -2,7 +2,7 @@ import { Button, Group, Paper, Stack, Text, TextInput, Title } from '@mantine/co
 import { IconCurrencyDollarCanadian } from '@tabler/icons'
 import { useParams } from 'react-router-dom'
 import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
-import { TimeAgo } from 'components'
+import { CheckPermission, TimeAgo } from 'components'
 import { RenderIf } from 'utilities'
 import { usePermission } from 'hooks'
 import { useDispatch } from 'react-redux'
@@ -23,21 +23,40 @@ const LoanDetailsTab = () => {
       </Group>
       <Paper p="md" withBorder>
         <Stack>
-          <TextInput label="Loan Description" defaultValue={loanApp.loan_description} />
-          <Group position="right">
-            <Button type="submit" variant="subtle">Change Description</Button>
-          </Group>
-          <TextInput icon={<IconCurrencyDollarCanadian size={14} />} label="Requested Loan Amount (CAD)" defaultValue={loanApp.requested_amount} />
-          <Group position="right">
-            <Button type="submit" variant="subtle">Change Requested Amount</Button>
-          </Group>
-          <TextInput label="Notes(Visible to Broker/Lender)" defaultValue={loanApp.note} />
-          <Group position="right">
-            <Button type="submit" variant="subtle">Save Note</Button>
-          </Group>
+          <CheckPermission ifUserCan="update loan application description" module="loan application">
+            {
+              ({ permission }) => (<TextInput label="Loan Description" defaultValue={loanApp.loan_description} disabled={!permission} />)
+            }
+          </CheckPermission>
+          <CheckPermission ifUserCan="update loan application description" module="loan application">
+            <Group position="right">
+              <Button type="submit" variant="subtle">Change Description</Button>
+            </Group>
+          </CheckPermission>
+          <CheckPermission ifUserCan="update requested amount" module="loan application">
+            {
+              ({ permission }) => (<TextInput icon={<IconCurrencyDollarCanadian size={14} />} label="Requested Loan Amount (CAD)" defaultValue={loanApp.requested_amount} disabled={!permission} />
+              )
+            }
+          </CheckPermission>
+          <CheckPermission ifUserCan="update requested amount" module="loan application">
+            <Group position="right">
+              <Button type="submit" variant="subtle">Change Requested Amount</Button>
+            </Group>
+          </CheckPermission>
+          <CheckPermission ifUserCan="update requested amount" module="loan application">
+            {
+              ({ permission }) => (<TextInput label="Notes(Visible to Broker/Lender)" defaultValue={loanApp.note} disabled={!permission} />)
+            }
+          </CheckPermission>
+          <CheckPermission ifUserCan="save note" module="loan application">
+            <Group position="right">
+              <Button type="submit" variant="subtle">Save Note</Button>
+            </Group>
+          </CheckPermission>
         </Stack>
       </Paper>
-      <RenderIf isTrue={canDeleteLoanApplication()}>
+      <CheckPermission ifUserCan="delete loan application" module="loan application">
         <Title order={5} color="red.5">Danger zone</Title>
         <Paper p="md" withBorder>
           <form>
@@ -54,7 +73,8 @@ const LoanDetailsTab = () => {
             </Stack>
           </form>
         </Paper>
-      </RenderIf>
+      </CheckPermission>
+
 
     </Stack>
   </>

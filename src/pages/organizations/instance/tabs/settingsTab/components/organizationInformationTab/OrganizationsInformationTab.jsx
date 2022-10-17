@@ -4,6 +4,7 @@ import useOrganizationsInformation from './useOrganizationsInformation'
 import { usePermission } from 'hooks'
 import { useParams } from 'react-router-dom'
 import { RenderIf } from 'utilities'
+import { CheckPermission } from 'components'
 
 
 const OrganizationsInformation = () => {
@@ -25,11 +26,17 @@ const OrganizationsInformation = () => {
     <Paper p="md" withBorder>
       <form onSubmit={nameForm.onSubmit(handleUpdateOrganizationName)}>
         <Stack spacing="md">
-          <TextInput label="Organization Name" disabled={!hasAccessToOrganizationAsOwner(organizationId)} {...nameForm.getInputProps('name')} />
+          <CheckPermission ifUserCan="edit name" module="organization">
+            {
+              ({ permission }) => {
+                return <TextInput label="Organization Name" disabled={!permission} {...nameForm.getInputProps('name')} />
+              }
+            }
+          </CheckPermission>
           <Group position="right">
-            <RenderIf isTrue={hasAccessToOrganizationAsOwner(organizationId)}>
+            <CheckPermission ifUserCan="edit name" module="organization">
               <Button type="submit" variant="subtle">Change Name</Button>
-            </RenderIf>
+            </CheckPermission>
           </Group>
         </Stack>
       </form>
@@ -37,18 +44,23 @@ const OrganizationsInformation = () => {
     <Paper p="md" withBorder>
       <form onSubmit={typeForm.onSubmit(handleUpdateOrganizationType)}>
         <Stack spacing="md">
-          <Select data={orgTypes} {...typeForm.getInputProps('org_type')} label="Organization Type" disabled={!hasAccessToOrganizationAsOwner(organizationId)} />
-          <Group position="right">
-            <RenderIf isTrue={hasAccessToOrganizationAsOwner(organizationId)}>
+          <CheckPermission ifUserCan="edit type" module="organization">
+            {
+              ({ permission }) => {
+                return <Select data={orgTypes} {...typeForm.getInputProps('org_type')} label="Organization Type" disabled={!permission} />
 
+              }
+            }
+          </CheckPermission>
+          <Group position="right">
+            <CheckPermission ifUserCan="edit type" module="organization">
               <Button type="submit" variant="subtle">Change Type</Button>
-            </RenderIf>
+            </CheckPermission>
           </Group>
         </Stack>
       </form>
     </Paper>
-    <RenderIf isTrue={hasAccessToOrganizationAsOwner(organizationId)}>
-
+    <CheckPermission ifUserCan="delete" module="organization">
       <Title order={5} color="red.5">Danger zone</Title>
       <Paper p="md" withBorder>
         <form onSubmit={typeForm.onSubmit(handleUpdateOrganizationType)}>
@@ -62,7 +74,8 @@ const OrganizationsInformation = () => {
           </Stack>
         </form>
       </Paper>
-    </RenderIf>
+    </CheckPermission>
+
   </Stack>
 
 }
