@@ -12,7 +12,8 @@ const initialState = {
       stage: 0,
       doRequest: 0
     }
-  }
+  },
+  loanAppDeleteModal: null
 }
 
 const loanApplicationSlice = createSlice({
@@ -33,6 +34,12 @@ const loanApplicationSlice = createSlice({
     },
     setLoadingLoanApplication: (state, action) => {
       state.loadingLoanApplication = action.payload
+    },
+    openLoanAppDeleteModal: (state, action) => {
+      state.loanAppDeleteModal = action.payload
+    },
+    closeLoanAppDeleteModal: (state) => {
+      state.loanAppDeleteModal = null
     }
   }
 })
@@ -40,13 +47,16 @@ const loanApplicationSlice = createSlice({
 export const selectNewLoanApplicationModal = (state) => state.loanApplication.newLoanApplicationsModal
 export const selectLoanApplicationReminderModal = (state) => state.loanApplication.loanApplicationReminderModal
 export const selectLoanApplicationLoading = (state) => state.loanApplication.loadingLoanApplication
+export const selectLoanAppDeleteModal = (state) => state.loanApplication.loanAppDeleteModal
 
 export const {
   setOpenNewLoanApplicationModal,
   setCloseNewLoanApplicationModal,
   setOpenLoanApplicationReminderModal,
   setCloseLoanApplicationReminderModal,
-  setLoadingLoanApplication
+  setLoadingLoanApplication,
+  openLoanAppDeleteModal,
+  closeLoanAppDeleteModal
 } = loanApplicationSlice.actions
 
 export default loanApplicationSlice.reducer

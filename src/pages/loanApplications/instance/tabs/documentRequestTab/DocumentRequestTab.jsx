@@ -11,6 +11,7 @@ import { useGetLoanAppDocRequestLengthQuery } from 'redux/reducer/loanApplicatio
 import FileUploadModal from './components/fileUploadModal/FileUploadModal'
 import NewDocRequestModal from './components/newDocRequestModal/NewDocRequestModal'
 import { useGetLoanAppUsersAndInvitesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import SendMessageModal from './components/sendMessageModal/SendMessageModal'
 
 const DocumentRequestTab = () => {
 
@@ -24,6 +25,8 @@ const DocumentRequestTab = () => {
     <LoanApplicationReminderModal />
     <ConfirmDeleteDocReqModal />
     <FileUploadModal />
+    <SendMessageModal />
+    <DocRequestGuideDrawer />
 
     <NewDocRequestModal existingBorrowers={rolesIsSuccess ? rolesAndInvitations.user_roles.filter((invt) => invt.roles.includes('ROLE_LOANAPP_BORROWER')) : []}
                         invitedBorrowers={rolesIsSuccess ? rolesAndInvitations.invitations.filter((invt) => invt.object_permissions.includes('ROLE_LOANAPP_BORROWER')) : []}
@@ -31,7 +34,6 @@ const DocumentRequestTab = () => {
 
     <Stack spacing={0}>
       {loanAppLength > 0 ? <Stages /> : <EmptyDocRequest />}
-      <DocRequestGuideDrawer />
     </Stack>
   </>
 }

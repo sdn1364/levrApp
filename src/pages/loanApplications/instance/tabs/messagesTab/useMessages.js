@@ -1,6 +1,6 @@
 import { TimeAgo } from 'components'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { useGetLoanAppThreadSummariesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
+import { useGetChatMessageListQuery, useGetLoanAppThreadSummariesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 import { useEffect } from 'react'
 import { useScrollIntoView } from '@mantine/hooks'
 
@@ -18,8 +18,20 @@ const useMessages = () => {
     searchParams.get('selectedUserId') || '0',
     10
   )
+
+  const { data: chatWithChannel, isSuccess: chatWithChannelIsSuccess, isLoading: chatWithChennelIsLoading } = useGetChatMessageListQuery({
+    loanApplicationId: id
+  })
+
+// ======================================== scroll to bottom
   const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView()
   const { data: threadSummaries, isSuccess, isLoading } = useGetLoanAppThreadSummariesQuery(id)
+  useEffect(() => {
+    scrollIntoView({ easing: 0 })
+
+  }, [scrollIntoView, selectedChannelId, selectedUserId])
+
+  // ======================================== end of scroll to bottom
 
   function wrangleMessages({ allMessages, selectedChannelId, selectedUserId }) {
     const filtered = Object.values(allMessages)
@@ -66,10 +78,12 @@ const useMessages = () => {
     return result
   }
 
-  useEffect(() => {
-    scrollIntoView({ easing: 0 })
 
-  }, [scrollIntoView, selectedChannelId, selectedUserId])
+  const messages = wrangleMessages({
+    //allMessages,
+    selectedChannelId,
+    selectedUserId
+  })
 
   return { wrangleMessages, scrollIntoView, targetRef, scrollableRef, threadSummaries, isSuccess, isLoading }
 }

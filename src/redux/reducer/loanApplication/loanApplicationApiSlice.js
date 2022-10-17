@@ -13,29 +13,7 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
     getLoanApplicationStages: builder.query({
       query: (id) => `/loan_application_stages/?loan_application=${id}`
     }),
-    getLoanAppThreadSummariesCount: builder.query({
-      query: (id) => `/chat_messages/thread_summary/?scope_content_type_model=loanapplication&scope_content_type_app_label=loan_management&scope_id=${id}`,
-      transformResponse: (response, meta, arg) => {
-
-        const channelUnreads = response.channel_summaries.reduce(
-          function(acc, obj) {
-            return acc + obj.unread_count
-          },
-          0
-        )
-        const userUnreads = response.user_summaries.reduce(
-          function(acc, obj) {
-            return acc + obj.unread_count
-          },
-          0
-        )
-        return channelUnreads + userUnreads
-      }
-    }),
-    getLoanAppThreadSummaries: builder.query({
-      query: (id) => `/chat_messages/thread_summary/?scope_content_type_model=loanapplication&scope_content_type_app_label=loan_management&scope_id=${id}`
-    }),
-    GetLoanAppUsersAndInvites: builder.query({
+    getLoanAppUsersAndInvites: builder.query({
       query: (id) => `loan_applications/${id}/users_and_invites/`,
       providesTags: ['LoanApplicationsInvitations']
     }),
@@ -118,7 +96,73 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: params
       })
+    }),
+    updateLoanAppDescription: builder.mutation({
+      query: ({ loanAppId, description }) => ({
+        url: `loan_applications/${loanAppId}/update_description/`,
+        method: 'PUT',
+        body: { description }
+      }),
+      invalidatesTags: ['LoanApplication']
+    }),
+    updateLoanAppAmount: builder.mutation({
+      query: ({ loanAppId, amount }) => ({
+        url: `loan_applications/${loanAppId}/update_amount/`,
+        method: 'PUT',
+        body: { amount }
+      }),
+      invalidatesTags: ['LoanApplication']
+    }),
+    updateLoanAppNote: builder.mutation({
+      query: ({ loanAppId, note }) => ({
+        url: `loan_applications/${loanAppId}/update_note/`,
+        method: 'PUT',
+        body: { note }
+      }),
+      invalidatesTags: ['LoanApplication']
+    }),
+    deleteLoanApp: builder.mutation({
+      query: (loanAppId) => ({
+        url: `loan_applications/${loanAppId}`,
+        method: 'DELETE',
+        body: {}
+      }),
+      invalidatesTags: ['loanApplications']
+    }),
+    //==================================================messaging
+    getLoanAppThreadSummariesCount: builder.query({
+      query: (id) => `/chat_messages/thread_summary/?scope_content_type_model=loanapplication&scope_content_type_app_label=loan_management&scope_id=${id}`,
+      transformResponse: (response, meta, arg) => {
+
+        const channelUnreads = response.channel_summaries.reduce(
+          function(acc, obj) {
+            return acc + obj.unread_count
+          },
+          0
+        )
+        const userUnreads = response.user_summaries.reduce(
+          function(acc, obj) {
+            return acc + obj.unread_count
+          },
+          0
+        )
+        return channelUnreads + userUnreads
+      }
+    }),
+    getLoanAppThreadSummaries: builder.query({
+      query: (id) => `/chat_messages/thread_summary/?scope_content_type_model=loanapplication&scope_content_type_app_label=loan_management&scope_id=${id}`
+    }),
+    getChatMessageList: builder.query({
+      query: ({ loanApplicationId, toUserId, fromUserId, toChannelId, timestampLessThan }) => `chat_messages/?to_user=${
+        toUserId || ''
+      }&from_user${fromUserId || ''}=&to_channel=${
+        toChannelId || ''
+      }&scope_content_type__model=loanapplication&scope_content_type__app_label=loan_management&scope_id=${loanApplicationId}&timestamp__lte=${
+        timestampLessThan || ''
+      }`,
+      providesTags: ['ChatMessages']
     })
+
   })
 })
 
@@ -129,6 +173,7 @@ export const {
   useGetLoanAppThreadSummariesCountQuery,
   useGetLoanAppUsersAndInvitesQuery,
   useGetLoanAppThreadSummariesQuery,
+  useGetChatMessageListQuery,
   //loan application mutations from here
   useCreateLoanApplicationMutation,
   //manage access mutation hooks
@@ -138,5 +183,10 @@ export const {
   useEditLoanAppInvitationMutation,
   useSetLoanAppUserRoleMutation,
   useAddNewDocReqToLoanAppMutation,
-  useLoanAppSendReminderMutation
+  useLoanAppSendReminderMutation,
+  useUpdateLoanAppDescriptionMutation,
+  useUpdateLoanAppAmountMutation,
+  useUpdateLoanAppNoteMutation,
+  useDeleteLoanAppMutation
+
 } = loanApplicationApiSlice

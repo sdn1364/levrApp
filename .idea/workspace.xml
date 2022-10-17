@@ -5,45 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0753b866-e74e-41d3-ae45-233d74362bd7" name="Changes" comment="added invite use form module">
-      <change afterPath="$PROJECT_DIR$/src/components/checkPermission/CheckPermission.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/checkPermission/usePermission.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFileUpload/RequiredFileUpload.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFileUpload/UseRequiredFileUpload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/sendMessageModal/SendMessageModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/sendMessageModal/useSendMessageModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/components/LoanAppDeleteModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/components/useLoanAppDeleteModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/useLoanDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/ManageAccess.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/InvitationRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RoleSelect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/RolesRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManageAccess/components/UserInviteModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editableTextInput/EditableTextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editableTextInput/EditableTextInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editableTextInput/useEditableTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editableTextInput/useEditableTextInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inviteUsers/InviteUsers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inviteUsers/InviteUsers.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/usePermission.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePermission_old.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/LoanApplicationInstance.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/DocumentRequestTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/DocumentStage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/DocumentStage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/DocumentRequestRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/useDocumentRequestRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/documentStage/components/documentRequestRow/useDocumentRequestRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/downloadAll/DownloadAllButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/downloadAll/DownloadAllButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/downloadAll/useDownloadAll.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFiles/RequiredFiles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/requiredFiles/RequiredFiles.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/stages/Stages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/stages/Stages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/uploadedFiles/UploadedFiles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/uploadedFiles/UploadedFiles.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/messagesTab/MessagesTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/messagesTab/MessagesTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/fileUploadModal/FileUploadModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/documentRequestTab/components/fileUploadModal/FileUploadModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/messagesTab/useMessages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/messagesTab/useMessages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/LoanDetailsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/loanDetailsTab/LoanDetailsTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loanApplications/list/components/LoanApplicationRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/OrganizationInstance.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/integrationsTab/Integrations.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/manageAccessTab/ManageAccessTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/instance/tabs/settingsTab/components/organizationInformationTab/OrganizationsInformationTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/organizations/list/OrganizationsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organizations/list/OrganizationsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestApiSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/docRequestSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationApiSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/loanApplication/loanApplicationSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +125,7 @@
       <workItem from="1665673132648" duration="23632000" />
       <workItem from="1665728031572" duration="18859000" />
       <workItem from="1665815459535" duration="417000" />
-      <workItem from="1665869291472" duration="29411000" />
+      <workItem from="1665869291472" duration="36260000" />
     </task>
     <task id="LOCAL-00001" summary="added invite use form module">
       <created>1665441548931</created>

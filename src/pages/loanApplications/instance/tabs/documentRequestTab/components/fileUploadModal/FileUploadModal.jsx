@@ -1,6 +1,6 @@
 import { Button, Group, Modal, Stack, TextInput, Text, useMantineTheme } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
-import { IconPhoto, IconUpload, IconX } from '@tabler/icons'
+import { IconFiles, IconPhoto, IconUpload, IconX } from '@tabler/icons'
 import { selectFileUploadModal } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useSelector } from 'react-redux'
 import useFileUploadModal from './useFileUploadModal'
@@ -36,17 +36,17 @@ const FileUploadModal = () => {
               color={theme.colors['red'][theme.colorScheme === 'light' ? 4 : 6]}
             />
           </Dropzone.Reject>
-          <Dropzone.Idle>
-            <IconPhoto size={50} stroke={1.5} />
-          </Dropzone.Idle>
 
-          <Stack spacing="xs">
+          <Stack align="center" spacing="xs">
+            <Dropzone.Idle>
+              <IconFiles size={50} stroke={1.5} />
+            </Dropzone.Idle>
             <Text align="center" inline>
-              Drag images here or click to select files
+              Drag Files her
             </Text>
-            <Text size="sm" align="center" color="dimmed" inline mt={7}>
+            {/*            <Text size="sm" align="center" color="dimmed" inline mt={7}>
               Attach as many files as you like, each file should not exceed 5mb
-            </Text>
+            </Text>*/}
           </Stack>
         </Group>
       </Dropzone>

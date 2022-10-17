@@ -13,7 +13,8 @@ const initialState = {
   selectedDocRequest: [],
   documentRequestView: 'list',
   apiUploadModal: false,
-  uploadRequiredFileModal: false
+  uploadRequiredFileModal: null
+
 }
 
 const docRequestSlice = createSlice({
@@ -62,11 +63,17 @@ const docRequestSlice = createSlice({
     closeApiUploadModal: (state) => {
       state.apiUploadModal = false
     },
-    openUploadRequiredFileModal: (state) => {
-      state.uploadRequiredFileModal = true
+    openUploadRequiredFileModal: (state, action) => {
+      state.uploadRequiredFileModal = action.payload
     },
     closeUploadRequiredFileModal: (state) => {
-      state.uploadRequiredFileModal = false
+      state.uploadRequiredFileModal = null
+    },
+    openSendMessageModal: (state, action) => {
+      state.sendEmailModal = action.payload
+    },
+    closeSendMessageModal: (state) => {
+      state.sendEmailModal = null
     }
   }
 })
@@ -79,6 +86,7 @@ export const selectNewDocRequestModal = (state) => state.docRequest.newDocReques
 export const selectFileUploadModal = (state) => state.docRequest.uploadDocumentModal
 export const selectApiUploadModal = (state) => state.docRequest.apiUploadModal
 export const selectRequiredFileUploadModal = (state) => state.docRequest.uploadRequiredFileModal
+export const selectSendMessageModal = (state) => state.docRequest.sendMessageModal
 export const {
   selectDocRequests,
   unSelectDocRequests,
@@ -92,7 +100,12 @@ export const {
   openAddDocReqModal,
   closeAddDocRequestModal,
   openApiUploadModal,
-  closeApiUploadModal
+  closeApiUploadModal,
+  openUploadRequiredFileModal,
+  closeUploadRequiredFileModal,
+  closeSendMessageModal,
+  openSendMessageModal
+
 
 } = docRequestSlice.actions
 
