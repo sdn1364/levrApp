@@ -8,7 +8,6 @@ import useMessages from './useMessages'
 const MessagesTab = () => {
   const theme = useMantineTheme()
   const { threadSummaries, isSuccess, isLoading, scrollIntoView, targetRef, scrollableRef } = useMessages()
-  useLogger('messages', [threadSummaries])
 
   if (isLoading) {
     return <LoadingOverlay visible />

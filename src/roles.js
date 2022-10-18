@@ -31,6 +31,7 @@ export const READABLE_ROLE_MAPPING = {
 
 // permissions based on role
 export const roles = {
+  'staff': [],
   'organization owner': [
     'create new',
     'edit name',
@@ -44,7 +45,9 @@ export const roles = {
     'delete invitation'
   ],
   'organization member': [],
-  'loan application broker': [],
+  'loan application broker': [
+    'update document request status'
+  ],
   'loan application borrower': [],
   'loan application lender': []
 }

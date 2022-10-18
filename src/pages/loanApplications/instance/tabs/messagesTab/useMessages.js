@@ -33,59 +33,61 @@ const useMessages = () => {
 
   // ======================================== end of scroll to bottom
 
-  function wrangleMessages({ allMessages, selectedChannelId, selectedUserId }) {
-    const filtered = Object.values(allMessages)
-      .filter((message) => {
-        if (selectedChannelId) {
-          return message.toChannel === selectedChannelId
-        }
-        return (
-          message.toChannel === null &&
-          (message.toUser === selectedUserId ||
-            message.fromUser === selectedUserId)
-        )
-      })
-      .map((message) => {
-        const timestamp = new Date(message.timestamp)
-        const timeAgo = new TimeAgo('en-US')
-        return {
-          ...message,
-          timestamp,
-          date: timestamp.toLocaleDateString(),
-          timeAgo: timeAgo.format(timestamp)
-        }
-      })
-      .sort((a, b) => a.timestamp - b.timestamp)
+  /*
+    function wrangleMessages({ allMessages, selectedChannelId, selectedUserId }) {
+      const filtered = Object.values(allMessages)
+        .filter((message) => {
+          if (selectedChannelId) {
+            return message.toChannel === selectedChannelId
+          }
+          return (
+            message.toChannel === null &&
+            (message.toUser === selectedUserId ||
+              message.fromUser === selectedUserId)
+          )
+        })
+        .map((message) => {
+          const timestamp = new Date(message.timestamp)
+          const timeAgo = new TimeAgo('en-US')
+          return {
+            ...message,
+            timestamp,
+            date: timestamp.toLocaleDateString(),
+            timeAgo: timeAgo.format(timestamp)
+          }
+        })
+        .sort((a, b) => a.timestamp - b.timestamp)
 
-    function onlyUnique(value, index, self) {
-      return self.indexOf(value) === index
+      function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index
+      }
+
+      const dates = filtered.map((message) => message.date).filter(onlyUnique)
+      let result = []
+
+      for (let date of dates) {
+        result = [
+          ...result,
+          {
+            messageText: date,
+            fromSystem: true
+          },
+          ...filtered.filter((message) => message.date === date)
+        ]
+      }
+
+      return result
     }
 
-    const dates = filtered.map((message) => message.date).filter(onlyUnique)
-    let result = []
 
-    for (let date of dates) {
-      result = [
-        ...result,
-        {
-          messageText: date,
-          fromSystem: true
-        },
-        ...filtered.filter((message) => message.date === date)
-      ]
-    }
+    const messages = wrangleMessages({
+      //allMessages,
+      selectedChannelId,
+      selectedUserId
+    })
+  */
 
-    return result
-  }
-
-
-  const messages = wrangleMessages({
-    //allMessages,
-    selectedChannelId,
-    selectedUserId
-  })
-
-  return { wrangleMessages, scrollIntoView, targetRef, scrollableRef, threadSummaries, isSuccess, isLoading }
+  return { scrollIntoView, targetRef, scrollableRef, threadSummaries, isSuccess, isLoading }
 }
 
 export default useMessages

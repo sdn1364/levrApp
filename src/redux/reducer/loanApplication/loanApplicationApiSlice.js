@@ -161,6 +161,22 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
         timestampLessThan || ''
       }`,
       providesTags: ['ChatMessages']
+    }),
+    sendChatMessage: builder.mutation({
+      query: ({ toUserId, toChannelId, loanApplicationId, messageText, fromDocumentRequestId }) => ({
+        url: `chat_messages/send_message/`,
+        method: 'POST',
+        body: {
+          to_user: toUserId,
+          to_channel: toChannelId,
+          message_text: messageText,
+          scope_content_type_model: 'loanapplication',
+          scope_content_type_app_label: 'loan_management',
+          scope_id: loanApplicationId,
+          from_document_request_id: fromDocumentRequestId
+        }
+      }),
+      invalidatesTags: ['ChatMessages']
     })
 
   })
@@ -187,6 +203,7 @@ export const {
   useUpdateLoanAppDescriptionMutation,
   useUpdateLoanAppAmountMutation,
   useUpdateLoanAppNoteMutation,
-  useDeleteLoanAppMutation
+  useDeleteLoanAppMutation,
+  useSendChatMessageMutation
 
 } = loanApplicationApiSlice

@@ -8,7 +8,7 @@ import useStages from './useStages'
 import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import DocumentStage from '../documentStage/DocumentStage'
-import { CheckPermission } from '../../../../../../../components'
+import { CheckPermission } from 'components'
 
 const Stages = () => {
   const { id } = useParams()

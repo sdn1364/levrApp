@@ -1,7 +1,7 @@
 import { useMantineTheme } from '@mantine/core'
 import { useCallback, useState } from 'react'
 import { useHover } from '@mantine/hooks'
-import { openDeleteDocRequestConfirm, openUploadDocumentModal, selectDocRequests, unSelectDocRequests } from 'redux/reducer/loanApplication/docRequestSlice'
+import { openDeleteDocRequestConfirm, openSendMessageModal, openUploadDocumentModal, selectDocRequests, unSelectDocRequests } from 'redux/reducer/loanApplication/docRequestSlice'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { showNotification } from '@mantine/notifications'
@@ -87,6 +87,9 @@ const useAccordionHeader = (docReq) => {
     })
 
   }
+  const handleOpenSendMessageModal = (id) => {
+    dispatch(openSendMessageModal(id))
+  }
 
   return {
     status, hovered, ref, checked, onDocRequestCheckboxCheck,
@@ -95,7 +98,8 @@ const useAccordionHeader = (docReq) => {
     handleChangeDocRequestStatus,
     handleUpdateDocReqName,
     canManageDocRequests,
-    canManageDocRequestFiles
+    canManageDocRequestFiles,
+    handleOpenSendMessageModal
   }
 }
 

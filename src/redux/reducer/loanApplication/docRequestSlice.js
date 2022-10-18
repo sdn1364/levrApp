@@ -70,10 +70,10 @@ const docRequestSlice = createSlice({
       state.uploadRequiredFileModal = null
     },
     openSendMessageModal: (state, action) => {
-      state.sendEmailModal = action.payload
+      state.sendMessageModal = action.payload
     },
     closeSendMessageModal: (state) => {
-      state.sendEmailModal = null
+      state.sendMessageModal = null
     }
   }
 })

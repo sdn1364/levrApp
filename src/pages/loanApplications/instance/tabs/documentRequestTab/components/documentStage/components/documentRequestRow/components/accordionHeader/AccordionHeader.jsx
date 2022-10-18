@@ -1,7 +1,7 @@
 import { Accordion, ActionIcon, Box, Checkbox, Center, ColorSwatch, Divider, Group, Menu, Paper, Tooltip, useMantineTheme } from '@mantine/core'
 import { CapitalizeFirstLetter, RenderIf, RenderIfElse } from 'utilities'
 import { IconDotsVertical, IconGripVertical, IconMessage, IconTrash, IconUpload } from '@tabler/icons'
-import { EditableTextInput } from 'components'
+import { CheckPermission, EditableTextInput } from 'components'
 import People from '../People'
 import UploadDocsCounter from '../UploadDocsCounter'
 import RequiredFilesCount from '../RequiredFilesCount'
@@ -16,7 +16,8 @@ const AccordionHeader = ({ docReq, provided }) => {
     handleOpenFileUploadModal,
     handleChangeDocRequestStatus,
     handleUpdateDocReqName,
-    canManageDocRequests
+    canManageDocRequests,
+    handleOpenSendMessageModal
   } = useAccordionHeader(docReq)
   return <Box ref={ref} sx={{ marginLeft: hovered || checked ? -36 : 0 }}>
     <Group>
@@ -28,7 +29,7 @@ const AccordionHeader = ({ docReq, provided }) => {
         borderLeft: '5px solid ' + theme.colors[docReq.status][5],
         borderBottomLeftRadius: 0
       }}>
-        <RenderIfElse isTrue={canManageDocRequests()} isFalse={<ActionIcon variant="transparent" disabled size="lg">
+        <CheckPermission ifUserCan="update document request status" module="loan application" denied={<ActionIcon variant="transparent" disabled size="lg">
           <ColorSwatch size={14} color={theme.colors[docReq.status][5]} radius="sm" />
         </ActionIcon>}>
           <Menu position="bottom-start" shadow="md" width={120}>
@@ -48,18 +49,21 @@ const AccordionHeader = ({ docReq, provided }) => {
               ))}
             </Menu.Dropdown>
           </Menu>
-        </RenderIfElse>
-        <RenderIf isTrue={canManageDocRequests()}>
+        </CheckPermission>
+        <CheckPermission ifUserCan="drag document request" module="load application">
           <div {...provided.dragHandleProps}>
             <Center>
               <IconGripVertical size={18} stroke={1.5} />
             </Center>
           </div>
-        </RenderIf>
+        </CheckPermission>
+
         <Accordion.Control sx={{ paddingTop: canManageDocRequests() ? '16px' : '26px', paddingBottom: canManageDocRequests() ? '16px' : '26px' }}>
-          <RenderIfElse isTrue={canManageDocRequests()} isFalse={docReq.name}>
+
+          <CheckPermission ifUserCan="update document request name" module="loan application" denied={docReq.name}>
             <EditableTextInput singleClick defaultValue={docReq.name} save={handleUpdateDocReqName} />
-          </RenderIfElse>
+          </CheckPermission>
+
         </Accordion.Control>
 
         <Group mr="xs" spacing="md" noWrap>
@@ -68,19 +72,23 @@ const AccordionHeader = ({ docReq, provided }) => {
           <RequiredFilesCount docReqId={docReq.id} />
           <Divider orientation="vertical" />
         </Group>
-        <RenderIf isTrue={canManageDocRequests()}>
+        <CheckPermission ifUserCan="upload files to document request" module="loan application">
           <Tooltip label="Upload to this document request">
             <ActionIcon color="purple" size="lg" onClick={() => handleOpenFileUploadModal(docReq.id)}>
               <IconUpload size={16} />
             </ActionIcon>
           </Tooltip>
-        </RenderIf>
-        <Tooltip label="Click to discuss this document request">
-          <ActionIcon color="purple" size="lg">
-            <IconMessage size={16} />
-          </ActionIcon>
-        </Tooltip>
-        <RenderIf isTrue={canManageDocRequests()}>
+        </CheckPermission>
+
+        <CheckPermission ifUserCan="send document request as message" module="loan application">
+
+          <Tooltip label="Click to discuss this document request">
+            <ActionIcon color="purple" size="lg" onClick={() => handleOpenSendMessageModal(docReq.id)}>
+              <IconMessage size={16} />
+            </ActionIcon>
+          </Tooltip>
+        </CheckPermission>
+        <CheckPermission ifUserCan="delete document request" module="loan application">
           <Menu shadow="md">
             <Menu.Target>
               <ActionIcon size="lg">
@@ -93,7 +101,8 @@ const AccordionHeader = ({ docReq, provided }) => {
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>
-        </RenderIf>
+        </CheckPermission>
+
       </Paper>
     </Group>
   </Box>

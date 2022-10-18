@@ -6,8 +6,7 @@ import User from './components/user/User'
 
 const LoanApplicationReminderModal = () => {
   const { opened, form, msg, setMsg, handleChecked, closeLoanApplicationReminderModal, sendReminder, loanAppUsersAndInvites, loanAppUsersAndInvitesIsSuccess, isLoading } = useLoanApplicationReminderModal()
-
-
+  
   return <GenericModal
     opened={opened !== null}
     title="Send Reminder Email"
@@ -38,9 +37,10 @@ const LoanApplicationReminderModal = () => {
     }
 
     <RichTextEditor value={msg}
+                    onChange={setMsg}
+
                     sx={{ minHeight: 150 }}
                     id="rte"
-                    onChange={setMsg}
                     controls={[
                       ['bold', 'italic', 'underline', 'link'],
                       ['unorderedList', 'h1', 'h2', 'h3'],

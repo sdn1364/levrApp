@@ -1,4 +1,4 @@
-import { Paper, useMantineTheme, Stack, ScrollArea, Title, LoadingOverlay, Modal, TypographyStylesProvider, Text, Button, Divider, Group, Center } from '@mantine/core'
+import { Paper, useMantineTheme, Stack, ScrollArea, Title, LoadingOverlay, Modal, TypographyStylesProvider, Text, Button, Group, Center } from '@mantine/core'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useGetOneDocRequestQuery } from 'redux/reducer/loanApplication/docRequestApiSlice'
 import { IconArrowBigLeftLine, IconExternalLink } from '@tabler/icons'
@@ -19,7 +19,7 @@ const DocRequestGuideDrawer = () => {
   const docReqId = searchParams.get('documentRequestId')
   const { handleOpenApiUploadModal } = useDocReqGuideDrawer()
 
-  const { data: docReq, isSuccess, isLoading } = useGetOneDocRequestQuery(docReqId, { skip: docReqId === 'null' || docReqId === null })
+  const { data: docReq, isSuccess, isLoading } = useGetOneDocRequestQuery(docReqId, { skip: (docReqId === 'null' || docReqId === null) })
   const { data: loanApplication, isSuccess: loanAppIsSuccess } = useGetOneLoanApplicationQuery(loanAppId)
 
   const handleOpenGuideDetailModel = () => {
