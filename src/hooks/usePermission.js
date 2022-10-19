@@ -8,7 +8,7 @@ import {
   ROLE_LOANAPP_VIEWER
 } from 'roles'
 
-const usePermission_old = ({ loanAppId, documentRequest, borrowerOrganizationId, organizationId }) => {
+const usePermission = ({ loanAppId, documentRequest, borrowerOrganizationId, organizationId }) => {
 
   const { data: user, isSuccess } = useGetUserQuery()
 
@@ -215,4 +215,4 @@ const usePermission_old = ({ loanAppId, documentRequest, borrowerOrganizationId,
   }
 
 }
-export default usePermission_old
+export default usePermission

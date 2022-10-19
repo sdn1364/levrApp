@@ -53,8 +53,8 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
       query: () => `document_requests/`,
       providesTags: (result, error, arg) =>
         result
-          ? [...result.map(({ id }) => ({ type: 'DocumentRequest', id })), 'DocumentRequest']
-          : ['DocumentRequest']
+          ? [...result.map(({ id }) => ({ type: 'DocumentRequests', id })), 'DocumentRequests']
+          : ['DocumentRequests']
     }),
     //mutations from here
     updateDocRequestStatus: builder.mutation({
@@ -123,6 +123,14 @@ const docRequestApiSlice = apiSlice.injectEndpoints({
         body: { name }
       }),
       invalidatesTags: ['DocumentRequestFile']
+    }),
+    uploadFilesToDocReq: builder.mutation({
+      query: ({ documentRequestId, formData }) => ({
+        url: `document_requests/${documentRequestId}/create_new_upload/`,
+        method: 'POST',
+        headers: {},
+        body: formData
+      })
     })
   })
 })
@@ -146,5 +154,6 @@ export const {
   useUpdateDocReqNoteMutation,
   useDeleteDocReqMutation,
   useDeleteUploadedFileMutation,
-  useUpdateDocReqFileNameMutation
+  useUpdateDocReqFileNameMutation,
+  useUploadFilesToDocReqMutation
 } = docRequestApiSlice

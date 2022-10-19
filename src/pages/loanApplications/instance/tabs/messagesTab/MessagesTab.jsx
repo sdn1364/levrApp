@@ -1,35 +1,51 @@
-import { Box, Grid, Paper, Group, ActionIcon, TextInput, Title, UnstyledButton, ScrollArea, Text, Popover, Tooltip, Stack, useMantineTheme, Divider, LoadingOverlay } from '@mantine/core'
-import { IconMoodSmile, IconReload, IconSend } from '@tabler/icons'
+import { Box, Grid, Paper, Group, ActionIcon, TextInput, Title, UnstyledButton, ScrollArea, Center, Text, Popover, Tooltip, Stack, useMantineTheme, Divider, LoadingOverlay } from '@mantine/core'
+import { IconArrowBigLeftLine, IconMessages, IconMoodSmile, IconSend } from '@tabler/icons'
 import EmojiPicker from 'emoji-picker-react'
 import { UserAvatar } from 'components'
-import { useLogger } from '@mantine/hooks'
 import useMessages from './useMessages'
+import Messages from './components/messages/Messages'
 
 const MessagesTab = () => {
   const theme = useMantineTheme()
-  const { threadSummaries, isSuccess, isLoading, scrollIntoView, targetRef, scrollableRef } = useMessages()
+  const {
+    messages,
+    threadSummaries,
+    isSuccess,
+    isLoading,
+    targetRef,
+    scrollableRef,
+    handleSelectThread,
+    selectedChannelId,
+    selectedUserId
+  } = useMessages()
 
   if (isLoading) {
     return <LoadingOverlay visible />
   }
-  return isSuccess && <Box>
-    <Grid sx={{ maxHeight: 'calc(100vh - 80px - 160px)' }}>
-      <Grid.Col span={3} style={{ maxHeight: '100%' }}>
-        <Paper withBorder shadow="sm" p="md" sx={{ height: '100%' }}>
-          <ScrollArea sx={{ maxHeight: '100%' }}>
+  return isSuccess && <Box sx={{ height: 500 }}>
+    <Grid style={{ height: '100%' }}>
+      <Grid.Col span={3} style={{ minHeight: '100%' }}>
+        <Paper style={{ minHeight: '100%' }} withBorder shadow="sm" p="md">
+          <ScrollArea>
             <Stack>
               <Title order={5} color="dimmed">Groups</Title>
               {
                 threadSummaries.channel_summaries.map((channel) => (
-                  <UnstyledButton key={`channel-${channel.id}`} sx={theme => ({
-                    padding: '5px 3px',
-                    borderRadius: theme.radius.md,
-                    '&:hover': {
-                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
-                    }
-                  })}>
+                  <UnstyledButton key={`channel-${channel.id}`}
+                                  onClick={() => {
+                                    handleSelectThread(channel.id, 'channel')
+                                  }}
+                                  sx={theme => ({
+                                    padding: selectedChannelId === channel.id ? '6px 4px' : '7px 5px',
+                                    borderRadius: theme.radius.md,
+                                    border: selectedChannelId === channel.id ? '1px solid' + (theme.colorScheme === 'light' ? theme.colors['purple'][0] : theme.colors['purple'][7]) : null,
+                                    backgroundColor: selectedChannelId === channel.id ? (theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['purple'][8]) : null,
+                                    '&:hover': {
+                                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
+                                    }
+                                  })}>
                     <Group>
-                      <UserAvatar color="blue" size={50} userId={channel.id}>{channel.name}</UserAvatar>
+                      <UserAvatar color="blue" size={40}>{channel.name}</UserAvatar>
                       <div>
                         <Text>{channel.name}</Text>
                         <Text size="xs" color="dimmed"></Text>
@@ -56,15 +72,21 @@ const MessagesTab = () => {
               <Title order={5} color="dimmed">Private Messages</Title>
               {
                 threadSummaries.user_summaries.map((user) => (
-                  <UnstyledButton key={`user-${user.id}`} sx={theme => ({
-                    padding: '5px 3px',
-                    borderRadius: theme.radius.md,
-                    '&:hover': {
-                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
-                    }
-                  })}>
+                  <UnstyledButton key={`user-${user.id}`}
+                                  onClick={() => {
+                                    handleSelectThread(user.id, 'user')
+                                  }}
+                                  sx={theme => ({
+                                    padding: selectedUserId === user.id ? '6px 4px' : '7px 5px',
+                                    borderRadius: theme.radius.md,
+                                    border: selectedUserId === user.id ? '1px solid' + (theme.colorScheme === 'light' ? theme.colors['purple'][0] : theme.colors['purple'][7]) : null,
+                                    backgroundColor: selectedUserId === user.id ? (theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['purple'][8]) : null,
+                                    '&:hover': {
+                                      backgroundColor: theme.colorScheme === 'light' ? theme.colors['gray'][1] : theme.colors['gray'][9]
+                                    }
+                                  })}>
                     <Group>
-                      <UserAvatar color="blue" size={50} userId={user.id}>{user.email}</UserAvatar>
+                      <UserAvatar color="blue" size={40} userId={user.id}>{user.email}</UserAvatar>
                       <div>
                         <Text>{user.full_name || user.email}</Text>
                         <Text size="xs" color="dimmed">{user.email}</Text>
@@ -77,161 +99,52 @@ const MessagesTab = () => {
           </ScrollArea>
         </Paper>
       </Grid.Col>
-      <Grid.Col span={9}>
-        {/*chat area*/}
-        <Paper withBorder shadow="sm" p="md" sx={{ height: '100%' }}>
-          <Stack sx={{ height: '100%' }} spacing="lg">
-            {/*current loaded user*/}
-            <Paper p="sm" sx={{ background: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
-              <Group position="apart">
-                <Group>
-                  <UserAvatar color="blue" size={30}>soheyl@levrfinance.com</UserAvatar>
-                  <Text size="sm">Soheyl Delshad</Text>
-                </Group>
-                <Tooltip label="Click to load older messages">
-                  <ActionIcon color="purple" onClick={() => scrollIntoView()}><IconReload size={16} /></ActionIcon>
+      {
+        messages ? <Grid.Col span={9} style={{ minHeight: '100%' }}>
+          {/*chat area*/}
+          <Paper withBorder shadow="sm" p="md">
+            <Stack spacing="lg">
+              {/*current loaded user*/}
+              <Paper withBorder p="sm" sx={{ height: '100%', background: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
+                <ScrollArea sx={{ height: 'calc(100vh - 350px)' }} viewportRef={scrollableRef} offsetScrollbars>
+                  <Stack>
+                    <Divider label="new messages" labelPosition="center" />
+                    {
+                      messages && <Messages messages={messages} />
+                    }
+                    <div ref={targetRef}></div>
+                  </Stack>
+                </ScrollArea>
+              </Paper>
+              <Group sx={{ width: '100%' }}>
+                <Popover withArrow shadow="md">
+                  <Popover.Target>
+                    <Tooltip label="Choose an Emoji">
+                      <ActionIcon color="yellow" size="xl"><IconMoodSmile size={30} stroke={1.5} /></ActionIcon>
+                    </Tooltip>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <EmojiPicker />
+                  </Popover.Dropdown>
+                </Popover>
+                <TextInput sx={{ flex: 1 }} placeholder="Type a message" size="md" />
+                <Tooltip label="Send">
+                  <ActionIcon color="purple" size="xl"><IconSend size={30} stroke={1.5} /></ActionIcon>
                 </Tooltip>
               </Group>
-            </Paper>
-            <Paper withBorder p="sm" sx={{ maxHeight: '100%', background: theme.colorScheme === 'light' ? theme.colors['gray'][0] : theme.colors['gray'][9] }}>
-              <ScrollArea style={{ maxHeight: '100%', height: 500 }} viewportRef={scrollableRef}>
-                <Stack>
-                  <Divider label="new messages" labelPosition="center" />
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group> <Group position="right" align="end">
-                  <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                    <Text color="white">This is a message</Text>
-                  </Paper>
-                  {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-                  <Group position="right" align="end">
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colors['secondary'][3], borderBottomRightRadius: 2 }} p="lg">
-                      <Text color="white">This is a message</Text>
-                    </Paper>
-                    {/*
-                    <UserAvatar color="blue" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                  </Group>
-                  <Group position="left" align="end">
-                    {/*
-                    <UserAvatar color="green" size={50}>soheyl@levrfinance.com</UserAvatar>
-*/}
-                    <Paper radius="md" shadow="xs" sx={{ maxWidth: '50%', background: theme.colorScheme === 'light' ? theme.colors['gray'][3] : theme.colors['gray'][7], borderBottomLeftRadius: 2 }} p="lg">
-                      <Text>This is a message</Text>
-                    </Paper>
-                  </Group>
-
-                  <div ref={targetRef}>end of chat</div>
-                </Stack>
-              </ScrollArea>
-            </Paper>
-            <Group>
-              <Popover withArrow shadow="md">
-                <Popover.Target>
-                  <Tooltip label="Choose an Emoji">
-                    <ActionIcon color="yellow" size="xl"><IconMoodSmile size={30} stroke={1.5} /></ActionIcon>
-                  </Tooltip>
-                </Popover.Target>
-                <Popover.Dropdown>
-                  <EmojiPicker />
-                </Popover.Dropdown>
-              </Popover>
-              <TextInput placeholder="Type a message" size="md" sx={{ flex: 1 }} />
-              <Tooltip label="Send">
-                <ActionIcon color="purple" size="xl"><IconSend size={30} stroke={1.5} /></ActionIcon>
-              </Tooltip>
-            </Group>
-          </Stack>
-        </Paper>
-      </Grid.Col>
+            </Stack>
+          </Paper>
+        </Grid.Col> : <Grid.Col span={9} style={{ minHeight: '100%' }}>
+          <Paper withBorder shoadow="sm" sx={{ height: 'calc(100vh - 350px)' }}>
+            <Center sx={{ height: '100%' }}>
+              <Stack align="center">
+                <IconMessages size={100} stroke={0.5} />
+                <Text size="xl" weight={400}>Please select person to start to chat</Text>
+              </Stack>
+            </Center>
+          </Paper>
+        </Grid.Col>
+      }
     </Grid>
   </Box>
 }

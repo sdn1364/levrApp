@@ -24,7 +24,6 @@ const useSendMessageModal = () => {
     recipientType: ''
   })
 
-  console.log(form)
   const handleChecked = (value) => {
     let val = value.split('-')
     setForm({ selectedUsers: val[1], recipientType: val[0] })
@@ -36,6 +35,7 @@ const useSendMessageModal = () => {
       selectedUsers: null,
       recipientType: ''
     })
+    setMsg('')
   }
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const useSendMessageModal = () => {
         }).catch(err => {
           console.log(err)
         })
-      navigate(`/loan-applications/${loanAppId}/ messages?selectedChannelId=undefined&selectedUserId=${form.selectedUsers}`)
+      navigate(`/loan-applications/${loanAppId}/messages?selectedChannelId=undefined&selectedUserId=${form.selectedUsers}`)
     }
   }
 

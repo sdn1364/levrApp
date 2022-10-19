@@ -40,7 +40,6 @@ const useDocumentRequestRow = (docReq) => {
       }).catch(err => console.log(err))
   }
   const handleUpdateFileName = async ({ value, fileId }) => {
-    console.log(fileId)
     await updateFileName({
       docReqFileId: fileId,
       name: value

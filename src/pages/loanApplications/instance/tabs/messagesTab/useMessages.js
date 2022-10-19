@@ -1,8 +1,9 @@
 import { TimeAgo } from 'components'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useGetChatMessageListQuery, useGetLoanAppThreadSummariesQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useScrollIntoView } from '@mantine/hooks'
+import { useGetUserQuery } from 'redux/reducer/auth/authApiSlice'
 
 const useMessages = () => {
   const { id } = useParams()
@@ -14,22 +15,46 @@ const useMessages = () => {
     searchParams.get('selectedChannelId') || '0',
     10
   )
+
   const selectedUserId = parseInt(
     searchParams.get('selectedUserId') || '0',
     10
   )
 
-  const { data: chatWithChannel, isSuccess: chatWithChannelIsSuccess, isLoading: chatWithChennelIsLoading } = useGetChatMessageListQuery({
-    loanApplicationId: id
-  })
+  const [messages, setMessages] = useState(null)
+
+  const { data: me, isSuccess: userIsSuccess } = useGetUserQuery()
+  const { data: chatWithChannel, isSuccess: chatWithChannelIsSuccess, isLoading: chatWithChannelIsLoading, refetch: refetchChatWithChannel } = useGetChatMessageListQuery({
+    loanApplicationId: id,
+    toChannelId: selectedChannelId,
+    fromUserId: userIsSuccess ? me.id : ''
+  }, { skip: selectedChannelId === 0 })
+  const { data: chatWithUser, isSuccess: chatWithUserIsSuccess, isLoading: chatWithUserIsLoading, refetch: refetchChatWithUser } = useGetChatMessageListQuery({
+    loanApplicationId: id,
+    toUserId: selectedUserId,
+    fromUserId: userIsSuccess ? me.id : ''
+  }, { skip: selectedUserId === 0 })
+  const { data: chatWithRecepient, isSuccess: chatWithRecepientIsSuccess, isLoading: chatWithRecepientIsLoading, refetch: refetchChatWithRecepient } = useGetChatMessageListQuery({
+    loanApplicationId: id,
+    fromUserId: selectedUserId,
+    toUserId: userIsSuccess ? me.id : ''
+  }, { skip: selectedUserId === 0 })
 
 // ======================================== scroll to bottom
-  const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView()
+  const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView({ duration: 0, easing: () => (0) })
   const { data: threadSummaries, isSuccess, isLoading } = useGetLoanAppThreadSummariesQuery(id)
-  useEffect(() => {
-    scrollIntoView({ easing: 0 })
 
-  }, [scrollIntoView, selectedChannelId, selectedUserId])
+  useEffect(() => {
+    scrollIntoView()
+  }, [])
+
+  useEffect(() => {
+    if (chatWithChannelIsSuccess && chatWithChannel !== 0) {
+      setMessages(chatWithChannel)
+    } else if (chatWithUserIsSuccess && chatWithUser !== 0) {
+      setMessages(chatWithUser)
+    }
+  }, [chatWithChannel, chatWithUser, chatWithChannelIsSuccess, chatWithUserIsSuccess, messages])
 
   // ======================================== end of scroll to bottom
 
@@ -79,15 +104,36 @@ const useMessages = () => {
       return result
     }
 
-
-    const messages = wrangleMessages({
-      //allMessages,
-      selectedChannelId,
-      selectedUserId
-    })
   */
 
-  return { scrollIntoView, targetRef, scrollableRef, threadSummaries, isSuccess, isLoading }
+  const handleSelectThread = (id, recipient) => {
+    if (recipient === 'user') {
+
+      setSearchParams({ selectedUserId: id })
+      refetchChatWithUser()
+    } else {
+      setSearchParams({ selectedChannelId: id })
+      refetchChatWithChannel()
+    }
+    setMessages(null)
+  }
+
+  console.log(chatWithChannel)
+  console.log(chatWithUser)
+  console.log(chatWithRecepient)
+
+
+  return {
+    messages,
+    targetRef,
+    scrollableRef,
+    threadSummaries,
+    isSuccess,
+    isLoading,
+    selectedChannelId,
+    selectedUserId,
+    handleSelectThread
+  }
 }
 
 export default useMessages

@@ -5,12 +5,14 @@ export const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
   credentials: 'omit',
 
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers, { getState, endpoint }) => {
     const token = getState().auth.token || localStorage.getItem('_auth_token')
     if (token) {
       headers.set('authorization', `Token ${token}`)
     }
-    headers.set('Content-Type', 'application/json')
+    if (endpoint !== 'uploadFilesToDocReq') {
+      headers.set('Content-Type', 'application/json')
+    }
     return headers
   }
 })

@@ -1,1 +1,1 @@
-export { default as usePermission } from './usePermission_old'
+export { default as usePermission } from './usePermission'

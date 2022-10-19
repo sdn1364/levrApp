@@ -155,11 +155,18 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
     getChatMessageList: builder.query({
       query: ({ loanApplicationId, toUserId, fromUserId, toChannelId, timestampLessThan }) => `chat_messages/?to_user=${
         toUserId || ''
-      }&from_user${fromUserId || ''}=&to_channel=${
+      }&from_user${
+        fromUserId || ''
+      }=&to_channel=${
         toChannelId || ''
-      }&scope_content_type__model=loanapplication&scope_content_type__app_label=loan_management&scope_id=${loanApplicationId}&timestamp__lte=${
+      }&scope_content_type__model=loanapplication&scope_content_type__app_label=loan_management&scope_id=${
+        loanApplicationId
+      }&timestamp__lte=${
         timestampLessThan || ''
       }`,
+      transformResponse: (response) => {
+        return response.reverse()
+      },
       providesTags: ['ChatMessages']
     }),
     sendChatMessage: builder.mutation({
@@ -177,8 +184,10 @@ const loanApplicationApiSlice = apiSlice.injectEndpoints({
         }
       }),
       invalidatesTags: ['ChatMessages']
+    }),
+    getAllLoanAppDocuments: builder.query({
+      query: (loanAppId) => `loan_applications/${loanAppId}/download_all_docrequests_files/`
     })
-
   })
 })
 
@@ -204,6 +213,7 @@ export const {
   useUpdateLoanAppAmountMutation,
   useUpdateLoanAppNoteMutation,
   useDeleteLoanAppMutation,
-  useSendChatMessageMutation
+  useSendChatMessageMutation,
+  useGetAllLoanAppDocumentsQuery
 
 } = loanApplicationApiSlice

@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { showNotification } from '@mantine/notifications'
 import { useUpdateDocRequestNameMutation, useUpdateDocRequestStatusMutation } from 'redux/reducer/loanApplication/docRequestApiSlice'
-import { usePermission } from 'hooks'
 import { useGetOneLoanApplicationQuery } from 'redux/reducer/loanApplication/loanApplicationApiSlice'
 
 const useAccordionHeader = (docReq) => {
@@ -27,12 +26,6 @@ const useAccordionHeader = (docReq) => {
     { name: 'yellow', color: theme.colors['yellow'][5] },
     { name: 'red', color: theme.colors['red'][5] }
   ]
-
-  const { canManageDocRequests, canManageDocRequestFiles } = usePermission({
-    loanAppId: parseInt(loanAppId),
-    documentRequest: docReq,
-    borrowerOrganizationId: loanApplicationInstance.borrower_org
-  })
 
 
   const handleSelectDocRequest = (id) => {
@@ -97,8 +90,6 @@ const useAccordionHeader = (docReq) => {
     handleOpenFileUploadModal,
     handleChangeDocRequestStatus,
     handleUpdateDocReqName,
-    canManageDocRequests,
-    canManageDocRequestFiles,
     handleOpenSendMessageModal
   }
 }

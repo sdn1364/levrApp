@@ -1,12 +1,15 @@
-async function _fetchBlob(url) {
-  const response = await fetch(url)
-  return response.blob()
-}
+import { useDispatch } from 'react-redux'
+import { openUploadRequiredFileModal } from '../../../../../../../redux/reducer/loanApplication/docRequestSlice'
 
-const fetchBlob = nanomemoize(_fetchBlob)
 const useRequiredFiles = () => {
-  const downloadFile = () => {
 
+  const dispatch = useDispatch()
+
+  const handleOpenUploadRequiredFilesModal = (id) => {
+    dispatch(openUploadRequiredFileModal(id))
   }
+
+  return { handleOpenUploadRequiredFilesModal }
 }
+
 export default useRequiredFiles

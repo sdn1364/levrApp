@@ -16,7 +16,7 @@ const AccordionHeader = ({ docReq, provided }) => {
     handleOpenFileUploadModal,
     handleChangeDocRequestStatus,
     handleUpdateDocReqName,
-    canManageDocRequests,
+
     handleOpenSendMessageModal
   } = useAccordionHeader(docReq)
   return <Box ref={ref} sx={{ marginLeft: hovered || checked ? -36 : 0 }}>
@@ -58,13 +58,17 @@ const AccordionHeader = ({ docReq, provided }) => {
           </div>
         </CheckPermission>
 
-        <Accordion.Control sx={{ paddingTop: canManageDocRequests() ? '16px' : '26px', paddingBottom: canManageDocRequests() ? '16px' : '26px' }}>
+        <CheckPermission ifUserCan="update document request name" module="loan application" denied={docReq.name}>
+          {
+            ({ permission }) => (<Accordion.Control sx={{ paddingTop: permission ? '16px' : '26px', paddingBottom: permission ? '16px' : '26px' }}>
 
-          <CheckPermission ifUserCan="update document request name" module="loan application" denied={docReq.name}>
-            <EditableTextInput singleClick defaultValue={docReq.name} save={handleUpdateDocReqName} />
-          </CheckPermission>
+              <EditableTextInput singleClick defaultValue={docReq.name} save={handleUpdateDocReqName} />
 
-        </Accordion.Control>
+            </Accordion.Control>)
+          }
+
+        </CheckPermission>
+
 
         <Group mr="xs" spacing="md" noWrap>
           <People userId={docReq.assigned_to_user} userName={docReq.request_for_user_name} />
@@ -86,6 +90,7 @@ const AccordionHeader = ({ docReq, provided }) => {
             <ActionIcon color="purple" size="lg" onClick={() => handleOpenSendMessageModal(docReq.id)}>
               <IconMessage size={16} />
             </ActionIcon>
+
           </Tooltip>
         </CheckPermission>
         <CheckPermission ifUserCan="delete document request" module="loan application">

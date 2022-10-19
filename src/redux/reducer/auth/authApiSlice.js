@@ -23,6 +23,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
       providesTags: ['User']
 
     }),
+    getUserById: builder.query({
+      query: (id) => `/users/${id}/`
+    }),
     getUserImage: builder.query({
       query: (id) => `/users/${id}/profile_image/`,
       providesTags: ['User']
@@ -63,6 +66,7 @@ export const {
   useForgotMutation,
   useGetUserQuery,
   useGetUserImageQuery,
+  useGetUserByIdQuery,
   useUpdateUserFullNameMutation,
   useUpdateUserImageMutation,
   useUpdateUserEmailMutation
