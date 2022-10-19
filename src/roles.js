@@ -46,8 +46,45 @@ export const roles = {
   ],
   'organization member': [],
   'loan application broker': [
-    'update document request status'
+    'update loan application description',
+    'update loan application requested amount',
+    'update document request status',
+    'create document request',
+    'download all files',
+    'send reminder',
+    'invite users',
+    'remove users',
+    'update document request name',
+    'delete document request',
+    'upload files to document request',
+    'delete uploaded files',
+    'delete required file',
+    'add required file'
   ],
-  'loan application borrower': [],
-  'loan application lender': []
+  'loan application lender': [
+    'update loan application description',
+    'update loan application requested amount',
+    'update document request status',
+    'create document request',
+    'download all files',
+    'send reminder',
+    'invite users',
+    'remove users',
+    'update document request name',
+    'delete document request',
+    'upload files to document request',
+    'delete uploaded files',
+    'delete required file',
+    'add required file'
+
+  ],
+  'loan application borrower': [
+    'send reminder',
+    'download required file'
+
+  ],
+
+  'loan application viewer': [
+    'send reminder'
+  ]
 }
